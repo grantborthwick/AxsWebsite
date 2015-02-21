@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="Coed Kansas State University academic and professional fraternity/society for chemistry students. Chemistry Magic Shows for Chemistry Education">
+    <meta name="keywords" content="AΧΣ,BP,Alpha Chi Sigma,Beta Rho,AΧΣ,AΧS,AΧE,KSU,chemistry,magic,shows,chemical,fraternity,society,professional,education">
+    <meta name="author" content="Grant Borthwick">
+    <meta charset="UTF-8">
+    <title>AΧΣ BP - Alpha Chi Sigma Beta Rho</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+</head>
+<body>
+    <div id="header">
+        <span id="mainLinks">
+            <a href="#/" title="Home">
+                <span id="headerLeftAXS">AΧΣ</span>
+                <span id="headerLeftBP" >BP</span>
+            </a>
+        </span>
+        <span id="pageLinks">
+            <a href="#/" id="indexLink" class="containerLink" data-bind="css: { selected: page() === ''}">Home</a>
+            <a href="#/about" id="aboutLink" class="containerLink" data-bind="css: { selected: page().indexOf('about') === 0}">About</a>
+            <a href="#/officers" id="officersLink" class="containerLink" data-bind="css: { selected: page().indexOf('officers') === 0}">Officers</a>
+            <a href="#/members" id="membersLink" class="containerLink" data-bind="css: { selected: page().indexOf('members') === 0}">Members</a>
+            <a href="#/professional" id="professionalLink" class="containerLink" data-bind="css: { selected: page().indexOf('professional') === 0}">Professional</a>
+            <a href="#/pictures" id="picturesLink" class="containerLink" data-bind="css: { selected: page().indexOf('pictures') === 0}">Pictures</a>
+            <a href="#/calendar" id="calendarLink" class="containerLink" data-bind="css: { selected: page().indexOf('calendar') === 0}">Calendar</a>
+        </span>    
+    </div>
+    <div id="container">
+        <div id="home" class="page" data-bind="visible: page() === ''">
+            <div>
+                <div id="homec">
+                    <img src="images/home/2013F.jpg"></img>
+                    <img src="images/home/acsrt.jpg"></img>
+                    <img src="images/home/star1213.jpg"></img>
+                    <img src="images/home/2013S.jpg"></img>
+                    <div id="twitterfeed">
+                        <a class="twitter-timeline" href="https://twitter.com/AXSBetaRho" data-widget-id="393015675423186945">Tweets by @AXSBetaRho</a>
+                    </div>
+                </div>
+            </div>
+            <div id="homeText">
+                <p>Welcome to the website of the Beta Rho chapter of Alpha Chi Sigma, a chapter of the Professional Chemistry fraternity at Kansas State University.</p>
+                <p><a href="#/about">Learn More!</a></p>
+            </div>
+        </div>
+        <div id="about" class="page" data-bind="visible: page().indexOf('about') === 0">
+            <div id="aboutLinks">
+                <span id="aboutTitle"><u>About</u>:&nbsp;</span>
+                <a id="aboutAxsLink" href="#/about/axs" data-bind="css: { selected: page().indexOf('axs') !== -1}">AΧΣ</a>
+                <a id="aboutBpLink" href="#/about/bp" data-bind="css: { selected: page().indexOf('bp') !== -1}">BP</a>
+                <a id="aboutPledgingLink" href="#/about/pledging" data-bind="css: { selected: page().indexOf('pledging') !== -1}">Pledging</a>
+                <a id="aboutFaqLink" href="#/about/faq" data-bind="css: { selected: page().indexOf('faq') !== -1}">FAQ</a>
+                <a id="aboutInterestedLink" href="#/about/interested" data-bind="css: { selected: page().indexOf('interested') !== -1}">Interested</a>
+                <a id="aboutWebsiteLink" href="#/about/website" data-bind="css: { selected: page().indexOf('website') !== -1}">Website</a>
+            </div>
+            <div id="axs" data-bind="visible: page().indexOf('axs') !== -1">
+                <span>Alpha Chi Sigma</span><br>
+                <img id='axs1' src="images/about/IMG_08882.jpg"></img>
+                <img id='axs2' src="images/about/fire.jpg"></img>
+                <span id="axsText1">
+                    We are a Professional Chemistry Fraternity, made of both Collegiate and Professional branches, committed to the advancement of chemistry. We find the science of chemistry entertaining and rewarding, and strive to share our enthusiasm with those around us. We believe in learning not only more about chemistry, but learning more about our fellow brothers along the way. These aspirations have been part of the fraternity since our founding in 1902 at the University of Wisconsin at Madison, and as such are the three objectives of the fraternity, found at the bottom of the page.
+                </span>
+                <span id="axsText2">
+                    Our main goal is to promote the brotherhood and scholarship of chemistry. Our largest contributor is our chemistry magic shows. We perform at different venues including many places on campus, as well as at the various elementary and middle schools in Manhattan and surrounding cities. Our main goal at these shows is to show the amazing things that chemistry can explain, and have fun while doing it. We also have social events with our collegiate brothers, as well as the professional brothers.
+                </span>
+            </div>
+            <div id="bp" data-bind="visible: page().indexOf('bp') !== -1">
+                <img id="brick" img="images/Pictures/brick4.jpg"></img>
+                <div id="bpText"><p>Beta Rho was colonized by the Kappa Chapter (Kansas University), and has been a thriving branch of Alpha Chi Sigma since October 30, 1965.<br>Our first members were initiated by Kappa after a friendly game of basketball.</p>
+                </div>
+            </div>
+            <div id="pledging" data-bind="visible: page().indexOf('pledging') !== -1">
+                <span>The Pledging Process</span><br>
+                <div>
+                    <p>To join Alpha Chi Sigma, you must first go through pledging: a semester long process that gives you time to get to know our members and a few things about the fraternity before joining. Alpha Chi Sigma is open to students that are majoring in Chemistry, or were within the top 40% of your chem 1 class. Both males and females may start pledging to join.</p>
+                    <p>If you're interested in the slightest, we have informational meetings near the start of each semester. If you want us to contact us to find out about the next informational meeting, fill out the form below or just show up! The dates of the informational meetings will be on the <a href="#/calendar" onclick="sp('calendar')">Calendar</a> as soon as they are known.</p>
+                    <p>Throughout the semester, our chapter has social events. Near the start of the pledging process, we have events every night of the week for prospective pledges to get to know us and see whether they want to join or not. These events may include, but are not limited to bowling, laser tag, a potluck, picture scavengar hunts, and movie nights!</p>
+                </div>
+            </div>
+            <div id="faq" data-bind="visible: page().indexOf('faq') !== -1">
+                <div data-bind="foreach: faqList">
+                    <div class="faq">
+                        <div class="faqTitle" data-bind="html:question"></div>
+                        <div class="faqAnswer" data-bind="html:answer"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="interested" data-bind="visible: page().indexOf('interested') !== -1">
+                <div id="interestedwufu" class="wufu"></div>
+                <div id="interestedContact">
+                    <span><u>Want to Know More?</u></span>
+                    <p>
+                        You can fill out this form to receive information about our next informational meeting.
+                        You can also contact our 
+                        <i>Master Alchemist</i>,
+                        <span data-bind="with: $root.x.getOfficer('Master Alchemist')">
+                            <a data-bind="text: name, attr: { href: 'mailto:' + email }"></a>
+                        </span>, 
+                        or our 
+                        <i>Vice Master Alchemist</i>, 
+                        <span data-bind="with: $root.x.getOfficer('Vice Master Alchemist')">
+                            <a data-bind="text: name, attr: { href: 'mailto:' + email} "></a>
+                        </span>!
+                        <!-- ko with: $root.x.getOfficer('Master Alchemist') -->
+                        <span data-bind="template: 'officer-template'"></span>
+                        <!-- /ko -->
+                        <br />
+                        <!-- ko with: $root.x.getOfficer('Vice Master Alchemist') -->
+                        <span data-bind="template: 'officer-template'"></span>
+                        <!-- /ko -->
+                    </p>
+                    <p>We have informational meetings at the start both the Fall and Spring semesters. We can't wait to hear from you!</p>
+                </div>
+            </div>
+            <div id="website" data-bind="with: $root.x.getOfficer('Webmaster'), visible: page().indexOf('website') !== -1">
+                This website is updated magically by <a data-bind="text: name, attr: { href: 'mailto:' + email }"></a>.
+                <br />Feel free to send her comments, suggestions, or pictures for the website.
+                <br />
+                <div data-bind="template: 'officer-template'"></div>
+            </div>
+        </div>
+        <div id="officers" data-bind="visible: page() === 'officers', template: { name: 'officer-template', foreach: officerList }"></div>
+        <div id="members" data-bind="visible: page().indexOf('members') !== -1">
+            <div id="membersLinks">
+                <a href="#/members/classes" data-bind="css: { selected: page().indexOf('classes') !== -1}">Pledge Classes</a>
+                <a href="#/members/families" data-bind="css: { selected: page().indexOf('families') !== -1}">Families</a>
+            </div>
+            <div class="pledgeClassList" data-bind="foreach: pledgeClassList.sort, visible: page().indexOf('classes') !== -1">
+                <div class="pledgeClass">
+                    <div class="pledgeClassSemester" data-bind="text: semester"></div>
+                    <!-- ko if: picture -->
+                    <div class="pledgeClassPicture" data-bind="text: picture"></div>
+                    <!-- /ko --><!-- ko ifnot: picture -->
+                    <div class="pledgeClassPicture noPicture">No picture</div>
+                    <!-- /ko -->
+                    <div class="memberList" data-bind="foreach: memberList">
+                        <div class="member">
+                            <span class="memberName" data-bind="text: name"></span>
+                            <span class="memberStatus" data-bind="text: status"></span>
+                            <!-- ko if: family -->
+                            <span class="memberFamily" data-bind="text: family"></span>
+                            <!-- /ko -->
+                            <!-- ko if: chapter -->
+                            <span class="memberChapter" data-bind="text: chapter"></span>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="familyList" data-bind="foreach: familyList" data-bind="visible: page().indexOf('families') !== -1">
+                <div class="family">
+                    <div class="familyName" data-bind="text: name"></div>
+                    <div class="memberList" data-bind="template: { name: 'familyMember-template', foreach: memberList.sort }"></div>
+                </div>
+            </div>
+        </div>
+        <div id="professional" data-bind="visible: page().indexOf('professional') === 0">
+            <div id="professionalLinks">
+                <span id="professionalTitle" class="cBTitle"><u>Professional and Service Activities</u>:&nbsp;</span>
+                <a id="professionalMallLink" href="#/professional/mall" data-bind="css: { selected: page().indexOf('mall') !== -1}">Mall Show</a>
+                <a id="professionalDinnerLink" href="#/professional/dinner" data-bind="css: { selected: page().indexOf('dinner') !== -1}">Faculty Dinner</a>
+                <a id="professionalTableLink" href="#/professional/table" data-bind="css: { selected: page().indexOf('table') !== -1}">Periodic Table</a>
+                <a id="professionalContactLink" href="#/professional/contact" data-bind="css: { selected: page().indexOf('contact') !== -1}">Contact Us!</a>
+            </div>
+            <div id="mall" data-bind="visible: page().indexOf('mall') !== -1">
+                <span class="professionalPageDescription">
+                    <span>National Chemitry Week Mall Show</span><br>
+                    Each October, Alpha Chi Sigma and the Chemistry Department at K-State put on activities during National Chemistry Week. The biggest event is a show at Manhattan Town Center Mall. Faculty members of the American Chemical Society with the help of BP brothers offer hands-on activities for kids, and brothers from BP put on three Halloween-themed shows during the day to show off a variety of neat chemistry tricks. The mall show is fun because so many children and families stop to watch, and its a fun show for members to participate in too!</span>
+                <img id="MallShow1" src="images/professional/mall/83.jpg"></img>
+                <img id="MallShow2" src="images/professional/mall/81.jpg"></img>
+                <img id="MallShow4" src="images/professional/mall/85.jpg"></img>
+                <img id="MallShow3" src="images/professional/mall/82.jpg"></img>
+            </div>
+            <div id="dinner" data-bind="visible: page().indexOf('dinner') !== -1">
+                <span class="professionalPageDescription">
+                    <span>
+                    KSU Chemistry Faculty Dinner</span><br><br>
+                    BP hosted its annual dinner with faculty at Little Apple Brewery. Several faculty members were in attendance, including: Chapter Advisor Dr. Chris Levy; brother Dr. Chris Culbertson; Drs. Christer Aakeroy, Yasmin Patell, Kenneth Klabunde, Ping Li, Leila Maurmann; Christa Obermeyer and Ron Jackson; Chemist and Dean of Arts and Sciences Peter Dorhout. It was a nice evening out for all students and faculty in attendance.</span>
+                <img id="FacultyDinner1" src="images/professional/dinner/1.jpg"></img>
+                <img id="FacultyDinner2" src="images/professional/dinner/3.jpg"></img>
+                <img id="FacultyDinner3" src="images/professional/dinner/2.jpg"></img>
+                <img id="FacultyDinner4" src="images/professional/dinner/4.jpg"></img>
+            </div>
+            <div id="table" data-bind="visible: page().indexOf('table') !== -1">
+                <span>Periodic Table Clean-Up</span><br>
+                <span class="professionalPageDescription">In the basement of the Chemistry/Biochemistry Building is a large periodic table - each element has its own square with information about the element. In the fall, under the advice of BP Chapter Advisor Dr. Christopher Levy, brothers volunteered their time on a Saturday to clean the periodic table element panels. With music cranked up in the AXS lab and everybody sporting purple gloves, cleaning turned out to be fun!</span><br>
+                <img id="Table2" src="images/professional/table/01.jpg"></img>
+                <img id="Table3" src="images/professional/table/08.jpg"></img>
+                <img id="Table1" src="images/professional/table/21.jpg"></img>
+            </div>
+            <div id="contact" data-bind="visible: page().indexOf('contact') !== -1">
+                    <span>Chemistry Magic Shows</span>
+                    <br />
+                    <span class="professionalPageDescription" data-bind="with: $root.x.getOfficer('Outreach Coordinator')">
+                        Through the year, our chapter puts on a variety of Chemistry Magic Shows to show groups Chemistry and how cool it can be!
+                        <br />
+                        You can contact our Outreach Coordinator, 
+                        <span data-bind="text: name"></span>,
+                        if you're interested in having us do a show.
+                        <div data-bind="template: 'officer-template'"></div>
+                    </span>                
+                </div>
+        </div>
+        <div id="pictures" data-bind="visible: page().indexOf('pictures') === 0">
+            <div class="albumLinkList" data-bind="foreach: albumList">
+                <a data-bind="text: name, attr: { href: '#/pictures/' + name }, css: { selected: $root.page().indexOf(name) !== -1 }"></a>
+            </div>
+            <!-- ko if: x.currentAlbum().x && x.currentAlbum().x.path -->
+            <div class="albumPath" data-bind="foreach: x.currentAlbum().x.path()">
+                <span>/</span>
+                <a class="selected" data-bind="text: name, attr { href: path }, css: { selected: $root.x.currentAlbum().name === name }"></a>
+            </div>
+            <!-- /ko -->
+            <div id="currentAlbum" data-bind="with: x.currentAlbum()">
+                <div class="albumLinkList">
+                    <!-- ko foreach: albumList -->
+                    <a data-bind="text: name, attr: { href: location.hash + '/' + name }"></a>
+                    <!-- /ko -->
+                </div>                
+                <!-- ko if: pictureList -->
+                <div class="albumPictureList" data-bind="foreach: pictureList">
+                    <a data-bind="attr: {href: $parent.path + src.substr(src.lastIndexOf('/')) }">
+                        <img class="albumPicture" data-bind="attr: {src: src}" />
+                    </a>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+        <div id="calendar" data-bind="visible: page() === 'calendar'">
+            <iframe src="https://www.google.com/calendar/embed?src=axe.betarho.ksu%40gmail.com&amp;ctz=America/Chicago" style="border: 0" width="986" height="670" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="objects" class='mainBody'>
+            <span class="object"><span><b>To Bind </b>its members with a tie of true and lasting</span> <span>friendship</span></span>
+            <span class="object"><span><b>To Strive </b>for the advancement of chemistry both as</span> <span>a science and as a profession</span></span>
+            <span class="object"><span><b>To Aid </b>its members by every honorable means in</span> <span>the attainment of their ambitions as chemists</span> <span>throughout their mortal lives</span></span>
+        </div>
+        <div class="mainBody">
+            <div id="updated">
+                <span class="sL">Last updated <span data-bind="text: lastUpdated.toDateString()"></span></span>
+            </div>
+            <div id="social">
+                <span class="sL">
+                    <a href="http://www.alphachisigma.org/" id="nationalLink" title='Visit the A&Chi;&Sigma; National Website' target='_blank'>AΧΣ National Website</a>
+                </span>
+                <a href="mailto:axe.betarho.ksu@gmail.com" target='_blank'>
+                    <img id="email" title='Email us' class="sL pic" src="images/social/noun_project_90_white.png"></img>
+                </a>
+                <a href="https://twitter.com/AXSBetaRho" target='_blank'>
+                    <img id="twitter" title='Follow us on Twitter' class="sL pic" src="images/social/twitter-bird-dark-bgs2.png"></img>
+                </a>
+                <a href="https://www.facebook.com/groups/202394199844855" target='_blank'>
+                    <img id="facebook" title='Like us on Facebook' class="sL pic" src="images/social/FB-f-Logo__white_72.png"></img>
+                </a>
+                <a href="https://plus.google.com/108525907659548690498" target='_blank'>
+                    <img id="googlePlus" title='Add us to Your Google+ Circles' class="sL pic" src="images/social/google-plus-1282.png"></img>
+                </a>
+                <a href="http://www.youtube.com/channel/UCF06bueiTIOYQsjZBl9s22Q" target='_blank'>
+                    <img id="youtube" title='Watch our Videos on YouTube' class="sL pic" src="images/social/yt-brand-logo-standard-onecolor-againstblack.png"></img>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="officer-template">
+        <div class="officer">
+            <div class="officerPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\'), url(\'images/officers/no photo.jpg\')' }"></div>
+            <div class="officerInformation">
+                <a class="officerName" data-bind="text: name, attr: { href: 'mailto:' + email }"></a>
+                <div class="officerPosition" data-bind="text: position"></div>
+                <!-- ko if: year -->
+                <div class="officerClass" data-bind="text: year"></div>
+                <!-- /ko --><!-- ko if: major -->
+                <div class="officerMajor" data-bind="text: major"></div>
+                <!-- /ko --><!-- ko if: minor -->
+                <div class="officerMinor" data-bind="text: minor"></div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </script>
+    <script type="text/html" id="familyMember-template">
+        <div class="member">
+            <span class="memberName" data-bind="text: name"></span>
+            <span class="memberStatus" data-bind="text: status"></span>
+            <span class="memberStatus" data-bind="text: date"></span>
+            <!-- ko if: chapter -->
+            <span class="memberChapter" data-bind="text: chapter"></span>
+            <!-- /ko -->
+            <div class="memberList" data-bind="template: { name: 'familyMember-template', foreach: x.littles.sort }"></div>
+        </div>
+    </script>
+    <pre>Debug:</pre>
+    <pre data-bind="text: 'Page: ' + page()"></pre>
+    <pre data-bind="text: ko.toJSON($data, null, 2)"></pre>
+    <link href="index.css" rel="stylesheet"></link>
+    <script src="lib/jquery-2.1.3.min.js"></script>
+    <script src="lib/knockout-3.2.0.js"></script>
+    <script src="lib/sammy/lib/sammy.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

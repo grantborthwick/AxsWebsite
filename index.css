@@ -1,0 +1,61 @@
+﻿body {
+    background-color: #000;
+    color: #e4e4e4;
+}
+
+a {
+    color:  yellow;
+}
+
+div.officer {
+    float: left;
+    width: 33%;
+}
+
+div.officer>*{
+    float:left;
+}
+
+div.officer>div.officerInformation {
+    width: 200px;
+}
+
+div.officer>div.officerPicture {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+}
+
+#social img {
+    height: 22px;
+    float: left;
+    margin-left: 5.5px;
+    margin-right: 5.5px;
+}
+
+#mainLinks {
+    margin-right: 10px;
+}
+
+#homec img, #professional img, #pictures img.albumPicture, #about img {
+    height: 100px;
+}
+
+.member {
+    padding-left: 20px;
+}
+
+.faq{
+    margin-bottom: 10px;
+}
+.faq>.faqTitle{
+    color: yellow;
+}
+.faq>.faqAnswer{
+    
+}
+a.selected{
+    color: #e4e4e4;
+}
