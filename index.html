@@ -100,30 +100,23 @@
                                 You can fill out this form to receive information about our next informational meeting.
                                 You can also contact our 
                                 <i>Master Alchemist</i>,
-                                <span data-bind="with: $root.x.getOfficer('Master Alchemist')">
-                                    <a data-bind="text: name, attr: { href: 'mailto:' + email }"></a>
-                                </span>, 
+                                <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Master Alchemist'} --><!-- /ko -->
                                 or our 
-                                <i>Vice Master Alchemist</i>, 
-                                <span data-bind="with: $root.x.getOfficer('Vice Master Alchemist')">
-                                    <a data-bind="text: name, attr: { href: 'mailto:' + email} "></a>
-                                </span>!
-                                <!-- ko with: $root.x.getOfficer('Master Alchemist') -->
-                                <span data-bind="template: 'officer-template'"></span>
-                                <!-- /ko -->
-                                <br />
-                                <!-- ko with: $root.x.getOfficer('Vice Master Alchemist') -->
-                                <span data-bind="template: 'officer-template'"></span>
-                                <!-- /ko -->
+                                <i>Vice Master Alchemist</i>,
+                                <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Vice Master Alchemist'} --><!-- /ko -->
+                                !
                             </p>
+                            <!-- ko template: {name: 'officerFromPosition-template', data: 'Master Alchemist'} --><!-- /ko -->
+                            <!-- ko template: {name: 'officerFromPosition-template', data: 'Vice Master Alchemist'} --><!-- /ko -->
                             <p>We have informational meetings at the start both the Fall and Spring semesters. We can't wait to hear from you!</p>
                         </div>
                     </div>
-                    <div id="website" data-bind="with: $root.x.getOfficer('Webmaster'), visible: page().indexOf('website') !== -1">
-                        This website is updated magically by <a data-bind="text: name, attr: { href: 'mailto:' + email }"></a>.
+                    <div id="website" data-bind="visible: page().indexOf('website') !== -1">
+                        This website is updated magically by
+                        <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Webmaster'} --><!-- /ko -->      
                         <br />Feel free to send her comments, suggestions, or pictures for the website.
                         <br />
-                        <div data-bind="template: 'officer-template'"></div>
+                        <!-- ko template: {name: 'officerFromPosition-template', data: 'Webmaster'} --><!-- /ko -->
                     </div>
                 </div>
                 <div id="officers" data-bind="visible: page() === 'officers', template: { name: 'officer-template', foreach: officerList }"></div>
@@ -207,13 +200,17 @@
                     <div id="contact" data-bind="visible: page().indexOf('contact') !== -1">
                             <span>Chemistry Magic Shows</span>
                             <br />
-                            <span class="professionalPageDescription" data-bind="with: $root.x.getOfficer('Outreach Coordinator')">
+                            <span class="professionalPageDescription">
                                 Through the year, our chapter puts on a variety of Chemistry Magic Shows to show groups Chemistry and how cool it can be!
                                 <br />
-                                You can contact our Outreach Coordinator, 
-                                <span data-bind="text: name"></span>,
+                                You can contact our <i>Outreach Coordinator</i>,
+                                <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Outreach Coordinator'} --><!-- /ko -->
+                                or our <i>Assistant Outreach Coordinator</i>,
+                                <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Assistant Outreach Coordinator'} --><!-- /ko -->
                                 if you're interested in having us do a show.
-                                <div data-bind="template: 'officer-template'"></div>
+                                <br />
+                                <!-- ko template: {name: 'officerFromPosition-template', data: 'Outreach Coordinator'} --><!-- /ko -->
+                                <!-- ko template: {name: 'officerFromPosition-template', data: 'Assistant Outreach Coordinator'} --><!-- /ko -->
                             </span>                
                         </div>
                 </div>
@@ -303,6 +300,15 @@
             </div>
         </div>
     </div>
+    <script type="text/html" id="officerNameFromPosition-template">
+        <!-- ko template: { name: 'officerName-template', data: $root.x.getOfficer($data) }--><!-- /ko -->
+    </script>
+    <script type="text/html" id="officerName-template">
+        <a class="officerName" data-bind="text: name, attr: { href: 'mailto:' + email }"></a>
+    </script>
+    <script type="text/html" id="officerFromPosition-template">
+        <!-- ko template: { name: 'officer-template', data: $root.x.getOfficer($data) }--><!-- /ko -->
+    </script>
     <script type="text/html" id="officer-template">
         <div class="officer">
             <div class="officerPosition" data-bind="text: position"></div>
