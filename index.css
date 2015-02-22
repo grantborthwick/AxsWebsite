@@ -12,15 +12,23 @@
     margin: 3px;
 }
 
-#container {
+#container > * {
     margin: 0 auto;
     width: 80%;
     min-width: 935px;
 }
 
+#header, #footer {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#headerLinks {
+    position: relative;
+}
+
 #contentContainer {
     position: relative;
-    width: 100%;
 }
 #contentContainer>*{
 }
@@ -91,6 +99,10 @@
     margin-right: 8px;
 }
 
+#footerInformation {
+    position: relative;
+}
+
 #header, #footer {
     position: relative;
     height: 45px;
@@ -98,10 +110,6 @@
     background-image: url('images/bg3.jpg');
     background-size: auto 45px;
     background-position-x: 50%;
-}
-
-#footer {
-    position: relative;
 }
 
 #social {

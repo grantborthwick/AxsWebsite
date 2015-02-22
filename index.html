@@ -11,21 +11,23 @@
 <body>
     <div id="container">
         <div id="header" class="links">
-            <span id="mainLinks">
-                <a href="#/" title="Home">
-                    <span id="headerLeftAXS">AΧΣ</span>
-                    <span id="headerLeftBP" >BP</span>
-                </a>
-            </span>
-            <span id="pageLinks">
-                <a href="#/" id="indexLink" class="containerLink" data-bind="css: { selected: page() === ''}">Home</a>
-                <a href="#/about" id="aboutLink" class="containerLink" data-bind="css: { selected: page().indexOf('about') === 0}">About</a>
-                <a href="#/officers" id="officersLink" class="containerLink" data-bind="css: { selected: page().indexOf('officers') === 0}">Officers</a>
-                <a href="#/members" id="membersLink" class="containerLink" data-bind="css: { selected: page().indexOf('members') === 0}">Members</a>
-                <a href="#/professional" id="professionalLink" class="containerLink" data-bind="css: { selected: page().indexOf('professional') === 0}">Professional</a>
-                <a href="#/pictures" id="picturesLink" class="containerLink" data-bind="css: { selected: page().indexOf('pictures') === 0}">Pictures</a>
-                <a href="#/calendar" id="calendarLink" class="containerLink" data-bind="css: { selected: page().indexOf('calendar') === 0}">Calendar</a>
-            </span>    
+            <div id="headerLinks">
+                <span id="mainLinks">
+                    <a href="#/" title="Home">
+                        <span id="headerLeftAXS">AΧΣ</span>
+                        <span id="headerLeftBP" >BP</span>
+                    </a>
+                </span>
+                <span id="pageLinks">
+                    <a href="#/" id="indexLink" class="containerLink" data-bind="css: { selected: page() === ''}">Home</a>
+                    <a href="#/about" id="aboutLink" class="containerLink" data-bind="css: { selected: page().indexOf('about') === 0}">About</a>
+                    <a href="#/officers" id="officersLink" class="containerLink" data-bind="css: { selected: page().indexOf('officers') === 0}">Officers</a>
+                    <a href="#/members" id="membersLink" class="containerLink" data-bind="css: { selected: page().indexOf('members') === 0}">Members</a>
+                    <a href="#/professional" id="professionalLink" class="containerLink" data-bind="css: { selected: page().indexOf('professional') === 0}">Professional</a>
+                    <a href="#/pictures" id="picturesLink" class="containerLink" data-bind="css: { selected: page().indexOf('pictures') === 0}">Pictures</a>
+                    <a href="#/calendar" id="calendarLink" class="containerLink" data-bind="css: { selected: page().indexOf('calendar') === 0}">Calendar</a>
+                </span>
+            </div>
         </div>
         <div id="contentContainer">
             <div id="pageContainer">
@@ -258,7 +260,7 @@
             </div>
         </div>
         <div id="footer"></div>
-        <div id="footerInformation>
+        <div id="footerInformation">
             <span id="updated">
                 <span id="lastUpdatedText">Last updated</span>
                 <span id="lastUpdatedDate" data-bind="text: x.dateString(lastUpdated)">                </span>
