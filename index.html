@@ -135,26 +135,32 @@
                     <div class="pledgeClassList" data-bind="foreach: pledgeClassList.sort, visible: page().indexOf('classes') !== -1">
                         <div class="pledgeClass">
                             <div class="pledgeClassSemester" data-bind="text: semester"></div>
-                            <!-- ko if: picture -->
-                            <div class="pledgeClassPicture" data-bind="text: picture"></div>
-                            <!-- /ko --><!-- ko ifnot: picture -->
-                            <div class="pledgeClassPicture noPicture">No picture</div>
-                            <!-- /ko -->
-                            <div class="memberList" data-bind="foreach: memberList">
+                            <div class="pledgeClassPictureContainer" data-bind="css: { noPicture: !picture}">
+                                <!-- ko if: picture -->
+                                <span class="gradientTop"></span>
+                                <span class="gradientBottom"></span>
+                                <span class="gradientLeft"></span>
+                                <span class="gradientRight"></span>
+                                <div class="pledgeClassPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\')' }"></div>
+                                <!-- /ko -->
+                                <!-- ko ifnot: picture -->
+                                <div class="pledgeClassPicture">No picture</div>
+                                <!-- /ko -->
+                            </div>
+                            <div class="memberList" data-bind="foreach: memberList.sort()">
                                 <div class="member">
-                                    <span class="memberName" data-bind="text: name"></span>
-                                    <span class="memberStatus" data-bind="text: status"></span>
+                                    <span class="memberName" data-bind="text: name, css: { active: status === 'Active' }"></span>
                                     <!-- ko if: family -->
-                                    <span class="memberFamily" data-bind="text: family"></span>
+                                    <span class="memberFamily white" data-bind="css: family.toLowerCase()"></span>
                                     <!-- /ko -->
                                     <!-- ko if: chapter -->
-                                    <span class="memberChapter" data-bind="text: chapter"></span>
+                                    <span class="memberChapter" data-bind="html: chapter"></span>
                                     <!-- /ko -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="familyList" data-bind="foreach: familyList" data-bind="visible: page().indexOf('families') !== -1">
+                    <div class="familyList" data-bind="foreach: familyList, visible: page().indexOf('families') !== -1">
                         <div class="family">
                             <div class="familyName" data-bind="text: name"></div>
                             <div class="memberList" data-bind="template: { name: 'familyMember-template', foreach: memberList.sort }"></div>

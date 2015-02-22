@@ -250,8 +250,8 @@ div.officer>div.officerPicture {
     display: inline-block;
 }
 
-.albumPreview, .albumPicture {
-    border-style: inset;
+.albumPreview, .albumPicture, .pledgeClassPictureContainer:not(.noPicture) {
+    border-style: solid;
     border-color: transparent;
     border: 2px 2px;
     margin: 2px;
@@ -262,7 +262,7 @@ div.officer>div.officerPicture {
     -ms-transition: border-color .25s;
 }
 
-.albumPreview:hover, .albumPicture:hover {
+.albumPreview:hover, .albumPicture:hover, .pledgeClassPictureContainer:not(.noPicture):hover {
     border-color: #E4E4E4;
 }
 
@@ -279,8 +279,40 @@ div.officer>div.officerPicture {
     text-decoration: none;
 }
 
+.pledgeClassPictureContainer {
+    display: inline-block;
+}
+
+.pledgeClassPictureContainer:not(.noPicture) {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.pledgeClassPictureContainer:not(.noPicture) .pledgeClassPicture {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
 .member {
     padding-left: 20px;
+    background-repeat: no-repeat;
+    background-position: 0px center;
+}
+
+.member .memberName.active {
+    color: yellow;
+}
+
+.member .memberFamily {
+    width: 19px;
+    height: 19px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
 }
 
 .faq{
@@ -299,50 +331,76 @@ a.selected{
     min-height: 750px;
 }
 
-.gradientTop, .gradientBottom, .gradientLeft, .gradientRight {
-    position: absolute;
-}
-
 .gradientTop {
     top: 0;
     left: 0;
     width: 100%;
     height: 5px;
+    position: absolute;
     background: -webkit-linear-gradient(top, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -moz-linear-gradient(top, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -o-linear-gradient(top, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -ms-linear-gradient(top, rgba(20,27,27,1),rgba(0,0,0,0));
 }
-
 .gradientBottom {
     bottom: 0;
     left: 0;
     width: 100%;
     height: 5px;
+    position: absolute;
     background: -webkit-linear-gradient(bottom, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -moz-linear-gradient(bottom, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -o-linear-gradient(bottom, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -ms-linear-gradient(bottom, rgba(20,27,27,1),rgba(0,0,0,0));
 }
-
 .gradientLeft {
     top: 0;
     left: 0;
     width: 5px;
     height: 100%;
+    position: absolute;
     background: -webkit-linear-gradient(left, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -moz-linear-gradient(left, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -o-linear-gradient(left, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -ms-linear-gradient(left, rgba(20,27,27,1),rgba(0,0,0,0));
 }
-
 .gradientRight {
     top: 0;
     right: 0;
     width: 5px;
     height: 100%;
+    position: absolute;
     background: -webkit-linear-gradient(right, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -moz-linear-gradient(right, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -o-linear-gradient(right, rgba(20,27,27,1),rgba(0,0,0,0));
     background: -ms-linear-gradient(right, rgba(20,27,27,1),rgba(0,0,0,0));
 }
+
+.mercury.black{background-image:url(images/symbols/black/mercury.svg)}
+.silver.black{background-image:url(images/symbols/black/silver.svg)}
+.tin.black{background-image:url(images/symbols/black/tin.svg)}
+.unsorted.black{background-image:url(images/symbols/black/unsorted.svg)}
+.iron.blue{background-image:url(images/symbols/blue/iron.svg)}
+.copper.blue{background-image:url(images/symbols/blue/copper.svg)}
+.gold.blue{background-image:url(images/symbols/blue/gold.svg)}
+.lead.blue{background-image:url(images/symbols/blue/lead.svg)}
+.mercury.blue{background-image:url(images/symbols/blue/mercury.svg)}
+.silver.blue{background-image:url(images/symbols/blue/silver.svg)}
+.tin.blue{background-image:url(images/symbols/blue/tin.svg)}
+.unsorted.blue{background-image:url(images/symbols/blue/unsorted.svg)}
+.iron.white{background-image:url(images/symbols/white/iron.svg)}
+.copper.white{background-image:url(images/symbols/white/copper.svg)}
+.gold.white{background-image:url(images/symbols/white/gold.svg)}
+.lead.white{background-image:url(images/symbols/white/lead.svg)}
+.mercury.white{background-image:url(images/symbols/white/mercury.svg)}
+.silver.white{background-image:url(images/symbols/white/silver.svg)}
+.tin.white{background-image:url(images/symbols/white/tin.svg)}
+.unsorted.white{background-image:url(images/symbols/white/unsorted.svg)}
+.iron.yellow{background-image:url(images/symbols/yellow/iron.svg)}
+.copper.yellow{background-image:url(images/symbols/yellow/copper.svg)}
+.gold.yellow{background-image:url(images/symbols/yellow/gold.svg)}
+.lead.yellow{background-image:url(images/symbols/yellow/lead.svg)}
+.mercury.yellow{background-image:url(images/symbols/yellow/mercury.svg)}
+.silver.yellow{background-image:url(images/symbols/yellow/silver.svg)}
+.tin.yellow{background-image:url(images/symbols/yellow/tin.svg)}
+.unsorted.yellow{background-image:url(images/symbols/yellow/unsorted.svg)}
