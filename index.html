@@ -303,6 +303,7 @@
     </div>
     <script type="text/html" id="officer-template">
         <div class="officer">
+            <div class="officerPosition" data-bind="text: position"></div>
             <div class="officerPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\'), url(\'images/officers/no photo.jpg\')' }">
                 <span class="gradientTop"></span>
                 <span class="gradientBottom"></span>
@@ -311,7 +312,6 @@
             </div>
             <div class="officerInformation">
                 <a class="officerName" data-bind="text: name, attr: { href: 'mailto:' + email }"></a>
-                <div class="officerPosition" data-bind="text: position"></div>
                 <!-- ko if: year -->
                 <div class="officerClass" data-bind="text: year"></div>
                 <!-- /ko --><!-- ko if: major -->

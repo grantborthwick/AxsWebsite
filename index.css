@@ -181,8 +181,9 @@ div.officer>div.officerPicture {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 105px;
+    height: 93px;
     width: 81px;
+    margin-top: 18px;
     position: absolute;
     top:0;
     left:0;
