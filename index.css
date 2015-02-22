@@ -362,6 +362,11 @@ a.selected{
     min-height: 750px;
 }
 
+#twitterfeed > iframe {
+    width: 100% !important;
+    height: 550px;
+}
+
 #viewer {
     position: absolute;
     top: 0;
