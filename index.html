@@ -10,6 +10,7 @@
 </head>
 <body>
     <div id="container">
+        <div id="headerBackground"></div>
         <div id="header" class="links">
             <div id="headerLinks">
                 <span id="mainLinks">
@@ -208,33 +209,40 @@
                         </div>
                 </div>
                 <div id="pictures" data-bind="visible: page().indexOf('pictures') === 0">
-                    <div class="albumLinkList" class="links">
-                        <span id="PicturesTitle" class="pageLinksTitle">Pictures:</span>
-                        <!-- ko foreach: albumList -->
-                        <a data-bind="text: name, attr: { href: '#/pictures/' + name }, css: { selected: $root.page().indexOf(name) !== -1 }"></a>
+                    <div id="albumPath">
+                        <a class="albumPathItem" href="#/pictures" data-bind="css: { selected: page() === 'pictures' }">Pictures</a>
+                        <!-- ko if: x.currentAlbum().x && x.currentAlbum().x.path -->
+                        <!-- ko foreach: x.currentAlbum().x.path() -->
+                        <span class="albumPathSeparator">/</span>
+                        <a class="albumPathItem" data-bind="text: name, attr { href: path }, css: { selected: $root.x.currentAlbum().name === name }"></a>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko ifnot: x.currentAlbum().x && x.currentAlbum().x.path -->
+                        <span class="albumPathSeparator">/</span>
                         <!-- /ko -->
                     </div>
-                    <!-- ko if: x.currentAlbum().x && x.currentAlbum().x.path -->
-                    <div class="albumPath" data-bind="foreach: x.currentAlbum().x.path()">
-                        <span>/</span>
-                        <a class="selected" data-bind="text: name, attr { href: path }, css: { selected: $root.x.currentAlbum().name === name }"></a>
-                    </div>
-                    <!-- /ko -->
-                    <!-- ko ifnot: x.currentAlbum().x && x.currentAlbum().x.path -->
-                    <div class="albumPath">
-                        <span>/</span>
-                    </div>
-                    <!-- /ko -->
                     <div id="currentAlbum" data-bind="with: x.currentAlbum()">
-                        <div class="albumLinkList">
-                            <!-- ko foreach: albumList -->
-                            <a data-bind="text: name, attr: { href: location.hash + '/' + name }"></a>
-                            <!-- /ko -->
-                        </div>                
+                        <div class="albumLinkList" data-bind="foreach: albumList">
+                            <a class="albumPreview" data-bind="attr: { href: location.hash + '/' + name }">
+                                <span class="albumPreviewTitle" data-bind="text: name"></span>
+                                <span class="gradientTop"></span>
+                                <span class="gradientBottom"></span>
+                                <span class="gradientLeft"></span>
+                                <span class="gradientRight"></span>
+                                <span class="albumPreviewOverlay"></span>
+                                <!-- ko foreach: x.previewPictures(4) -->
+                                <div class="albumPicturePreview" data-bind="style: { backgroundImage: 'url(\'' + src + '\'), url(\'images/officers/no photo.jpg\')' }"></div>
+                                <!-- /ko -->
+                            </a>
+                        </div>
                         <!-- ko if: pictureList -->
                         <div class="albumPictureList" data-bind="foreach: pictureList">
-                            <a data-bind="attr: {href: $parent.path + src.substr(src.lastIndexOf('/')) }">
-                                <img class="albumPicture" data-bind="attr: {src: src}" />
+                            <a class="albumPictureContainer" data-bind="attr: {href: $parent.path + src.substr(src.lastIndexOf('/')) }">
+                                <span class="gradientTop"></span>
+                                <span class="gradientBottom"></span>
+                                <span class="gradientLeft"></span>
+                                <span class="gradientRight"></span>
+                                <div class="albumPicture" data-bind="style: { backgroundImage: 'url(\'' + src + '\')' }"></div>
                             </a>
                         </div>
                         <!-- /ko -->
@@ -287,7 +295,12 @@
     </div>
     <script type="text/html" id="officer-template">
         <div class="officer">
-            <div class="officerPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\'), url(\'images/officers/no photo.jpg\')' }"></div>
+            <div class="officerPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\'), url(\'images/officers/no photo.jpg\')' }">
+                <span class="gradientTop"></span>
+                <span class="gradientBottom"></span>
+                <span class="gradientLeft"></span>
+                <span class="gradientRight"></span>
+            </div>
             <div class="officerInformation">
                 <a class="officerName" data-bind="text: name, attr: { href: 'mailto:' + email }"></a>
                 <div class="officerPosition" data-bind="text: position"></div>
