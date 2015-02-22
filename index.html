@@ -10,24 +10,25 @@
 </head>
 <body>
     <div id="container">
-        <div id="headerBackground"></div>
-        <div id="header" class="links">
-            <div id="headerLinks">
-                <span id="mainLinks">
-                    <a href="#/" title="Home">
-                        <span id="headerLeftAXS">AΧΣ</span>
-                        <span id="headerLeftBP" >BP</span>
-                    </a>
-                </span>
-                <span id="pageLinks">
-                    <a href="#/" id="indexLink" class="containerLink" data-bind="css: { selected: page() === ''}">Home</a>
-                    <a href="#/about" id="aboutLink" class="containerLink" data-bind="css: { selected: page().indexOf('about') === 0}">About</a>
-                    <a href="#/officers" id="officersLink" class="containerLink" data-bind="css: { selected: page().indexOf('officers') === 0}">Officers</a>
-                    <a href="#/members" id="membersLink" class="containerLink" data-bind="css: { selected: page().indexOf('members') === 0}">Members</a>
-                    <a href="#/professional" id="professionalLink" class="containerLink" data-bind="css: { selected: page().indexOf('professional') === 0}">Professional</a>
-                    <a href="#/pictures" id="picturesLink" class="containerLink" data-bind="css: { selected: page().indexOf('pictures') === 0}">Pictures</a>
-                    <a href="#/calendar" id="calendarLink" class="containerLink" data-bind="css: { selected: page().indexOf('calendar') === 0}">Calendar</a>
-                </span>
+        <div id="header">
+            <div id="headerContent" class="links">
+                <div id="headerLinks">
+                    <span id="mainLinks">
+                        <a href="#/" title="Home">
+                            <span id="headerLeftAXS">AΧΣ</span>
+                            <span id="headerLeftBP" >BP</span>
+                        </a>
+                    </span>
+                    <span id="pageLinks">
+                        <a href="#/" id="indexLink" class="containerLink" data-bind="css: { selected: page() === ''}">Home</a>
+                        <a href="#/about" id="aboutLink" class="containerLink" data-bind="css: { selected: page().indexOf('about') === 0}">About</a>
+                        <a href="#/officers" id="officersLink" class="containerLink" data-bind="css: { selected: page().indexOf('officers') === 0}">Officers</a>
+                        <a href="#/members" id="membersLink" class="containerLink" data-bind="css: { selected: page().indexOf('members') === 0}">Members</a>
+                        <a href="#/professional" id="professionalLink" class="containerLink" data-bind="css: { selected: page().indexOf('professional') === 0}">Professional</a>
+                        <a href="#/pictures" id="picturesLink" class="containerLink" data-bind="css: { selected: page().indexOf('pictures') === 0}">Pictures</a>
+                        <a href="#/calendar" id="calendarLink" class="containerLink" data-bind="css: { selected: page().indexOf('calendar') === 0}">Calendar</a>
+                    </span>
+                </div>
             </div>
         </div>
         <div id="contentContainer">
@@ -273,30 +274,31 @@
                 </div>
             </div>
         </div>
-        <div id="footer"></div>
-        <div id="footerInformation">
-            <span id="updated">
-                <span id="lastUpdatedText">Last updated</span>
-                <span id="lastUpdatedDate" data-bind="text: x.dateString(lastUpdated)">                </span>
-            </span>
-            <span id="social">
-                <a href="http://www.alphachisigma.org/" id="nationalLink" title='Visit the A&Chi;&Sigma; National Website' target='_blank'>AΧΣ National Website</a>
-                <a href="mailto:axe.betarho.ksu@gmail.com" target='_blank'>
-                    <img id="email" title='Email us' class="sL pic" src="images/social/noun_project_90_white.png"></img>
-                </a>
-                <a href="https://twitter.com/AXSBetaRho" target='_blank'>
-                    <img id="twitter" title='Follow us on Twitter' class="sL pic" src="images/social/twitter-bird-dark-bgs2.png"></img>
-                </a>
-                <a href="https://www.facebook.com/groups/202394199844855" target='_blank'>
-                    <img id="facebook" title='Like us on Facebook' class="sL pic" src="images/social/FB-f-Logo__white_72.png"></img>
-                </a>
-                <a href="https://plus.google.com/108525907659548690498" target='_blank'>
-                    <img id="googlePlus" title='Add us to Your Google+ Circles' class="sL pic" src="images/social/google-plus-1282.png"></img>
-                </a>
-                <a href="http://www.youtube.com/channel/UCF06bueiTIOYQsjZBl9s22Q" target='_blank'>
-                    <img id="youtube" title='Watch our Videos on YouTube' class="sL pic" src="images/social/yt-brand-logo-standard-onecolor-againstblack.png"></img>
-                </a>
-            </span>
+        <div id="footer">
+            <div id="footerContent">
+                <span id="updated">
+                    <span id="lastUpdatedText">Last updated</span>
+                    <span id="lastUpdatedDate" data-bind="text: x.dateString(lastUpdated)">                </span>
+                </span>
+                <span id="social">
+                    <a href="http://www.alphachisigma.org/" id="nationalLink" title='Visit the A&Chi;&Sigma; National Website' target='_blank'>AΧΣ National Website</a>
+                    <a href="mailto:axe.betarho.ksu@gmail.com" target='_blank'>
+                        <img id="email" title='Email us' class="sL pic" src="images/social/noun_project_90_white.png"></img>
+                    </a>
+                    <a href="https://twitter.com/AXSBetaRho" target='_blank'>
+                        <img id="twitter" title='Follow us on Twitter' class="sL pic" src="images/social/twitter-bird-dark-bgs2.png"></img>
+                    </a>
+                    <a href="https://www.facebook.com/groups/202394199844855" target='_blank'>
+                        <img id="facebook" title='Like us on Facebook' class="sL pic" src="images/social/FB-f-Logo__white_72.png"></img>
+                    </a>
+                    <a href="https://plus.google.com/108525907659548690498" target='_blank'>
+                        <img id="googlePlus" title='Add us to Your Google+ Circles' class="sL pic" src="images/social/google-plus-1282.png"></img>
+                    </a>
+                    <a href="http://www.youtube.com/channel/UCF06bueiTIOYQsjZBl9s22Q" target='_blank'>
+                        <img id="youtube" title='Watch our Videos on YouTube' class="sL pic" src="images/social/yt-brand-logo-standard-onecolor-againstblack.png"></img>
+                    </a>
+                </span>
+            </div>
         </div>
     </div>
     <script type="text/html" id="officer-template">
