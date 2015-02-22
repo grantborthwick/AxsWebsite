@@ -1,4 +1,8 @@
-﻿body {
+﻿#homec img, #professional img, #about img {
+    height: 100px;
+}
+
+body {
     background-color: #000;
     color: #e4e4e4;
     margin: 0;
@@ -201,10 +205,6 @@ div.officer>div.officerPicture {
     margin-right: 10px;
 }
 
-#homec img, #professional img, #pictures img.albumPicture, #about img {
-    height: 100px;
-}
-
 #interested > * {
     display: inline-block;
     vertical-align: top;
@@ -225,7 +225,7 @@ div.officer>div.officerPicture {
     width: 52%;
 }
 
-.albumPreview, .albumPicture {
+.albumPreview, .albumPictureContainer {
     width: 212px;
     height: 200px;
     display: inline-block;
@@ -274,7 +274,7 @@ div.officer>div.officerPicture {
     display: inline-block;
 }
 
-.albumPreview, .albumPicture, .pledgeClassPictureContainer:not(.noPicture) {
+.albumPreview, .albumPictureContainer, .pledgeClassPictureContainer:not(.noPicture) {
     border-style: solid;
     border-color: transparent;
     border: 2px 2px;
@@ -286,17 +286,18 @@ div.officer>div.officerPicture {
     -ms-transition: border-color .25s;
 }
 
-.albumPreview:hover, .albumPicture:hover, .pledgeClassPictureContainer:not(.noPicture):hover {
+.albumPreview:hover, .albumPictureContainer:hover, .pledgeClassPictureContainer:not(.noPicture):hover {
     border-color: #E4E4E4;
+}
+
+.albumPicture {
+    width: 100%;
+    height: 100%;
 }
 
 .albumPicturePreview {
     width: 49%;
     height: 49%;
-}
-
-.albumPictureContainer {
-    position: relative;
 }
 
 #pictures a {
@@ -359,6 +360,19 @@ a.selected{
     width: 100%;
     height: 100%;
     min-height: 750px;
+}
+
+#viewer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.75);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 10;
 }
 
 .gradientTop {

@@ -308,6 +308,13 @@
             </div>
         </div>
     </div>
+    <!-- ko if: x.currentAlbum() && x.currentAlbumItem() -->
+    <div id="viewer" data-bind="style: { backgroundImage: 'url(\'' + x.currentAlbumItem().src + '\')' }">
+        <div id="viewerNext">></div>
+        <div id="viewerPrevious"><</div>
+        <a id="viewerClose" data-bind="attr: { href: x.currentAlbum().path }">X</a>
+    </div>
+    <!-- /ko -->
     <script type="text/html" id="officerNameFromPosition-template">
         <!-- ko template: { name: 'officerName-template', data: $root.x.getOfficer($data) }--><!-- /ko -->
     </script>
