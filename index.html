@@ -93,10 +93,12 @@
                         </div>
                     </div>
                     <div id="interested" data-bind="visible: page().indexOf('interested') !== -1">
-                        <div id="interestedwufu" class="wufu"></div>
+                        <div id="interestedwufu" class="wufu">
+                            <iframe height="410" width="100% " allowtransparency="true" frameborder="0" scrolling="no" style="width:100% ;border:none" src="http://betarho.wufoo.com/embed/z7x3k7/">&lt;a href='http://betarho.wufoo.com/forms/z7x3k7/'&gt;&lt;/a&gt;</iframe>
+                        </div>
                         <div id="interestedContact">
-                            <span><u>Want to Know More?</u></span>
-                            <p>
+                            <br />
+                            <span>
                                 You can fill out this form to receive information about our next informational meeting.
                                 You can also contact our 
                                 <i>Master Alchemist</i>,
@@ -105,10 +107,16 @@
                                 <i>Vice Master Alchemist</i>,
                                 <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Vice Master Alchemist'} --><!-- /ko -->
                                 !
-                            </p>
+                            </span>
+                            <br />
+                            <br />
                             <!-- ko template: {name: 'officerFromPosition-template', data: 'Master Alchemist'} --><!-- /ko -->
+                            <br />
+                            <br />
                             <!-- ko template: {name: 'officerFromPosition-template', data: 'Vice Master Alchemist'} --><!-- /ko -->
-                            <p>We have informational meetings at the start both the Fall and Spring semesters. We can't wait to hear from you!</p>
+                            <br />
+                            <br />
+                            <span>We have informational meetings at the start both the Fall and Spring semesters. We can't wait to hear from you!</span>
                         </div>
                     </div>
                     <div id="website" data-bind="visible: page().indexOf('website') !== -1">

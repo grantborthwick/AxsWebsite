@@ -16,6 +16,7 @@
     margin: 0 auto;
     width: 80%;
     min-width: 935px;
+    max-width: 1520px;
 }
 
 #headerLinks {
@@ -102,6 +103,7 @@
 
 #header, #footer {
     width: 100%;
+    max-width: none;
     height: 45px;
     background-color: rgb(24, 10, 87);
     background-image: url('images/bg3.jpg');
@@ -201,6 +203,26 @@ div.officer>div.officerPicture {
 
 #homec img, #professional img, #pictures img.albumPicture, #about img {
     height: 100px;
+}
+
+#interested > * {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#interested .officer {
+    width: 100%;
+}
+
+#interestedwufu {
+    
+    width: 45%;
+}
+
+#interestedContact {
+    
+    padding-left: 2%;
+    width: 52%;
 }
 
 .albumPreview, .albumPicture {
