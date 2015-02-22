@@ -12,12 +12,8 @@
     margin: 3px;
 }
 
-#pageLinks>*{
-}
-
 #container {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     width: 80%;
     min-width: 935px;
 }
@@ -53,13 +49,55 @@
 }
 .objectText {
     display: inline-block;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 0 20px;
+}
+
+#header {
+}
+
+#header a {
+    background-color: rgba(24,10,87,.5);
+}
+
+#mainLinks {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+}
+
+#mainLinks a {
+    color: #E4E4E4;
+}
+
+#headerLeftAXS {
+    font-size: 48px;
+    line-height: 45px;
+}
+#headerLeftBP {
+    font-size: 16px;
+    top: 0px;
+    position: absolute;
+}
+
+#pageLinks {
+    display: table;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+#pageLinks a {
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 #header, #footer {
+    position: relative;
+    height: 45px;
     background-color: rgb(24, 10, 87);
-    height: 22px;
+    background-image: url('images/bg3.jpg');
+    background-size: auto 45px;
+    background-position-x: 50%;
 }
 
 #footer {
@@ -82,8 +120,7 @@ a {
 }
 
 #officers {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     display: inline-block;
 }
 
@@ -93,8 +130,7 @@ div.officer {
     width: 32%;
     margin: 5px;
     vertical-align: top;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 }
 
 div.officer>*{
@@ -121,8 +157,7 @@ div.officer>div.officerPicture {
 #social img {
     height: 22px;
     display: inline-block;
-    margin-left: 5.5px;
-    margin-right: 5.5px;
+    margin: 0 5.5px;
 }
 
 #mainLinks {
