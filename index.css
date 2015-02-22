@@ -142,6 +142,16 @@ div.officer>div.officerInformation {
     padding-right: 5px;
 }
 
+.officerName {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.officerPosition {
+    font-style: italic;
+    font-weight: bold;
+}
+
 div.officer>div.officerPicture {
     background-repeat: no-repeat;
     background-position: center;
