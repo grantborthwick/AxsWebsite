@@ -20,13 +20,13 @@
                         </a>
                     </span>
                     <span id="pageLinks">
-                        <a href="#/" id="indexLink" class="containerLink" data-bind="css: { selected: page() === ''}">Home</a>
-                        <a href="#/about" id="aboutLink" class="containerLink" data-bind="css: { selected: page().indexOf('about') === 0}">About</a>
-                        <a href="#/officers" id="officersLink" class="containerLink" data-bind="css: { selected: page().indexOf('officers') === 0}">Officers</a>
-                        <a href="#/members" id="membersLink" class="containerLink" data-bind="css: { selected: page().indexOf('members') === 0}">Members</a>
-                        <a href="#/professional" id="professionalLink" class="containerLink" data-bind="css: { selected: page().indexOf('professional') === 0}">Professional</a>
-                        <a href="#/pictures" id="picturesLink" class="containerLink" data-bind="css: { selected: page().indexOf('pictures') === 0}">Pictures</a>
-                        <a href="#/calendar" id="calendarLink" class="containerLink" data-bind="css: { selected: page().indexOf('calendar') === 0}">Calendar</a>
+                        <a href="#/" id="indexLink" data-bind="css: { selected: page() === ''}">Home</a>
+                        <a href="#/about" id="aboutLink" data-bind="css: { selected: page().indexOf('about') === 0}">About</a>
+                        <a href="#/officers" id="officersLink" data-bind="css: { selected: page().indexOf('officers') === 0}">Officers</a>
+                        <a href="#/members" id="membersLink" data-bind="css: { selected: page().indexOf('members') === 0}">Members</a>
+                        <a href="#/professional" id="professionalLink" data-bind="css: { selected: page().indexOf('professional') === 0}">Professional & Service Activities</a>
+                        <a href="#/pictures" id="picturesLink" data-bind="css: { selected: page().indexOf('pictures') === 0}">Pictures and Videos</a>
+                        <a href="#/calendar" id="calendarLink" data-bind="css: { selected: page().indexOf('calendar') === 0}">Calendar</a>
                     </span>
                 </div>
             </div>
@@ -174,54 +174,62 @@
                 </div>
                 <div id="professional" data-bind="visible: page().indexOf('professional') === 0">
                     <div id="professionalLinks" class="links">
-                        <span id="professionalTitle" class="pageLinksTitle">Professional and Service Activities:</span>
-                        <a id="professionalMallLink" href="#/professional/mall" data-bind="css: { selected: page().indexOf('mall') !== -1}">Mall Show</a>
-                        <a id="professionalDinnerLink" href="#/professional/dinner" data-bind="css: { selected: page().indexOf('dinner') !== -1}">Faculty Dinner</a>
-                        <a id="professionalTableLink" href="#/professional/table" data-bind="css: { selected: page().indexOf('table') !== -1}">Periodic Table</a>
-                        <a id="professionalContactLink" href="#/professional/contact" data-bind="css: { selected: page().indexOf('contact') !== -1}">Contact Us!</a>
+                        <span id="professionalTitle" class="pageLinksTitle">Professional & Service Activities:</span>
+                        <a id="professionalMallLink" href="#/professional/outreach" data-bind="css: { selected: page().indexOf('outreach') !== -1}">Outreach</a>
+                        <a id="professionalDinnerLink" href="#/professional/appreciation" data-bind="css: { selected: page().indexOf('appreciation') !== -1}">Faculty Appreciation</a>
+                        <a id="professionalTableLink" href="#/professional/refinement" data-bind="css: { selected: page().indexOf('refinement') !== -1}">Campus Refinement</a>
                     </div>
-                    <div id="mall" data-bind="visible: page().indexOf('mall') !== -1">
-                        <span class="professionalPageDescription">
-                            <span>National Chemitry Week Mall Show</span><br>
-                            Each October, Alpha Chi Sigma and the Chemistry Department at K-State put on activities during National Chemistry Week. The biggest event is a show at Manhattan Town Center Mall. Faculty members of the American Chemical Society with the help of BP brothers offer hands-on activities for kids, and brothers from BP put on three Halloween-themed shows during the day to show off a variety of neat chemistry tricks. The mall show is fun because so many children and families stop to watch, and its a fun show for members to participate in too!</span>
-                        <img id="MallShow1" src="images/professional/mall/83.jpg"></img>
-                        <img id="MallShow2" src="images/professional/mall/81.jpg"></img>
-                        <img id="MallShow4" src="images/professional/mall/85.jpg"></img>
-                        <img id="MallShow3" src="images/professional/mall/82.jpg"></img>
-                    </div>
-                    <div id="dinner" data-bind="visible: page().indexOf('dinner') !== -1">
-                        <span class="professionalPageDescription">
+                    <div id="outreach" data-bind="visible: page().indexOf('outreach') !== -1">
+                        <div id="outreachDescription">Through the year, our chapter puts on a variety of Chemistry Magic Shows to show groups Chemistry and how cool it can be!</div>
+                        <div id="outreachExample">
+                            <span id="outreachExampleTitle">National Chemitry Week Mall Show</span>
+                            <br>
                             <span>
-                            KSU Chemistry Faculty Dinner</span><br><br>
-                            BP hosted its annual dinner with faculty at Little Apple Brewery. Several faculty members were in attendance, including: Chapter Advisor Dr. Chris Levy; brother Dr. Chris Culbertson; Drs. Christer Aakeroy, Yasmin Patell, Kenneth Klabunde, Ping Li, Leila Maurmann; Christa Obermeyer and Ron Jackson; Chemist and Dean of Arts and Sciences Peter Dorhout. It was a nice evening out for all students and faculty in attendance.</span>
-                        <img id="FacultyDinner1" src="images/professional/dinner/1.jpg"></img>
-                        <img id="FacultyDinner2" src="images/professional/dinner/3.jpg"></img>
-                        <img id="FacultyDinner3" src="images/professional/dinner/2.jpg"></img>
-                        <img id="FacultyDinner4" src="images/professional/dinner/4.jpg"></img>
-                    </div>
-                    <div id="table" data-bind="visible: page().indexOf('table') !== -1">
-                        <span>Periodic Table Clean-Up</span><br>
-                        <span class="professionalPageDescription">In the basement of the Chemistry/Biochemistry Building is a large periodic table - each element has its own square with information about the element. In the fall, under the advice of BP Chapter Advisor Dr. Christopher Levy, brothers volunteered their time on a Saturday to clean the periodic table element panels. With music cranked up in the AXS lab and everybody sporting purple gloves, cleaning turned out to be fun!</span><br>
-                        <img id="Table2" src="images/professional/table/01.jpg"></img>
-                        <img id="Table3" src="images/professional/table/08.jpg"></img>
-                        <img id="Table1" src="images/professional/table/21.jpg"></img>
-                    </div>
-                    <div id="contact" data-bind="visible: page().indexOf('contact') !== -1">
-                            <span>Chemistry Magic Shows</span>
+                                Each October, Alpha Chi Sigma and the Chemistry Department at K-State put on activities during National Chemistry Week. The biggest event is a show at Manhattan Town Center Mall. Faculty members of the American Chemical Society with the help of BP brothers offer hands-on activities for kids, and brothers from BP put on three Halloween-themed shows during the day to show off a variety of neat chemistry tricks. The mall show is fun because so many children and families stop to watch, and its a fun show for members to participate in too!
+                            </span>
                             <br />
-                            <span class="professionalPageDescription">
-                                Through the year, our chapter puts on a variety of Chemistry Magic Shows to show groups Chemistry and how cool it can be!
-                                <br />
-                                You can contact our <i>Outreach Coordinator</i>,
-                                <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Outreach Coordinator'} --><!-- /ko -->
-                                or our <i>Assistant Outreach Coordinator</i>,
-                                <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Assistant Outreach Coordinator'} --><!-- /ko -->
-                                if you're interested in having us do a show.
-                                <br />
-                                <!-- ko template: {name: 'officerFromPosition-template', data: 'Outreach Coordinator'} --><!-- /ko -->
-                                <!-- ko template: {name: 'officerFromPosition-template', data: 'Assistant Outreach Coordinator'} --><!-- /ko -->
-                            </span>                
+                            <span class="picture" id="MallShow1"></span
+                            ><span class="picture" id="MallShow2"></span
+                            ><span class="picture" id="MallShow4"></span
+                            ><span class="picture" id="MallShow3"></span>
                         </div>
+                        <div id="outreachContact">
+                            <span id="outreachContactTitle">Want us to come to you?</span>
+                            <br />
+                            You can contact our <i>Outreach Coordinator</i>,
+                            <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Outreach Coordinator'} --><!-- /ko -->
+                            or our <i>Assistant Outreach Coordinator</i>,
+                            <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Assistant Outreach Coordinator'} --><!-- /ko -->
+                            if you're interested in having us do a show.
+                            <br />
+                            <!-- ko template: {name: 'officerFromPosition-template', data: 'Outreach Coordinator'} --><!-- /ko -->
+                            <!-- ko template: {name: 'officerFromPosition-template', data: 'Assistant Outreach Coordinator'} --><!-- /ko -->
+                        </div>
+                    </div>
+                    <div id="appreciation" data-bind="visible: page().indexOf('appreciation') !== -1">
+                        <div id="apprecationDescription" class="pageDescription">We wouldn't be anywhere without the amazing faculty we have at our school. They continually challenge us to learn and achieve.</div>
+                        <span id ="facultyDinnerInformation" class="professionalPageDescription">
+                            <span id="facultyDinnerTitle">KSU Chemistry Faculty Dinner</span>
+                            <br />
+                            BP hosted its annual dinner with faculty at Little Apple Brewery. Several faculty members were in attendance, including: Chapter Advisor Dr. Chris Levy; brother Dr. Chris Culbertson; Drs. Christer Aakeroy, Yasmin Patell, Kenneth Klabunde, Ping Li, Leila Maurmann; Christa Obermeyer and Ron Jackson; Chemist and Dean of Arts and Sciences Peter Dorhout. It was a nice evening out for all students and faculty in attendance.
+                        </span>
+                        <br />
+                        <span class="picture" id="FacultyDinner1"></span
+                        ><span class="picture" id="FacultyDinner2"></span
+                        ><span class="picture" id="FacultyDinner3"></span
+                        ><span class="picture" id="FacultyDinner4"></span>
+                    </div>
+                    <div id="refinement" data-bind="visible: page().indexOf('refinement') !== -1">
+                        <div id="refinementDescription" class="pageDescription">In order to strive for the advancement of Chemistry, we work to better the department.</div>
+                        <br />
+                        <span id="refinementDinnerTitle">Chem/Biochem Periodic Table Cleanup</span>
+                        <br />
+                        <span class="professionalPageDescription">In the basement of the Chemistry/Biochemistry Building is a large periodic table - each element has its own square with information about the element. In the fall, under the advice of BP Chapter Advisor Dr. Christopher Levy, brothers volunteered their time on a Saturday to clean the periodic table element panels. With music cranked up in the AXS lab and everybody sporting purple gloves, cleaning turned out to be fun!</span><br>
+                        <br />
+                        <span class="picture" id="Table2"></span
+                        ><span class="picture" id="Table3"></span
+                        ><span class="picture" id="Table1"></span>
+                    </div>
                 </div>
                 <div id="pictures" data-bind="visible: page().indexOf('pictures') === 0">
                     <div id="albumPath">

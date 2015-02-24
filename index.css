@@ -12,7 +12,6 @@ body {
 
 .links a {
     text-decoration: none;
-    padding: 3px;
     margin: 3px;
 }
 
@@ -215,14 +214,102 @@ div.officer>div.officerPicture {
 }
 
 #interestedwufu {
-    
     width: 45%;
 }
 
 #interestedContact {
-    
     padding-left: 2%;
     width: 52%;
+}
+
+#professionalTitle, #membersTitle {
+    font-size: 20px;
+}
+
+#outreachDescription, #apprecationDescription, #refinementDescription {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+#outreachExampleTitle, #outreachContactTitle, #facultyDinnerTitle, #refinementDinnerTitle {
+    font-size: 18px;
+    text-decoration: underline;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+#MallShow1 {
+    width: 20%;
+    background-image: url("images/professional/mall/83.jpg");
+}
+#MallShow2 {
+    width: 30%;
+    background-image: url("images/professional/mall/81.jpg");
+}
+#MallShow4 {
+    width: 30%;
+    background-image: url("images/professional/mall/85.jpg");
+}
+#MallShow3 {
+    width: 20%;
+    background-image: url("images/professional/mall/82.jpg");
+}
+
+#FacultyDinner1 {
+    background-image: url("images/professional/dinner/1.jpg");
+}
+#FacultyDinner2 {
+    background-image: url("images/professional/dinner/3.jpg");
+}
+#FacultyDinner3 {
+    background-image: url("images/professional/dinner/2.jpg");
+}
+#FacultyDinner4 {
+    background-image: url("images/professional/dinner/4.jpg");
+}
+
+#appreciation .picture {
+    width: 50%;
+}
+
+#facultyDinnerInformation {
+    vertical-align: top;
+}
+
+#professional #refinement .picture {
+    height: 300px;
+}
+
+#Table2 {
+    width: 40%;
+    background-image: url("images/professional/table/01.jpg");
+}
+#Table3 {
+    width: 40%;
+    background-image: url("images/professional/table/08.jpg");
+}
+#Table1 {
+    width: 20%;
+    background-image: url("images/professional/table/21.jpg");
+}
+
+#professional .picture {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: inline-block;
+    height: 250px;
+}
+
+#outreachContact {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+#outreachContact .officer {
+    width: 49%;
 }
 
 .albumPreview, .albumPictureContainer {
