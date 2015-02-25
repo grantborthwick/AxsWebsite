@@ -277,7 +277,8 @@ div.officer>div.officerPicture {
 }
 
 #aboutWebmaster, #websiteResources {
-    width: 50%;
+    padding-left: 2%;
+    width: 46%;
     display: inline-block;
     vertical-align: top;
 }
