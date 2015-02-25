@@ -204,6 +204,84 @@ div.officer>div.officerPicture {
     margin-right: 10px;
 }
 
+#about .picture {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: inline-block;
+}
+
+#axs {
+    position: relative;
+    min-height: 600px;
+}
+
+#axs > * {
+    display: inline-block;
+    padding-right: 220px;
+}
+
+#axs1Container {
+    display: block;
+}
+
+#axs1.picture {
+    background-image: url("images/about/IMG_08882.jpg");
+    height: 300px;
+    width: 100%;
+    padding: 0;
+    margin: 20px 0;
+    background-size: contain;
+}
+
+#axs2 {
+    background-image: url("images/about/fire.jpg");
+    height: 600px;
+    width: 200px;
+    padding-right: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#axsText2 {
+    margin-bottom: 8px;
+}
+
+#about #bp {
+    position: relative;
+}
+
+#brick {
+    background-image: url("images/about/Brick4.jpg");
+    height: 200px;
+    width: 400px;
+    position: absolute;
+    top: 45px;
+    left: 0;
+}
+
+#aboutBpText {
+    display:inline-block;
+    padding-left: 420px;
+    margin-top: 40px;
+    vertical-align: top;
+}
+
+#website .officer {
+    width: 50%;
+}
+
+#website > #aboutWebsiteTitle {
+    display: block;
+}
+
+#aboutWebmaster, #websiteResources {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+}
+
 #interested > * {
     display: inline-block;
     vertical-align: top;
@@ -222,7 +300,7 @@ div.officer>div.officerPicture {
     width: 52%;
 }
 
-#professionalTitle, #membersTitle {
+#professionalTitle, #membersTitle, #aboutTitle {
     font-size: 20px;
 }
 
@@ -231,7 +309,7 @@ div.officer>div.officerPicture {
     margin-top: 5px;
 }
 
-#outreachExampleTitle, #outreachContactTitle, #facultyDinnerTitle, #refinementDinnerTitle {
+#outreachExampleTitle, #outreachContactTitle, #facultyDinnerTitle, #refinementDinnerTitle, #aboutAxsTitle, #aboutFaqTitle, #aboutAxsTitle, #aboutBpTitle, #aboutPledgingTitle, #aboutWebsiteTitle {
     font-size: 18px;
     text-decoration: underline;
     font-weight: bold;

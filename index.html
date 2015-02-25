@@ -62,23 +62,31 @@
                         <a id="aboutWebsiteLink" href="#/about/website" data-bind="css: { selected: page().indexOf('website') !== -1}">Website</a>
                     </div>
                     <div id="axs" data-bind="visible: page().indexOf('axs') !== -1">
-                        <span>Alpha Chi Sigma</span><br>
-                        <img id='axs1' src="images/about/IMG_08882.jpg"></img>
-                        <img id='axs2' src="images/about/fire.jpg"></img>
+                        <span id="aboutAxsTitle">Alpha Chi Sigma</span><br>
                         <span id="axsText1">
                             We are a Professional Chemistry Fraternity, made of both Collegiate and Professional branches, committed to the advancement of chemistry. We find the science of chemistry entertaining and rewarding, and strive to share our enthusiasm with those around us. We believe in learning not only more about chemistry, but learning more about our fellow brothers along the way. These aspirations have been part of the fraternity since our founding in 1902 at the University of Wisconsin at Madison, and as such are the three objectives of the fraternity, found at the bottom of the page.
                         </span>
+                        <span id="axs1Container">
+                            <span id='axs1' class="picture"></span>
+                        </span>
+                        <span id='axs2' class="picture"></span>
                         <span id="axsText2">
                             Our main goal is to promote the brotherhood and scholarship of chemistry. Our largest contributor is our chemistry magic shows. We perform at different venues including many places on campus, as well as at the various elementary and middle schools in Manhattan and surrounding cities. Our main goal at these shows is to show the amazing things that chemistry can explain, and have fun while doing it. We also have social events with our collegiate brothers, as well as the professional brothers.
                         </span>
                     </div>
                     <div id="bp" data-bind="visible: page().indexOf('bp') !== -1">
-                        <img id="brick" img="images/Pictures/brick4.jpg"></img>
-                        <div id="bpText"><p>Beta Rho was colonized by the Kappa Chapter (Kansas University), and has been a thriving branch of Alpha Chi Sigma since October 30, 1965.<br>Our first members were initiated by Kappa after a friendly game of basketball.</p>
-                        </div>
+                        <span id="aboutBpTitle">Beta Rho</span>
+                        <br />
+                        <span id="brick" class="picture"></span
+                        ><span id="aboutBpText">
+                            Beta Rho was colonized by the Kappa Chapter (Kansas University), and has been a thriving branch of Alpha Chi Sigma since October 30, 1965.
+                            <br />
+                            <br />
+                            Our first members were initiated by Kappa after a friendly game of basketball.
+                        </span>
                     </div>
                     <div id="pledging" data-bind="visible: page().indexOf('pledging') !== -1">
-                        <span>The Pledging Process</span><br>
+                        <span id="aboutPledgingTitle">The Pledging Process</span><br>
                         <div>
                             <p>To join Alpha Chi Sigma, you must first go through pledging: a semester long process that gives you time to get to know our members and a few things about the fraternity before joining. Alpha Chi Sigma is open to students that are majoring in Chemistry, or were within the top 40% of your chem 1 class. Both males and females may start pledging to join.</p>
                             <p>If you're interested in the slightest, we have informational meetings near the start of each semester. If you want us to contact us to find out about the next informational meeting, fill out the form below or just show up! The dates of the informational meetings will be on the <a href="#/calendar" onclick="sp('calendar')">Calendar</a> as soon as they are known.</p>
@@ -86,6 +94,7 @@
                         </div>
                     </div>
                     <div id="faq" data-bind="visible: page().indexOf('faq') !== -1">
+                        <span id="aboutFaqTitle">Frequently AΧΣd Questions</span>
                         <div data-bind="foreach: faqList">
                             <div class="faq">
                                 <div class="faqTitle" data-bind="html:question"></div>
@@ -121,11 +130,25 @@
                         </div>
                     </div>
                     <div id="website" data-bind="visible: page().indexOf('website') !== -1">
-                        This website is updated magically by
-                        <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Webmaster'} --><!-- /ko -->      
-                        <br />Feel free to send her comments, suggestions, or pictures for the website.
-                        <br />
-                        <!-- ko template: {name: 'officerFromPosition-template', data: 'Webmaster'} --><!-- /ko -->
+                        <span id="aboutWebsiteTitle">The Website</span>
+                        <span id="aboutWebmaster">
+                            This website is updated magically by
+                            <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Webmaster'} --><!-- /ko -->      
+                            <br />Feel free to send her comments, suggestions, or pictures for the website.
+                            <br />
+                            <!-- ko template: {name: 'officerFromPosition-template', data: 'Webmaster'} --><!-- /ko -->
+                        </span
+                        ><span id="websiteResources">
+                            The website uses the following libraries:
+                            <br />
+                            <a href = "http://jquery.com/">jQuery</a>
+                            <br />
+                            <a href= "http://knockoutjs.com/">Knockout</a>
+                            <br />
+                            <a href= "http://www.sammyjs.org/">SammyJs</a>
+                            <br />
+                            <a href="http://zurb.com/playground/jquery-raptorize">RaptorizeJs</a>
+                        </span>
                     </div>
                 </div>
                 <div id="officers" data-bind="visible: page() === 'officers', template: { name: 'officer-template', foreach: officerList }"></div>
