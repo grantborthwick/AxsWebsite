@@ -1,8 +1,4 @@
-﻿#homec img, #professional img, #about img {
-    height: 100px;
-}
-
-body {
+﻿body {
     background-color: #000;
     color: #e4e4e4;
     margin: 0;
@@ -147,6 +143,46 @@ div#headerBackground {
 
 a {
     color:  yellow;
+}
+
+#home {
+    position: relative;
+    min-height: 300px;
+}
+
+#homePictures {
+    width: 100%;
+    height: 400px;
+}
+
+#homeText {
+    display: block;
+    text-align: center;
+}
+
+#home .picture {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: top;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#homePicture1.picture {
+    display: block;
+    background-image: url("images/home/2013F.jpg");
+}
+#homePicture2 {
+    background-image: url("images/home/acsrt.jpg");
+}
+#homePicture3 {
+    background-image: url("images/home/star1213.jpg");
+}
+#homePicture4 {
+    background-image: url("images/home/2013S.jpg");
 }
 
 #officers {
