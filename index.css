@@ -22,7 +22,7 @@ body {
     right: 0;
     top: 0;
     width: 250px;
-    background-color: yellow;
+    background-color: rgb(235, 235, 0);
     color: #000;
 }
 .object {
@@ -74,7 +74,7 @@ body {
     background-color: rgba(24,10,87,.5);
 }
 
-#mainLogo {
+a#mainLogo {
     background-image: url("images/logo.png");
     height: 127px;
     width: 390px;
@@ -84,6 +84,7 @@ body {
     background-size: contain;
     display: inline-block;
     text-decoration: none;
+    background-color: rgba(24,10,87,.2);
 }
 
 #mainLinks {
@@ -114,9 +115,16 @@ body {
     max-width: none;
     height: 45px;
     background-color: rgb(24, 10, 87);
-    background-image: url('images/bg3.jpg');
     background-position-x: 50%;
     z-index: 3;
+}
+
+#header {
+    background-image: url("images/bgExtended.jpg");
+}
+
+#footer {
+    background-image: url('images/bg3.jpg');
 }
 
 #headerContent, #footerContent {
@@ -184,7 +192,7 @@ div#headerBackground {
 }
 
 a {
-    color:  yellow;
+    color:  rgb(235, 235, 0);
 }
 
 #home {
@@ -575,7 +583,7 @@ div.officer>div.officerPicture {
 }
 
 .member .memberName.active {
-    color: yellow;
+    color: rgb(235, 235, 0);
 }
 
 .member .memberFamily {
@@ -590,7 +598,7 @@ div.officer>div.officerPicture {
     margin-bottom: 10px;
 }
 .faq>.faqTitle{
-    color: yellow;
+    color: rgb(235, 235, 0);
 }
 a.selected{
     color: #e4e4e4;
@@ -685,11 +693,11 @@ a.selected{
 .silver.white{background-image:url(images/symbols/white/silver.svg)}
 .tin.white{background-image:url(images/symbols/white/tin.svg)}
 .unsorted.white{background-image:url(images/symbols/white/unsorted.svg)}
-.iron.yellow{background-image:url(images/symbols/yellow/iron.svg)}
-.copper.yellow{background-image:url(images/symbols/yellow/copper.svg)}
-.gold.yellow{background-image:url(images/symbols/yellow/gold.svg)}
-.lead.yellow{background-image:url(images/symbols/yellow/lead.svg)}
-.mercury.yellow{background-image:url(images/symbols/yellow/mercury.svg)}
-.silver.yellow{background-image:url(images/symbols/yellow/silver.svg)}
-.tin.yellow{background-image:url(images/symbols/yellow/tin.svg)}
-.unsorted.yellow{background-image:url(images/symbols/yellow/unsorted.svg)}
+.iron.rgb(235, 235, 0){background-image:url(images/symbols/rgb(235, 235, 0)/iron.svg)}
+.copper.rgb(235, 235, 0){background-image:url(images/symbols/rgb(235, 235, 0)/copper.svg)}
+.gold.rgb(235, 235, 0){background-image:url(images/symbols/rgb(235, 235, 0)/gold.svg)}
+.lead.rgb(235, 235, 0){background-image:url(images/symbols/rgb(235, 235, 0)/lead.svg)}
+.mercury.rgb(235, 235, 0){background-image:url(images/symbols/rgb(235, 235, 0)/mercury.svg)}
+.silver.rgb(235, 235, 0){background-image:url(images/symbols/rgb(235, 235, 0)/silver.svg)}
+.tin.rgb(235, 235, 0){background-image:url(images/symbols/rgb(235, 235, 0)/tin.svg)}
+.unsorted.rgb(235, 235, 0){background-image:url(images/symbols/rgb(235, 235, 0)/unsorted.svg)}
