@@ -6,7 +6,6 @@ Style
     Picture viewer
 Load content when needed.
 Ticker
-Videos
 Dynamic album information generation
 keyboard input
 
