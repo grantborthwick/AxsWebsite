@@ -163,7 +163,6 @@ div#headerBackground {
 #container {
     padding-top: 158px;
     padding-bottom: 45px;
-    height: 100%;
     position: relative;
     min-height: 394px;
 }
@@ -177,7 +176,6 @@ div#headerBackground {
 
 #container {
     width: 100%;
-    height: 100%;
 }
 
 #social {
@@ -503,7 +501,10 @@ div.officer>div.officerPicture {
     height: 100%;
     opacity: .7;
     background-color: #000;
-    
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
     transition: opacity .25s;
     -webkit-transition: opacity .25s;
     -moz-transition: opacity .25s;
@@ -541,11 +542,52 @@ div.officer>div.officerPicture {
 .albumPicture {
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .albumPicturePreview {
     width: 49%;
     height: 49%;
+    position: relative;
+}
+
+.ytTitle {
+    background-image: url('images/bg3.jpg');
+    color: #E4E4E4;
+    font-size: 18px;
+    color: #E4E4E4;
+    text-shadow: 2px 2px #000;
+    background-size: auto 45px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    width: 100%;
+    padding-top: 4px;
+    text-align: center;
+    position: absolute;
+}
+
+.ytPlay {
+    background-image: url("images/social/YouTube-icon-black-red.png");
+    background-position: center top;
+    background-size: 100% 200%;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 74px;
+    height: 52px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.albumPicturePreview .ytPlay {
+    width: 37px;
+    height: 26px;
+}
+
+.albumPicture:hover .ytPlay, .albumPreview:hover .ytPlay {
+    background-position: center bottom;
 }
 
 #pictures a {
@@ -616,7 +658,7 @@ a.selected{
 }
 
 #viewer {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -626,6 +668,55 @@ a.selected{
     background-repeat: no-repeat;
     background-position: center center;
     z-index: 10;
+    min-height: 400px;
+}
+
+#viewer.video {
+    background-size: cover;
+}
+
+#viewer a {
+    position: absolute;
+    text-decoration: none;
+    color: #E4E4E4;
+    font-size: 179px;
+    font-family: Georgia;
+    line-height: 179px;
+    height: 179px;
+    text-shadow: 4px 4px black;
+    margin: auto;
+    opacity: .2;
+    transition: opacity .5s;
+    -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    -o-transition: opacity .5s;
+    -ms-transition: opacity .5s;
+}
+
+#viewer a:hover {
+    opacity: .7;
+}
+
+#viewerNext {
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#viewerPrevious {
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#viewerClose {
+    top: 0;
+    right: 0;
+}
+
+embed.video, #videoWrapper {
+    width: 100%;
+    height: 100%;
 }
 
 .gradientTop {
