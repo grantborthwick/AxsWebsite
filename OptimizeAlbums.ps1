@@ -37,7 +37,6 @@ function CopyImage([string]$source, [string]$target, [long]$quality){
     $graph.DrawImage($bmp,0,0 , $newWidth, $newHeight)
      
     #save to file
-    New-Item -path $target.substring(0, $target.lastIndexOf("\")) -type directory -force | out-null
     $bmpResized.Save($target,$myImageCodecInfo, $encoderParams)
     $encoderParams.Dispose()
     $bmpResized.Dispose()
@@ -49,9 +48,20 @@ $albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive$token"
 $pictures = Get-ChildItem $albumPath -recurse -include "*.jpg"
 $total = $pictures.Length
 $count = 0
+Get-ChildItem $albumPath -recurse | Where-Object {$_ -is [IO.DirectoryInfo]} | %{
+    $src = $_.FullName
+    $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + $src.substring($src.indexOf($token) + $token.length)
+    New-Item -path $target -type directory -force | out-null
+}
+Get-ChildItem $albumPath -recurse -exclude ("*.jpg", "*.v") | Where-Object {$_ -is [IO.FileInfo]} | %{
+    $src = $_.ToString()
+    $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + $src.substring($src.indexOf($token) + $token.length)
+    Copy-Item -Path $src -Destination $target
+} 
 $pictures | %{
     $src = $_.ToString()
-    CopyImage $src ((Get-Item -Path ".\" -Verbose).FullName + "\site\images\albums" + $src.substring($src.indexOf($token) + $token.length)) 70
+    $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + $src.substring($src.indexOf($token) + $token.length)
+    #CopyImage $src $target 70
     $count += 1
-    Write-Host "$count / $total complete"
+    #Write-Host "$count / $total complete"
 }
