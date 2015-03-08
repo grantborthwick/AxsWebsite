@@ -15,7 +15,7 @@ function InjectSection([string]$name, [string]$value, [string]$contents){
 }
 
 $ToNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
-$albumPath = "C:\Users\Grant\Google Drive\WebsitePictures"
+$albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive\WebsitePictures"
 
 function albums([string] $path){
     $pictures = ""
