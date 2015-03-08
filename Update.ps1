@@ -1,4 +1,6 @@
 $nl = "`r`n`r`n"
+$ToNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
+$albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive\WebsitePictures"
 function ReadFile([string]$file){
     $path = (Get-Item -Path ".\" -Verbose).FullName
     return [IO.File]::ReadAllText("$path\$file")
@@ -13,6 +15,50 @@ function InjectSection([string]$name, [string]$value, [string]$contents){
     }
     return $content.Substring(0, $startIndex + $start.length) + "$value" + $content.Substring($endIndex)
 }
+function albums([string] $path){
+    $pictures = ""
+    $albumsText = ""
+    $name = (Get-Item $path).Name
+    $items = Get-ChildItem -Path $path
+    $numberedPictures = $true
+    $count = 0
+    $items | Where-Object {$_ -is [IO.DirectoryInfo]} | Sort-Object Name -descending | ?{
+        if ($albumsText.Length -gt 0){
+            $albumsText += ","
+        }
+        $albumsText += albums ($_.FullName -replace "\\([0-9]{0,2})_","\")
+    }
+    $items | Where-Object {($_ -is [IO.FileInfo]) -and ($_.ToString().IndexOf(".jpg") -ne -1)} | Sort-Object $ToNatural | ?{
+        if ($pictures.Length -gt 0){
+            $pictures += ","
+        }
+        $count += 1
+        if ($numberedPictures -and ($_.ToString() -ne "$count.jpg")){
+            $numberedPictures = $false
+            Write-Host $path
+            Write-Host "Picture $_  at path does not follow standard: $count.jpg. This album will take up more space."
+        }
+        $pictures += "'$_'"
+    }
+    $ret = "{n:'$name'"
+    if ($albumsText.Length -gt 0){
+        if ($path -eq $albumPath){
+            return "$albumsText"
+        }
+        $ret += ",a:[$albumsText]"
+    }
+    if ($pictures.Length -gt 0){
+        if ($numberedPictures -eq $true){
+            $ret += ",p:num($count)"
+        } else {
+            $ret += ",p:[$pictures]"
+        }
+    }
+    $ret += "}"
+    return $ret
+}
+
+$updateAlbums = Test-Path $albumPath
 
 $officers = Import-Csv .\officers.csv
 $members = Import-Csv .\members.csv
@@ -68,6 +114,12 @@ $faq | ForEach-Object {
 $officersText = "var a=function(position,name,email,picture,classification,major){return new Officer(position,name,email,picture,classification,major);};viewModel.officerList.push(" + $officersText.Substring(0, $officersText.Length - 1) + ");"
 $membersText = "var a=function(id,name,date,status,family,big,chapter){return new Member(id,name,date,status,family,big,chapter);};viewModel.memberList.push(" + $membersText.Substring(0, $membersText.Length - 1) + ");"
 $faqText = "var a=function(question,answer){return new Faq(question,answer);};viewModel.faqList.push(" + $faqText.Substring(0, $faqText.Length - 1) + ");"
+if ($updateAlbums){
+    Write-Host "Updating albums"
+    $albums = albums $albumPath
+} else {
+    Write-Host "Skipping albums. $albumPath does not exist."
+}
 $today = Get-Date
 $today = "new Date('$today');"
 try{
@@ -76,6 +128,9 @@ try{
     $content = InjectSection "Officers" $officersText $content
     $content = InjectSection "Members" $membersText $content
     $content = InjectSection "Faq" $faqText $content
+    if ($updateAlbums){
+        $content = InjectSection "Albums" $albums $content
+    }
     $content = InjectSection "Today" $today $content
     #Write-Host $content
     $content | Out-File $indexJs

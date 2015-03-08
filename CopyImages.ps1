@@ -48,20 +48,26 @@ $albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive$token"
 $pictures = Get-ChildItem $albumPath -recurse -include "*.jpg"
 $total = $pictures.Length
 $count = 0
+Write-Host $skipAlbums
+$start = Get-Date
 Get-ChildItem $albumPath -recurse | Where-Object {$_ -is [IO.DirectoryInfo]} | %{
     $src = $_.FullName
-    $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + $src.substring($src.indexOf($token) + $token.length)
+    $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + ($src.substring($src.indexOf($token) + $token.length) -replace "\\([0-9]{0,2})_","\")
     New-Item -path $target -type directory -force | out-null
 }
 Get-ChildItem $albumPath -recurse -exclude ("*.jpg", "*.v") | Where-Object {$_ -is [IO.FileInfo]} | %{
     $src = $_.ToString()
-    $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + $src.substring($src.indexOf($token) + $token.length)
+    $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + ($src.substring($src.indexOf($token) + $token.length) -replace "\\([0-9]{0,2})_","\")
     Copy-Item -Path $src -Destination $target
-} 
+}
 $pictures | %{
     $src = $_.ToString()
-    $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + $src.substring($src.indexOf($token) + $token.length)
-    #CopyImage $src $target 70
+    $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + ($src.substring($src.indexOf($token) + $token.length) -replace "\\([0-9]{0,2})_","\")
+    CopyImage $src $target 70
     $count += 1
-    #Write-Host "$count / $total complete"
+    if (($count % 10 -eq 0) -or $count -eq $total){
+        $now = Get-Date
+        Write-Host "$count / $total in" ($now - $start).TotalSeconds "seconds"
+    }
 }
+$end = Get-Date
