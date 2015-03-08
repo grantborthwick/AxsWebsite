@@ -9,8 +9,8 @@ function CopyImage([string]$source, [string]$target, [long]$quality){
     $bmp = [System.Drawing.Image]::FromFile($source)
      
     #hardcoded canvas size...
-    $canvasWidth = 1024.0
-    $canvasHeight = 1024.0
+    $canvasWidth = [Math]::Min(1024.0, $bmp.Width)
+    $canvasHeight = [Math]::Min(1024.0, $bmp.Height)
      
     #Encoder parameter for image quality
     $myEncoder = [System.Drawing.Imaging.Encoder]::Quality
