@@ -3,11 +3,17 @@ Style
     Members
     Families
     Initial style
-    Picture viewer
 Load content when needed.
 Ticker
 Dynamic album information generation
 keyboard input
+
+Albums
+    video from album files
+    non-jpg files
+    reduce image sizes
+    album sorting order
+    non-local album path
 
 Easter eggs
     Cats
