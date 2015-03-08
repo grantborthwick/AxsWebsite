@@ -282,7 +282,7 @@
                         <a class="albumPreview" data-bind="attr: { href: $parent.path + '/' + name }">
                             <span class="albumPreviewTitle" data-bind="text: name"></span>
                             <!-- ko foreach: x.previewPictures(4) -->
-                            <div class="albumPicturePreview" data-bind="style: { backgroundImage: 'url(\'' + src + '\'), url(\'images/officers/no photo.jpg\')' }">
+                            <div class="albumPicturePreview" data-bind="style: { backgroundImage: 'url(\'' + src + '\'), url(\'images/no photo.jpg\')' }">
                                 <!-- ko if: $data instanceof AlbumVideo -->
                                 <div class="ytPlay"></div>
                                 <!-- /ko -->
@@ -365,7 +365,7 @@
     <script type="text/html" id="officer-template">
         <div class="officer">
             <div class="officerPosition" data-bind="text: position"></div>
-            <div class="officerPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\'), url(\'images/officers/no photo.jpg\')' }">
+            <div class="officerPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\'), url(\'images/no photo.jpg\')' }">
                 <span class="gradientTop"></span>
                 <span class="gradientBottom"></span>
                 <span class="gradientLeft"></span>

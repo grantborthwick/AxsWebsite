@@ -1,3 +1,4 @@
+$start = Get-Date
 $nl = "`r`n`r`n"
 $ToNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
 $albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive\WebsitePictures"
@@ -139,3 +140,5 @@ catch {
     Write-Host "Failed to inject :("
     Write-Host $_
 }
+$end = Get-Date
+Write-Host "Updated in" ($end - $start).TotalSeconds "seconds"

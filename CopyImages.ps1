@@ -1,3 +1,4 @@
+$start = Get-Date
 # based on: http://benoitpatra.com/2014/09/14/resize-image-and-preserve-ratio-with-powershell/
 function CopyImage([string]$source, [string]$target, [long]$quality){
     if (!(Test-Path $source)){throw( "Cannot find the source image")}
@@ -49,7 +50,6 @@ $pictures = Get-ChildItem $albumPath -recurse -include "*.jpg"
 $total = $pictures.Length
 $count = 0
 Write-Host $skipAlbums
-$start = Get-Date
 Get-ChildItem $albumPath -recurse | Where-Object {$_ -is [IO.DirectoryInfo]} | %{
     $src = $_.FullName
     $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + ($src.substring($src.indexOf($token) + $token.length) -replace "\\([0-9]{0,2})_","\")
@@ -60,6 +60,7 @@ Get-ChildItem $albumPath -recurse -exclude ("*.jpg", "*.v") | Where-Object {$_ -
     $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + ($src.substring($src.indexOf($token) + $token.length) -replace "\\([0-9]{0,2})_","\")
     Copy-Item -Path $src -Destination $target
 }
+$start2 = Get-Date
 $pictures | %{
     $src = $_.ToString()
     $target = (Get-Item -Path ".\" -Verbose).FullName + "\site\images" + ($src.substring($src.indexOf($token) + $token.length) -replace "\\([0-9]{0,2})_","\")
@@ -67,7 +68,8 @@ $pictures | %{
     $count += 1
     if (($count % 10 -eq 0) -or $count -eq $total){
         $now = Get-Date
-        Write-Host "$count / $total in" ($now - $start).TotalSeconds "seconds"
+        Write-Host "$count / $total in" ($now - $start2).TotalSeconds "seconds"
     }
 }
 $end = Get-Date
+Write-Host "Copied Images in" ($end - $start).TotalSeconds "seconds"
