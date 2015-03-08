@@ -264,20 +264,6 @@
                         <!-- /ko -->
                     </div>
                     <div id="currentAlbum" data-bind="with: x.currentAlbum()">
-                        <!-- ko foreach: pictureList -->
-                        <a class="albumPictureContainer" data-bind="attr: { href: $parent.path + '/' + name }">
-                            <div class="albumPicture" data-bind="style: { backgroundImage: 'url(\'' + src + '\')' }">
-                                <!-- ko if: $data instanceof AlbumVideo -->
-                                <div class="ytTitle" data-bind="text: title"></div>
-                                <div class="ytPlay"></div>
-                                <!-- /ko -->
-                            </div>
-                            <span class="gradientTop"></span>
-                            <span class="gradientBottom"></span>
-                            <span class="gradientLeft"></span>
-                            <span class="gradientRight"></span>
-                        </a>
-                        <!-- /ko -->
                         <!-- ko foreach: albumList -->
                         <a class="albumPreview" data-bind="attr: { href: $parent.path + '/' + name }">
                             <span class="albumPreviewTitle" data-bind="text: name"></span>
@@ -293,6 +279,20 @@
                             <span class="gradientLeft"></span>
                             <span class="gradientRight"></span>
                             <span class="albumPreviewOverlay"></span>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko foreach: pictureList -->
+                        <a class="albumPictureContainer" data-bind="attr: { href: $parent.path + '/' + name }">
+                            <div class="albumPicture" data-bind="style: { backgroundImage: 'url(\'' + src + '\')' }">
+                                <!-- ko if: $data instanceof AlbumVideo -->
+                                <div class="ytTitle" data-bind="text: title"></div>
+                                <div class="ytPlay"></div>
+                                <!-- /ko -->
+                            </div>
+                            <span class="gradientTop"></span>
+                            <span class="gradientBottom"></span>
+                            <span class="gradientLeft"></span>
+                            <span class="gradientRight"></span>
                         </a>
                         <!-- /ko -->
                     </div>

@@ -3,8 +3,11 @@ $nl = "`r`n`r`n"
 $ToNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
 $albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive\WebsitePictures\albums"
 function ReadFile([string]$file){
-    $path = (Get-Item -Path ".\" -Verbose).FullName
-    return [IO.File]::ReadAllText("$path\$file")
+    if (Test-Path $file){
+        return [IO.File]::ReadAllText("$file")
+    } else {
+        throw "$file does not exist"
+    }
 }
 function InjectSection([string]$name, [string]$value, [string]$contents){
     $start = "/* Initialize $name */"
@@ -18,18 +21,37 @@ function InjectSection([string]$name, [string]$value, [string]$contents){
 }
 function albums([string] $path){
     $pictures = ""
+    $otherPictures = ""
     $albumsText = ""
     $name = (Get-Item $path).Name -replace "([0-9]{0,2})_",""
     $items = Get-ChildItem -Path $path
     $numberedPictures = $true
     $count = 0
-    $items | Where-Object {$_ -is [IO.DirectoryInfo]} | Sort-Object Name -descending | ?{
+    if ($path -eq $albumPath){
+        $directoryItems = $items | Where-Object {$_ -is [IO.DirectoryInfo]} | Sort-Object Name -descending
+    } else {
+        $directoryItems = $items | Where-Object {$_ -is [IO.DirectoryInfo]} | Sort-Object Name
+    }
+    $directoryItems | ? {
         if ($albumsText.Length -gt 0){
             $albumsText += ","
         }
         $albumsText += albums $_.FullName
     }
-    $items | Where-Object {($_ -is [IO.FileInfo]) -and ($_.ToString().IndexOf(".jpg") -ne -1)} | Sort-Object $ToNatural | ?{
+    $items | Where-Object {($_ -is [IO.FileInfo]) -and ($_.ToString().IndexOf(".v") -ne -1)} | Sort-Object $ToNatural | ? {
+        if ($otherPictures.Length -gt 0){
+            $otherPictures += ","
+        }
+        $v = ReadFile $_.FullName
+        $otherPictures += "new AlbumVideo('$v')"
+    }
+    $items | Where-Object {($_ -is [IO.FileInfo]) -and ($_.ToString().IndexOf(".jpg") -eq -1)-and ($_.ToString().IndexOf(".v") -eq -1)} | Sort-Object $ToNatural | ? {
+        if ($otherPictures.Length -gt 0){
+            $otherPictures += ","
+        }
+        $otherPictures += "'$_'"
+    }
+    $items | Where-Object {($_ -is [IO.FileInfo]) -and ($_.ToString().IndexOf(".jpg") -ne -1)} | Sort-Object $ToNatural | ? {
         if ($pictures.Length -gt 0){
             $pictures += ","
         }
@@ -41,7 +63,6 @@ function albums([string] $path){
         }
         $pictures += "'$_'"
     }
-    Write-Host "Album $name has" $pictures.Length "pictures"
     $ret = "{n:'$name'"
     if ($albumsText.Length -gt 0){
         if ($path -eq $albumPath){
@@ -49,12 +70,16 @@ function albums([string] $path){
         }
         $ret += ",a:[$albumsText]"
     }
-    if ($pictures.Length -gt 0){
+    if (($pictures.Length -gt 0) -or ($otherPictures.Length -gt 0)){
         if ($numberedPictures -eq $true){
-            $ret += ",p:num($count)"
+            $ret += ",p:unshift(num($count)"
         } else {
-            $ret += ",p:[$pictures]"
+            $ret += ",p:unshift([$pictures]"
         }
+        if ($otherPictures.Length -gt 0){
+            $ret += ",$otherPictures"
+        }
+        $ret += ")"
     }
     $ret += "}"
     return $ret
