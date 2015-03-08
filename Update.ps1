@@ -1,7 +1,7 @@
 $start = Get-Date
 $nl = "`r`n`r`n"
 $ToNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
-$albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive\WebsitePictures"
+$albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive\WebsitePictures\albums"
 function ReadFile([string]$file){
     $path = (Get-Item -Path ".\" -Verbose).FullName
     return [IO.File]::ReadAllText("$path\$file")
@@ -19,7 +19,7 @@ function InjectSection([string]$name, [string]$value, [string]$contents){
 function albums([string] $path){
     $pictures = ""
     $albumsText = ""
-    $name = (Get-Item $path).Name
+    $name = (Get-Item $path).Name -replace "([0-9]{0,2})_",""
     $items = Get-ChildItem -Path $path
     $numberedPictures = $true
     $count = 0
@@ -27,7 +27,7 @@ function albums([string] $path){
         if ($albumsText.Length -gt 0){
             $albumsText += ","
         }
-        $albumsText += albums ($_.FullName -replace "\\([0-9]{0,2})_","\")
+        $albumsText += albums $_.FullName
     }
     $items | Where-Object {($_ -is [IO.FileInfo]) -and ($_.ToString().IndexOf(".jpg") -ne -1)} | Sort-Object $ToNatural | ?{
         if ($pictures.Length -gt 0){
@@ -36,11 +36,12 @@ function albums([string] $path){
         $count += 1
         if ($numberedPictures -and ($_.ToString() -ne "$count.jpg")){
             $numberedPictures = $false
-            Write-Host $path
-            Write-Host "Picture $_  at path does not follow standard: $count.jpg. This album will take up more space."
+            $partialPath = $path.substring($path.indexOf("albums\") + 7)
+            Write-Host "'$partialPath\$_' -ne '$count.jpg'."
         }
         $pictures += "'$_'"
     }
+    Write-Host "Album $name has" $pictures.Length "pictures"
     $ret = "{n:'$name'"
     if ($albumsText.Length -gt 0){
         if ($path -eq $albumPath){
@@ -116,7 +117,6 @@ $officersText = "var a=function(position,name,email,picture,classification,major
 $membersText = "var a=function(id,name,date,status,family,big,chapter){return new Member(id,name,date,status,family,big,chapter);};viewModel.memberList.push(" + $membersText.Substring(0, $membersText.Length - 1) + ");"
 $faqText = "var a=function(question,answer){return new Faq(question,answer);};viewModel.faqList.push(" + $faqText.Substring(0, $faqText.Length - 1) + ");"
 if ($updateAlbums){
-    Write-Host "Updating albums"
     $albums = albums $albumPath
 } else {
     Write-Host "Skipping albums. $albumPath does not exist."
@@ -124,7 +124,7 @@ if ($updateAlbums){
 $today = Get-Date
 $today = "new Date('$today');"
 try{
-    $indexJs = ".\axswebsite\index.js"
+    $indexJs = ".\site\index.js"
     $content = ReadFile $indexJs
     $content = InjectSection "Officers" $officersText $content
     $content = InjectSection "Members" $membersText $content
