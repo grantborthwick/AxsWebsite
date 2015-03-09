@@ -332,7 +332,7 @@ div.officer>div.officerPicture {
     position: relative;
 }
 
-#brick {
+#brick.picture {
     background-image: url("images/about/Brick4.jpg");
     height: 200px;
     width: 400px;
