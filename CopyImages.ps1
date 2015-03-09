@@ -19,7 +19,7 @@ function CopyImage([string]$source, [string]$target, [long]$quality){
     $encoderParams.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter($myEncoder, $quality)
     # get codec
     $myImageCodecInfo = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders()|where {$_.MimeType -eq 'image/jpeg'}
-     
+    
     #compute the final ratio to use
     $ratioX = $canvasWidth / $bmp.Width;
     $ratioY = $canvasHeight / $bmp.Height;
@@ -36,7 +36,11 @@ function CopyImage([string]$source, [string]$target, [long]$quality){
      
     $graph.Clear([System.Drawing.Color]::White)
     $graph.DrawImage($bmp,0,0 , $newWidth, $newHeight)
-     
+    
+    foreach ($p in $bmp.PropertyItems){
+        $bmpResized.SetPropertyItem($p)
+    }
+    
     #save to file
     $bmpResized.Save($target,$myImageCodecInfo, $encoderParams)
     $encoderParams.Dispose()
