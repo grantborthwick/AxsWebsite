@@ -1,6 +1,4 @@
 Style
-    Members
-    Families
     Initial style
 Load content when needed.
 Ticker

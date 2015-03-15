@@ -43,6 +43,7 @@ body {
 .links a {
     text-decoration: none;
     margin: 3px;
+    font-size: 18px;
 }
 
 #container > *, #header>#headerContent, #footer>#footerContent {
@@ -162,7 +163,7 @@ div#headerBackground {
 }
 
 #container {
-    padding-top: 158px;
+    padding-top: 154px;
     padding-bottom: 45px;
     position: relative;
     min-height: 394px;
@@ -629,13 +630,14 @@ div.officer>div.officerPicture {
 
 .pledgeClass .memberList {
     text-align: center;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .pledgeClass .member {
     background-repeat: no-repeat;
     background-position: 0px center;
-    width: 160px;
+    min-width: 160px;
     display: inline-block;
 }
 
@@ -657,6 +659,10 @@ div.officer>div.officerPicture {
     text-shadow: 2px 2px #000;
 }
 
+.family .member {
+    font-size: 18px;
+}
+
 .family .member .member {
     padding-left: 40px;
 }
@@ -675,6 +681,29 @@ div.officer>div.officerPicture {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.fixedTitle {
+    position: fixed;
+    height: 30px;
+    background-image: url(images/bg3.jpg);
+    background-size: auto 45px;
+    background-position-x: 50%;
+    z-index: 5;
+    font-size: 23px;
+    text-shadow: 2px 2px #000;
+}
+
+.fixedTitle > * {
+    background-color: rgba(24,10,87,.4);
+}
+
+.fixedTitlePlaceholder {
+    height: 30px;
+}
+
+.pledgeClassSemesterText, .familyNameText {
+    z-index: 6;
 }
 
 .faq{

@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div id="about" data-bind="visible: page().indexOf('about') === 0">
-                    <div id="aboutLinks" class="links">
+                    <div id="aboutLinks" class="links fixedTitle">
                         <span id="aboutTitle" class="pageLinksTitle">About:</span>
                         <a id="aboutAxsLink" href="#/about/axs" data-bind="css: { selected: page().indexOf('axs') !== -1}">AΧΣ</a>
                         <a id="aboutBpLink" href="#/about/bp" data-bind="css: { selected: page().indexOf('bp') !== -1}">BP</a>
@@ -60,6 +60,7 @@
                         <a id="aboutInterestedLink" href="#/about/interested" data-bind="css: { selected: page().indexOf('interested') !== -1}">Interested</a>
                         <a id="aboutWebsiteLink" href="#/about/website" data-bind="css: { selected: page().indexOf('website') !== -1}">Website</a>
                     </div>
+                        <span class="fixedTitlePlaceholder"></span>
                     <div id="axs" data-bind="visible: page().indexOf('axs') !== -1">
                         <span id="aboutAxsTitle">Alpha Chi Sigma</span><br>
                         <span id="axsText1">
@@ -150,7 +151,7 @@
                 </div>
                 <div id="officers" data-bind="visible: page() === 'officers', template: { name: 'officer-template', foreach: officerList }"></div>
                 <div id="members" data-bind="visible: page().indexOf('members') !== -1">
-                    <div id="membersLinks" class="links">
+                    <div id="membersLinks" class="links fixedTitle">
                         <span id="membersTitle" class="pageLinksTitle">Members:</span>
                         <a href="#/members/classes" data-bind="css: { selected: page().indexOf('classes') !== -1}">Pledge Classes</a>
                         <a href="#/members/families" data-bind="css: { selected: page().indexOf('families') !== -1}">Families</a>
@@ -167,9 +168,8 @@
                                 <span class="gradientLeft"></span>
                                 <span class="gradientRight"></span>
                                 <div class="pledgeClassPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\')' }"></div>
-                            </a>
-                            <!-- /ko -->
-                            <div class="memberList" data-bind="foreach: memberList.sort()">
+                            </a
+                            ><!-- /ko --><div class="memberList" data-bind="foreach: memberList.sort()">
                                 <span class="member">
                                     <span class="memberName" data-bind="text: name, css: { active: status === 'Active' }"></span>
                                     <!-- ko if: family -->
@@ -199,12 +199,13 @@
                     </div>
                 </div>
                 <div id="professional" data-bind="visible: page().indexOf('professional') === 0">
-                    <div id="professionalLinks" class="links">
-                        <span id="professionalTitle" class="pageLinksTitle">Professional & Service Activities:</span>
+                    <div id="professionalLinks" class="links fixedTitle">
+                        <span id="professionalTitle" class="pageLinksTitle">Services:</span>
                         <a id="professionalMallLink" href="#/professional/outreach" data-bind="css: { selected: page().indexOf('outreach') !== -1}">Outreach</a>
                         <a id="professionalDinnerLink" href="#/professional/appreciation" data-bind="css: { selected: page().indexOf('appreciation') !== -1}">Faculty Appreciation</a>
                         <a id="professionalTableLink" href="#/professional/refinement" data-bind="css: { selected: page().indexOf('refinement') !== -1}">Campus Refinement</a>
                     </div>
+                    <div class="fixedTitlePlaceholder"></div>
                     <div id="outreach" data-bind="visible: page().indexOf('outreach') !== -1">
                         <div id="outreachDescription">Through the year, our chapter puts on a variety of Chemistry Magic Shows to show groups Chemistry and how cool it can be!</div>
                         <div id="outreachExample">
@@ -258,7 +259,7 @@
                     </div>
                 </div>
                 <div id="pictures" data-bind="visible: page().indexOf('pictures') === 0">
-                    <div id="albumPath">
+                    <div id="albumPath" class="fixedTitle">
                         <a class="albumPathItem" href="#/pictures" data-bind="css: { selected: page() === 'pictures' }">Pictures</a>
                         <!-- ko if: x.currentAlbum().x && x.currentAlbum().x.path -->
                         <!-- ko foreach: x.currentAlbum().x.path() -->
@@ -267,6 +268,7 @@
                         <!-- /ko -->
                         <!-- /ko -->
                     </div>
+                    <div class="fixedTitlePlaceholder"></div>
                     <div id="currentAlbum" data-bind="with: x.currentAlbum()">
                         <!-- ko foreach: albumList -->
                         <a class="albumPreview" data-bind="attr: { href: $parent.path + '/' + name }">
