@@ -727,7 +727,7 @@ a.selected{
     height: 550px;
 }
 
-#viewer {
+div#viewer {
     position: fixed;
     top: 0;
     left: 0;
@@ -739,6 +739,7 @@ a.selected{
     background-position: center center;
     z-index: 10;
     min-height: 400px;
+    opacity: 1;
 }
 
 #viewer.video {
