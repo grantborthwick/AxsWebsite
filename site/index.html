@@ -157,7 +157,9 @@
                     </div>
                     <div class="pledgeClassList" data-bind="foreach: pledgeClassList.sort, visible: page().indexOf('classes') !== -1">
                         <div class="pledgeClass">
-                            <div class="pledgeClassSemester" data-bind="text: $root.toSemester(semester)"></div>
+                            <div class="pledgeClassSemester">
+                                <span class="pledgeClassSemesterText" data-bind="text: $root.toSemester(semester)"></span>
+                            </div>
                             <!-- ko if: picture -->
                             <a class="pledgeClassPictureContainer" data-bind="attr: {href: '#/members/classes' + picture.substr(picture.lastIndexOf('/'))}">
                                 <span class="gradientTop"></span>
@@ -167,28 +169,24 @@
                                 <div class="pledgeClassPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\')' }"></div>
                             </a>
                             <!-- /ko -->
-                            <!-- ko ifnot: picture -->
-                            <div class="pledgeClassPictureContainer noPicture">
-                                <div class="pledgeClassPicture">No picture.</div>
-                            </div>
-                            <!-- /ko -->
                             <div class="memberList" data-bind="foreach: memberList.sort()">
-                                <div class="member">
+                                <span class="member">
                                     <span class="memberName" data-bind="text: name, css: { active: status === 'Active' }"></span>
                                     <!-- ko if: family -->
-                                    <span class="memberFamily white" data-bind="css: family.toLowerCase()"></span>
+                                    <span class="memberFamily white" data-bind="css: family.toLowerCase(), attr: { title: family + ' Family'}"></span>
                                     <!-- /ko -->
                                     <!-- ko if: chapter -->
                                     <span class="memberChapter" data-bind="html: chapter"></span>
                                     <!-- /ko -->
-                                </div>
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="familyList" data-bind="foreach: familyList, visible: page().indexOf('families') !== -1">
                         <div class="family">
-                            <div class="familyName" data-bind="text: name"></div>
-                            <div class="memberList" data-bind="template: { name: 'familyMember-template', foreach: memberList.sort }"></div>
+                            <div class="familyName">
+                                <span class="familyNameText" data-bind="text: name"></span>
+                            </div>
                             <a class="familyPictureContainer" data-bind="attr: {href: '#/members/families/' + name + '.jpg'}">
                                 <span class="gradientTop"></span>
                                 <span class="gradientBottom"></span>
@@ -196,6 +194,7 @@
                                 <span class="gradientRight"></span>
                                 <div class="familyPicture picture" data-bind="style: { backgroundImage: 'url(\'images/families/' + name + '.jpg\'), url(\'images/no photo.jpg\')' }"></div>
                             </a>
+                            <div class="memberList" data-bind="template: { name: 'familyMember-template', foreach: memberList.sort }"></div>
                         </div>
                     </div>
                 </div>
