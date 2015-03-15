@@ -65,6 +65,7 @@ body {
     padding-right: 260px;
     min-height: 306px;
     display: block;
+    overflow-y: hidden;
 }
 
 #header {
@@ -523,7 +524,7 @@ div.officer>div.officerPicture {
     display: inline-block;
 }
 
-.albumPreview, .albumPictureContainer, .pledgeClassPictureContainer:not(.noPicture) {
+.albumPreview, .albumPictureContainer, .pledgeClassPictureContainer:not(.noPicture), .familyPictureContainer {
     border-style: solid;
     border-color: transparent;
     border: 2px 2px;
@@ -535,7 +536,7 @@ div.officer>div.officerPicture {
     -ms-transition: border-color .25s;
 }
 
-.albumPreview:hover, .albumPictureContainer:hover, .pledgeClassPictureContainer:not(.noPicture):hover {
+.albumPreview:hover, .albumPictureContainer:hover, .pledgeClassPictureContainer:not(.noPicture):hover, .familyPictureContainer:hover {
     border-color: #E4E4E4;
 }
 
@@ -594,23 +595,17 @@ div.officer>div.officerPicture {
     text-decoration: none;
 }
 
-.pledgeClassPictureLink {
-    position:relative;
-    width: 100%;
-    height: 100%;
-}
-
-.pledgeClassPictureContainer {
+.pledgeClassPictureContainer, .familyPictureContainer {
     display: inline-block;
 }
 
-.pledgeClassPictureContainer:not(.noPicture) {
+.pledgeClassPictureContainer:not(.noPicture), .familyPictureContainer {
     position: relative;
     width: 300px;
     height: 300px;
 }
 
-.pledgeClassPictureContainer:not(.noPicture) .pledgeClassPicture {
+.pledgeClassPictureContainer:not(.noPicture) .pledgeClassPicture, .familyPictureContainer .familyPicture{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -634,6 +629,14 @@ div.officer>div.officerPicture {
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
+}
+
+.familyPicture {
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .faq{

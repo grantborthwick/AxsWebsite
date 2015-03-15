@@ -1,4 +1,3 @@
-google analytics
 Style
     Members
     Families
@@ -9,15 +8,7 @@ Dynamic album information generation
 keyboard input
 
 Albums
-    video from album files
     non-jpg files
-    reduce image sizes
-    album sorting order
-    non-local album path
-
-Easter eggs
-    Cats
-    Raptorize js
     
 Cool ideas
     Picture rotation
