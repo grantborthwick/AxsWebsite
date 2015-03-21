@@ -163,7 +163,7 @@ div#headerBackground {
 }
 
 #container {
-    padding-top: 154px;
+    padding-top: 158px;
     padding-bottom: 45px;
     position: relative;
     min-height: 394px;
@@ -685,6 +685,7 @@ div.officer>div.officerPicture {
 
 .fixedTitle {
     position: fixed;
+    top:155px;
     height: 30px;
     background-image: url(images/bg3.jpg);
     background-size: auto 45px;
@@ -700,6 +701,7 @@ div.officer>div.officerPicture {
 
 .fixedTitlePlaceholder {
     height: 30px;
+    display:block;
 }
 
 .pledgeClassSemesterText, .familyNameText {
