@@ -1,16 +1,16 @@
-position,name,email,picture,classification,major
-Master Alchemist,Krystal Duer,kmd1375@ksu.edu,images/officers/Krystal_Duer.jpg,Senior,Biological Systems Engineering and Pre-Med
-Vice Master Alchemist,Sarah Schuetze,schuetze@ksu.edu,images/officers/Sarah_Schuetze.jpg,Sophomore,Biological Systems Engineering
-Master of Ceremonies,Sara Joyce,sjoyce@ksu.edu,images/officers/Sara_Joyce.jpg,Sophomore,"Chemistry, Pre-Pharmacy"
-Outreach Coordinator,Harrison Schmidt,harrisonschmidt@icloud.com,images/officers/Harrison_Schmidt.jpg,Junior,Biology
-Assistant Outreach Coordinator,Andy Warner,alwarner@ksu.edu,images/officers/Andy_Warner.jpg,Sophomore,Chemistry
-Social Chair,John Rosa,jrrosa@ksu.edu,images/officers/John_Rosa.jpg,Junior,"Chemistry, Pre-Pharmacy"
-Recorder,Bailey Ward,baileyboo13p@ksu.edu,images/officers/Bailey_Ward.jpg,Sophomore,Biology and Pre-Pharmacy
-Treasurer,Christine Spartz,clspartz@ksu.edu,images/officers/Christine_Spartz.jpg,Junior,Chemistry
-Historian,Kelsie Cole,kelsiec@ksu.edu,images/officers/Kelsie_Cole.jpg,Sophomore,"Biology, Pre-Dentistry "
-Reporter,Rachel Quinnett,rquinnett@gmail.com,,Freshman,Chemical Engineering
-Webmaster,David Martin,dmarti56@ksu.edu,images/officers/David_Martin.jpg,Junior,Chemical Engineering
-Alumni Secretary,Sean Smith,sean46056@ksu.edu,images/officers/Sean_Smith.jpg,Freshman,Chemical Engineering
-Chapter Advisor,Emery Brown,emerybrown@ksu.edu,images/officers/Emery_Brown.jpg,,
-Chapter Advisor,Jim Hodgson,hodgson@ksu.edu,images/officers/Jim_Hodgson.jpg,,
-Chapter Advisor,Dr. Christopher Levy,clevy@ksu.edu,images/officers/Christopher_Levy.jpg,,
+position,name,email,picture,classification,major,minor
+Master Alchemist,Harrison Schmidt,hns@k-state.edu,images/officers/Harrison_Schmidt.jpg,Junior,Biology,
+Vice Master Alchemist,Amanda Nelson,amanda100@k-state.edu,images/officers/Amanda_Nelson.jpg,Senior,Biochemistry,
+Master of Ceremonies,Sara Joyce,sjoyce@k-state.edu,images/officers/Sara_Joyce.jpg,Junior,"Chemistry, Pre-Pharmacy",
+Outreach Coordinator,Alex Meier,alexmeier101@gmail.com,images/officers/Alex_Meier.jpg,Junior,"Chemistry, Biochemistry",
+Assistant Outreach Coordinator,Hannah Devore,hmdevore@outlook.com,images/officers/Hannah_Devore.jpg,Sophomore,Chemistry,
+Social Chair,Victoria Floyd,vwfloyd@k-state.edu,images/officers/Victoria_Floyd.jpg,Junior,Biology,
+Recorder,Emily Wedeman,ewedeman@k-state.edu,images/officers/Emily_Wedeman.jpg,Junior,Chemical Engineering,
+Treasurer,Fernando Nieto,nieto@k-state.edu,images/officers/Fernando_Nieto.jpg,Sophomore,Biology,
+Historian,Tate Gilchrist,tategilchrist@k-state.edu,images/officers/Tate_Gilchrist.jpg,Senior,Biochemistry,
+Reporter,Luke Zahner,lpzahne@gmail.com,images/officers/Luke_Zahner.jpg,Sophomore,Electrical Engineering,
+Webmaster,Brenna McMasters,mcmasters.yahoo.com,images/officers/Brenna_McMasters.jpg,Sophomore,Chemistry,
+Alumni Secretary,Sarah Gorn,segorn@k-state.edu,images/officers/Sarah_Gorn.jpg,Junior,Biology,
+Kappa Liaison,Sean Smith,sean46056@k-state.edu,images/officers/Sean_Smith.jpg,Sophomore,Chemical Engineering,
+Chapter Advisor,Emery Brown,emerybrown@ksu.edu,images/officers/Emery_Brown.jpg,,,
+Chapter Advisor,Dr. Christopher Levy,clevy@ksu.edu,images/officers/Christopher_Levy.jpg,,,
