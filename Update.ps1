@@ -2,9 +2,14 @@ $start = Get-Date
 $nl = "`r`n`r`n"
 $ToNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
 $albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive\WebsitePictures\albums"
+$currentPath = (Get-Item -Path ".\" -Verbose).FullName
 function ReadFile([string]$file){
     if (Test-Path $file){
-        return [IO.File]::ReadAllText("$file")
+        try {
+            return [IO.File]::ReadAllText("$file")
+        }
+        catch { }
+        return [IO.File]::ReadAllText("$currentPath\$file")
     } else {
         throw "$file does not exist"
     }
