@@ -3,7 +3,7 @@ Need to add to this!
 ## Prerequisites ##
 Windows
 Powershell
-Download git for Windows: http://www.git-scm.com/downloads
+Download [git for Windows](http://www.git-scm.com/downloads)
 ### Get access to the gmail ###
 axe.betarho.ksu@gmail.com
 Google Drive Website Pictures
@@ -35,5 +35,11 @@ Make a backup!!!!!
 ## IDE ##
 [Visual Studio Code](https://code.visualstudio.com/)
 [Notepad++](https://notepad-plus-plus.org/)
+## Source control ##
+[Git](http://www.git-scm.com/downloads)
+Visual Studio Code (link below)
+## Diff ##
+[WinMerge](http://winmerge.org/)
+Visual Studio Code (link above)
 ## FTP ##
 [FileZilla](http://www.bing.com/search?q=filezilla&FORM=AVASDF&PC=AV01)
