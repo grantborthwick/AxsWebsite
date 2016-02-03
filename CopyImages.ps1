@@ -49,7 +49,7 @@ function CopyImage([string]$source, [string]$target, [long]$quality){
 }
 
 $token = "\WebsitePictures"
-$albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive$token"
+$albumPath = [Environment]::GetFolderPath("User") + "\Google Drive$token"
 $pictures = Get-ChildItem $albumPath -recurse -include "*.jpg"
 $total = $pictures.Length
 $count = 0
