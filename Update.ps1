@@ -1,7 +1,7 @@
 $start = Get-Date
 $nl = "`r`n`r`n"
 $ToNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
-$albumPath = [Environment]::GetFolderPath("Desktop") + "\..\Google Drive\WebsitePictures\albums"
+$albumPath = [Environment]::GetFolderPath("User") + "\Google Drive\WebsitePictures\albums"
 $currentPath = (Get-Item -Path ".\" -Verbose).FullName
 function ReadFile([string]$file){
     if (Test-Path $file){
