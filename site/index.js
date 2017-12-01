@@ -237,12 +237,12 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             {date: "11/10/2012", src: "2012f.jpg"},
             {date: "4/27/2013", src: "2013s.jpg"},
             {date: "11/16/2013", src: "2013f.jpg"},
-			{date: "4/27/2014", src: "2014s.jpg"},
-			{date: "12/10/2014", src: "2014f.jpg"},
-			{date: "4/25/2015", src: "2015s.jpg"},
-	        {date: "11/15/2015", src: "2015f.jpg"},
-			{date: "4/25/2016", src: "2016s.jpg"},
-			{date: "11/15/2016", src: "2016f.jpg"}]
+            {date: "4/27/2014", src: "2014s.jpg"},
+            {date: "12/10/2014", src: "2014f.jpg"},
+            {date: "4/25/2015", src: "2015s.jpg"},
+            {date: "11/15/2015", src: "2015f.jpg"},
+            {date: "4/25/2016", src: "2016s.jpg"},
+            {date: "11/15/2016", src: "2016f.jpg"}]
         for (var i = 0; i < classes.length; ++i){
             var pictureUrl = basePledgeSrc + classes[i].src;
             var pledgeClass = new PledgeClass(classes[i].date, pictureUrl);
