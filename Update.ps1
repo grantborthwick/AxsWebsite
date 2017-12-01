@@ -92,11 +92,8 @@ function albums([string] $path){
 
 $updateAlbums = Test-Path $albumPath
 
-$officers = Import-Csv .\officers.csv
-$members = Import-Csv .\members.csv
-$faq = Import-Csv .\faq.csv
 $faqText = ""
-$faq | ForEach-Object {
+Import-Csv .\faq.csv | ForEach-Object {
     $question = ($_.question -replace "'", "\'") -replace '"', '\"'
     $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
     $parameters = "'$question','$answer'"
@@ -105,14 +102,14 @@ $faq | ForEach-Object {
 $officersText = "viewModel.officerList.push(`r`n$(
     [string]::Join(
         ",`r`n",
-        ($officers | ForEach-Object {
+        (Import-Csv .\officers.csv | ForEach-Object {
             "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
         }
     ))));"
 $membersText = "viewModel.memberList.push(`r`n$(
     [string]::Join(
         ",`r`n",
-        ($members | ForEach-Object {
+        (Import-Csv .\members.csv | ForEach-Object {
             "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
         }
     ))));"
