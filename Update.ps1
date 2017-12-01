@@ -164,7 +164,7 @@ try{
     }
     $content = InjectSection "Today" $today $content
     #Write-Host $content
-    $content | Out-File $indexJs
+    $content | Out-File $indexJs -NoNewLine
 }
 catch {
     Write-Host "Failed to inject :("
