@@ -22,7 +22,7 @@ function InjectSection([string]$name, [string]$value, [string]$contents){
     if (($startIndex -eq -1) -or ($endIndex -eq -1) -or ($endIndex -le $startIndex)){
         throw "($startIndex) $start and ($endIndex) $end not found!"
     }
-    return $content.Substring(0, $startIndex + $start.length) + "$value" + $content.Substring($endIndex)
+    return $content.Substring(0, $startIndex + $start.length) + "`r`n$value`r`n" + $content.Substring($endIndex)
 }
 function albums([string] $path){
     $pictures = ""
@@ -92,68 +92,32 @@ function albums([string] $path){
 
 $updateAlbums = Test-Path $albumPath
 
-$officers = Import-Csv .\officers.csv
-$members = Import-Csv .\members.csv
-$faq = Import-Csv .\faq.csv
-$officersText = ""
-$membersText = ""
-$faqText = ""
-$officers | ForEach-Object {
-    $position = $_.position
-    $name = $_.name
-    $email = $_.email
-    $picture = $_.picture
-    $classification = $_.classification
-    $major = $_.major
-    $parameters = "'$position','$name','$email'"
-    if ($picture -or $classification -or $major){
-        $parameters += ",'$picture'"
-    }
-    if ($classification -or $major){
-        $parameters += ",'$classification'"
-    }
-    if ($major){
-        $parameters += ",'$major'"
-    }
-    $officersText += "a($parameters),"
-}
-$members | ForEach-Object {
-    $id = $_.id
-    $name = $_.name
-    $initiationDate = $_.initiationDate
-    $status = $_.status
-    $family = $_.family
-    $big = $_.big
-    $chapter = $_.chapter
-    $parameters = "'$id','$name','$initiationDate','$status'"
-    if ($family -or $big -or $chapter){
-        $parameters += ",'$family'"
-    }
-    if ($big -or $chapter){
-        $parameters += ",'$big'"
-    }
-    if ($chapter){
-        $parameters += ",'$chapter'"
-    }
-    $membersText += "a($parameters),"
-}
-$faq | ForEach-Object {
-    $question = ($_.question -replace "'", "\'") -replace '"', '\"'
-    $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
-    $parameters = "'$question','$answer'"
-    $faqText += "a($parameters),"
-}
-$officersText = "var a=function(position,name,email,picture,classification,major){return new Officer(position,name,email,picture,classification,major);};viewModel.officerList.push(" + $officersText.Substring(0, $officersText.Length - 1) + ");"
-$membersText = "var a=function(id,name,date,status,family,big,chapter){return new Member(id,name,date,status,family,big,chapter);};viewModel.memberList.push(" + $membersText.Substring(0, $membersText.Length - 1) + ");"
-$faqText = "var a=function(question,answer){return new Faq(question,answer);};viewModel.faqList.push(" + $faqText.Substring(0, $faqText.Length - 1) + ");"
+$today = "'$((Get-Date).ToUniversalTime())Z'"
+$officersText = [string]::Join(
+    ",`r`n",
+    (Import-Csv .\officers.csv | ForEach-Object {
+        "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
+    }))
+$faqText = [string]::Join(
+    ",`r`n",
+    (Import-Csv .\faq.csv | ForEach-Object {
+        $question = ($_.question -replace "'", "\'") -replace '"', '\"'
+        $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
+        "new Faq('$question', '$answer')"
+    }))
+$membersText = [string]::Join(
+    ",`r`n",
+    (Import-Csv .\members.csv | ForEach-Object {
+        "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
+    }))
 if ($updateAlbums){
     $albums = albums $albumPath
 } else {
     Write-Host "Skipping albums. $albumPath does not exist."
 }
-$today = Get-Date
-$today = "new Date('$today');"
-try{
+
+# Inject Generated JavaScript
+try {
     $indexJs = ".\site\index.js"
     $content = ReadFile $indexJs
     $content = InjectSection "Officers" $officersText $content
