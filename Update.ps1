@@ -22,7 +22,7 @@ function InjectSection([string]$name, [string]$value, [string]$contents){
     if (($startIndex -eq -1) -or ($endIndex -eq -1) -or ($endIndex -le $startIndex)){
         throw "($startIndex) $start and ($endIndex) $end not found!"
     }
-    return $content.Substring(0, $startIndex + $start.length) + "$value" + $content.Substring($endIndex)
+    return $content.Substring(0, $startIndex + $start.length) + "`r`n$value`r`n" + $content.Substring($endIndex)
 }
 function albums([string] $path){
     $pictures = ""
