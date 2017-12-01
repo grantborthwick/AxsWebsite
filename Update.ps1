@@ -92,12 +92,13 @@ function albums([string] $path){
 
 $updateAlbums = Test-Path $albumPath
 
-$faqText = ""
-Import-Csv .\faq.csv | ForEach-Object {
-    $question = ($_.question -replace "'", "\'") -replace '"', '\"'
-    $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
-    $faqText += "`r`na('$question','$answer'),"
-}
+$faqText = [string]::Join(
+    ",`r`n",
+    (Import-Csv .\faq.csv | ForEach-Object {
+        $question = ($_.question -replace "'", "\'") -replace '"', '\"'
+        $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
+        "a('$question','$answer')"
+    }))
 $officersText = "viewModel.officerList.push(`r`n$(
     [string]::Join(
         ",`r`n",
@@ -112,7 +113,7 @@ $membersText = "viewModel.memberList.push(`r`n$(
             "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
         }
     ))));"
-$faqText = "var a=function(question,answer){return new Faq(question,answer);};viewModel.faqList.push(" + $faqText.Substring(0, $faqText.Length - 1) + ");"
+$faqText = "var a=function(question,answer){return new Faq(question,answer);};viewModel.faqList.push(`r`n$faqText);"
 if ($updateAlbums){
     $albums = albums $albumPath
 } else {
