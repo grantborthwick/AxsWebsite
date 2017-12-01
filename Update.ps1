@@ -105,17 +105,17 @@ $members | ForEach-Object {
     $family = $_.family
     $big = $_.big
     $chapter = $_.chapter
-    $parameters = "'$id','$name','$initiationDate','$status'"
+    $parameters = "'$id', '$name', '$initiationDate', '$status'"
     if ($family -or $big -or $chapter){
-        $parameters += ",'$family'"
+        $parameters += ", '$family'"
     }
     if ($big -or $chapter){
-        $parameters += ",'$big'"
+        $parameters += ", '$big'"
     }
     if ($chapter){
-        $parameters += ",'$chapter'"
+        $parameters += ", '$chapter'"
     }
-    $membersText += "a($parameters),"
+    $membersText += "`r`na($parameters),"
 }
 $faq | ForEach-Object {
     $question = ($_.question -replace "'", "\'") -replace '"', '\"'
