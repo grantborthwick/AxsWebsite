@@ -24,7 +24,7 @@ function InjectSection([string]$name, [string]$value, [string]$contents){
     }
     return $content.Substring(0, $startIndex + $start.length) + "`r`n$value`r`n" + $content.Substring($endIndex)
 }
-function albums([string] $path){
+function albums([string] $path) {
     $pictures = ""
     $otherPictures = ""
     $albumsText = ""
@@ -37,28 +37,37 @@ function albums([string] $path){
     } else {
         $directoryItems = $items | Where-Object {$_ -is [IO.DirectoryInfo]} | Sort-Object Name
     }
+    
+    $albums = @();
+    $items = @();
+    return @{
+        n = "name";
+        a = $albums;
+        p = $items
+    };
+
     $directoryItems | ? {
         if ($albumsText.Length -gt 0){
-            $albumsText += ","
+            $albumsText += ", "
         }
-        $albumsText += albums $_.FullName
+        $albumsText += albums $_.FullName "$indent    "
     }
     $items | Where-Object {($_ -is [IO.FileInfo]) -and ($_.ToString().IndexOf(".v") -ne -1)} | Sort-Object $ToNatural | ? {
         if ($otherPictures.Length -gt 0){
-            $otherPictures += ","
+            $otherPictures += ", "
         }
         $v = ReadFile $_.FullName
         $otherPictures += "new AlbumVideo('$v')"
     }
     $items | Where-Object {($_ -is [IO.FileInfo]) -and ($_.ToString().IndexOf(".jpg") -eq -1)-and ($_.ToString().IndexOf(".v") -eq -1)} | Sort-Object $ToNatural | ? {
         if ($otherPictures.Length -gt 0){
-            $otherPictures += ","
+            $otherPictures += ", "
         }
         $otherPictures += "'$_'"
     }
     $items | Where-Object {($_ -is [IO.FileInfo]) -and ($_.ToString().IndexOf(".jpg") -ne -1)} | Sort-Object $ToNatural | ? {
         if ($pictures.Length -gt 0){
-            $pictures += ","
+            $pictures += ", "
         }
         $count += 1
         if ($numberedPictures -and ($_.ToString() -ne "$count.jpg")){
@@ -68,26 +77,25 @@ function albums([string] $path){
         }
         $pictures += "'$_'"
     }
-    $ret = "{n:'$name'"
-    if ($albumsText.Length -gt 0){
-        if ($path -eq $albumPath){
+    $ret = "n: '$name'"
+    if ($albumsText.Length -gt 0) {
+        if ($path -eq $albumPath) {
             return "$albumsText"
         }
-        $ret += ",a:[$albumsText]"
+        $ret = "$ret,`r`n$indent    a: [$albumsText]"
     }
-    if (($pictures.Length -gt 0) -or ($otherPictures.Length -gt 0)){
-        if ($numberedPictures -eq $true){
-            $ret += ",p:unshift(num($count)"
+    if (($pictures.Length -gt 0) -or ($otherPictures.Length -gt 0)) {
+        if ($numberedPictures -eq $true) {
+            $ret = "$ret,`r`n$indent    p: unshift(num($count)"
         } else {
-            $ret += ",p:unshift([$pictures]"
+            $ret = "$ret,`r`n$indent    p: unshift([$pictures]"
         }
-        if ($otherPictures.Length -gt 0){
-            $ret += ",$otherPictures"
+        if ($otherPictures.Length -gt 0) {
+            $ret = "$ret, $otherPictures"
         }
-        $ret += ")"
+        $reg = "$ret)";
     }
-    $ret += "}"
-    return $ret
+    return "`r`n$indent{`r`n$indent    $ret`r`n$indent}";
 }
 
 $updateAlbums = Test-Path $albumPath
@@ -111,7 +119,7 @@ $membersText = [string]::Join(
         "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
     }))
 if ($updateAlbums){
-    $albums = albums $albumPath
+    $albums = albums $albumPath | ConvertTo-Json
 } else {
     Write-Host "Skipping albums. $albumPath does not exist."
 }
