@@ -92,6 +92,12 @@ function albums([string] $path){
 
 $updateAlbums = Test-Path $albumPath
 
+$today = "'$((Get-Date).ToUniversalTime())Z'"
+$officersText = [string]::Join(
+    ",`r`n",
+    (Import-Csv .\officers.csv | ForEach-Object {
+        "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
+    }))
 $faqText = [string]::Join(
     ",`r`n",
     (Import-Csv .\faq.csv | ForEach-Object {
@@ -99,27 +105,16 @@ $faqText = [string]::Join(
         $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
         "new Faq('$question', '$answer')"
     }))
-$officersText = "viewModel.officerList.push(`r`n$(
-    [string]::Join(
-        ",`r`n",
-        (Import-Csv .\officers.csv | ForEach-Object {
-            "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
-        }
-    ))));"
-$membersText = "viewModel.memberList.push(`r`n$(
-    [string]::Join(
-        ",`r`n",
-        (Import-Csv .\members.csv | ForEach-Object {
-            "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
-        }
-    ))));"
-$faqText = "viewModel.faqList.push(`r`n$faqText);"
+$membersText = [string]::Join(
+    ",`r`n",
+    (Import-Csv .\members.csv | ForEach-Object {
+        "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
+    }))
 if ($updateAlbums){
     $albums = albums $albumPath
 } else {
     Write-Host "Skipping albums. $albumPath does not exist."
 }
-$today = "'$((Get-Date).ToUniversalTime())Z'"
 
 # Inject Generated JavaScript
 try {

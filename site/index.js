@@ -145,8 +145,8 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             Album.call(this, "pictures");
             var self = this;
             self.lastUpdated = generatedData.lastUpdated;
-            self.officerList = [];
-            self.memberList = [];
+            self.officerList = generatedData.officers;
+            self.memberList = generatedData.members;
             self.pledgeClassAlbum = new Album();
             self.pledgeClassAlbum.path = "#/members/classes";
             self.familyAlbum = new Album();
@@ -218,10 +218,107 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
     (function initializeViewModel(){
         var viewModel = new ViewModel();
         window.viewModel = viewModel;
-        initializeOfficers();
-        initializeFaq();
-        initializeAlbums();
-        initializeMembers();
+        
+        // Initialize albums
+        var splitAlbums = function(albums){
+            var ret = [];
+            for (var i = 0; i < albums.length; ++i){
+                ret.push(addAlbum("images/albums", albums[i].n, albums[i].a, albums[i].p));
+            }
+            return ret;
+        };
+        var addAlbum = function(src, name, albums, pictures){
+            var subAlbums = [];
+            var albumPictures = [];
+            var albumSrc = src + "/" + name;
+            for (var i = 0; albums && i < albums.length; ++i){
+                subAlbums.push(addAlbum(albumSrc, albums[i].n, albums[i].a, albums[i].p));
+            }
+            for (var i = 0; pictures && i < pictures.length; ++i){
+                var p = pictures[i];
+                if (p instanceof AlbumVideo){
+                    albumPictures.push(p);
+                } else {
+                    albumPictures.push(new AlbumPicture(albumSrc + "/" + pictures[i]));
+                }
+            }            
+            return new Album(name, albumPictures, subAlbums);
+        };
+        viewModel.albumList.push.apply(viewModel.albumList, splitAlbums(generatedData.albums));
+        var setAlbumPaths = function setAlbumPaths(album, path){
+            album.path = path + (album.name ? "/" + album.name : "");
+            for (var i = 0; i < album.albumList.length; ++i){
+                setAlbumPaths(album.albumList[i], album.path);
+                album.albumList[i].x.parent = album;
+            }
+        }
+        setAlbumPaths(viewModel, "#");
+        
+        // Initialize members
+        // Organize by pledge class
+        var basePledgeSrc = "images/pledgeClasses/";
+        var baseFamilySrc = "images/families/";
+        var classes = [
+            {date: "4/13/2002", src: "2002f.jpg"},
+            {date: "4/11/2003", src: "2003s.jpg"},
+            {date: "4/29/2005", src: "2004s.jpg"},
+            {date: "4/29/2005", src: "2005s.jpg"},
+            {date: "3/31/2006", src: "2006s.jpg"},
+            {date: "11/17/2006", src: "2006f.jpg"},
+            {date: "11/21/2008", src: "2008f.jpg"},
+            {date: "12/3/2010", src: "2010f.jpg"},
+            {date: "4/30/2011", src: "2011s.jpg"},
+            {date: "12/3/2011", src: "2011f.jpg"},
+            {date: "4/28/2012", src: "2012s.jpg"},
+            {date: "11/10/2012", src: "2012f.jpg"},
+            {date: "4/27/2013", src: "2013s.jpg"},
+            {date: "11/16/2013", src: "2013f.jpg"},
+            {date: "4/27/2014", src: "2014s.jpg"},
+            {date: "12/10/2014", src: "2014f.jpg"},
+            {date: "4/25/2015", src: "2015s.jpg"},
+            {date: "11/15/2015", src: "2015f.jpg"},
+            {date: "4/25/2016", src: "2016s.jpg"},
+            {date: "11/15/2016", src: "2016f.jpg"}]
+        for (var i = 0; i < classes.length; ++i){
+            var pictureUrl = basePledgeSrc + classes[i].src;
+            var pledgeClass = new PledgeClass(classes[i].date, pictureUrl);
+            viewModel.pledgeClassList[pledgeClass.semester] = pledgeClass;
+            viewModel.pledgeClassList.push(pledgeClass);
+            
+            viewModel.pledgeClassAlbum.pictureList.unshift(new AlbumPicture(pictureUrl));
+        }
+        for (var i = 0; i < viewModel.memberList.length; ++i){
+            var member = viewModel.memberList[i];
+            if (!viewModel.pledgeClassList[member.date]){
+                var pledgeClass = new PledgeClass(member.date);
+                viewModel.pledgeClassList[member.date] = pledgeClass;
+                viewModel.pledgeClassList.push(pledgeClass);
+            }
+            viewModel.pledgeClassList[member.date].memberList.push(member);
+        }
+        // Families        
+        for (var i = 0; i < families.length; ++i){
+            var family = new Family(families[i]);
+            viewModel.familyList.push(family);
+            viewModel.familyList[family.name] = family;
+            
+            viewModel.familyAlbum.pictureList.push(new AlbumPicture(baseFamilySrc + families[i] + ".jpg"));
+        }
+        var index = {};
+        for (var i = 0; i < viewModel.memberList.length; ++i){
+            var member = viewModel.memberList[i];
+            index[member.id] = member;
+        }
+        for (var i = 0; i < viewModel.memberList.length; ++i){
+            var member = viewModel.memberList[i];
+            if (member.family){
+                if (member.big){
+                    index[member.big].x.littles.push(member);
+                } else {
+                    viewModel.familyList[member.family].memberList.push(member);
+                }
+            }
+        }
     })();
     window.app = $.sammy(function applicationRouting() {
         this.get("#/", function() { viewModel.page(''); });
@@ -418,17 +515,32 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
     /* Functions that source from generated content */
     /* Don't manually update this data! Update the source files and run Update.ps1. */
     function getGeneratedData() {
+        var unshift = function(){
+            var ret = [];
+            for (var i = 0; i < arguments.length; ++i){
+                if ($.isArray(arguments[i])){
+                    ret.unshift.apply(ret, arguments[i]);
+                } else {
+                    ret.unshift(arguments[i]);
+                }
+            }
+            return ret;
+        };
+        var num = function(count){
+            var ret = [];
+            for (var i = 1; i <= count; ++i){
+                ret.push(i + ".jpg");
+            }
+            return ret;
+        };
         return {
             lastUpdated: new Date(
 /* Initialize Today */
-'12/01/2017 09:09:57Z'
+'12/01/2017 09:59:26Z'
 /* End Initialize Today */
-            )
-        };
-    }
-    function initializeOfficers() {
+            ),
+            officers: [
 /* Initialize Officers */
-viewModel.officerList.push(
 new Officer('Master Alchemist', 'Patrick Gillespie', 'patrickj115@ksu.edu', 'images/officers/Patrick_Gillespie.jpg', 'Junior', 'Chemistry', ''),
 new Officer('Vice Master Alchemist', 'Karter Krokstrom', 'kkrokstrom@ksu.edu', 'images/officers/noimage', 'Junior', 'Chemical Engineering', ''),
 new Officer('Master of Ceremonies', 'Emily Wedeman', 'ewedeman@k-state.edu', 'images/officers/Emily_Wedeman.jpg', 'Junior', 'Chemical Engineering', ''),
@@ -441,12 +553,11 @@ new Officer('Historian', 'Sydney Masters', 'smasters@ksu.edu', 'images/officers/
 new Officer('Reporter', 'Gabrielle Ciccarelli', 'grciccar@ksu.edu', 'images/officers/Gabrielle_Ciccarelli.jpg', 'Sophomore', 'Nutritional Science', ''),
 new Officer('Webmaster', 'Vladislav Dubrovenski', 'vladi@ksu.edu', 'images/officers/Vladislav_Dubrovenski.jpg', 'Junior', 'Computer Science', ''),
 new Officer('Alumni Secretary', 'Dustin Nelsen', 'dnelsen@ksu.edu', 'images/officers/noimage', 'Junior', '', ''),
-new Officer('Chapter Advisor', 'Emery Brown', 'emerybrown@ksu.edu', 'images/officers/Emery_Brown.jpg', 'Graduate Student', 'Analytical Chemistry', ''));
+new Officer('Chapter Advisor', 'Emery Brown', 'emerybrown@ksu.edu', 'images/officers/Emery_Brown.jpg', 'Graduate Student', 'Analytical Chemistry', '')
 /* End Initialize Officers */
-    }
-    function initializeFaq(){
+            ],
+            faq: [
 /* Initialize Faq */
-viewModel.faqList.push(
 new Faq('Aren\'t fraternities just for men?', 'Although most fraternities for women call themselves sororities, fraternity is the more general term for a greek letter organization. We are a fraternity in the true sense of the word. All members are referred to as brothers, including our female members.'),
 new Faq('What is a professional faternity?', 'A professional fraternity selects its members based on common professional goals and interests. The more common social fraternities choose their members based on similar social interests. However, professional fraternities can have just as much fun as social ones, just ask any one of our members.'),
 new Faq('What is pledging?', 'You can join some organizations simply by filling out a form and mailing in your dues. Joining a fraternity is more work. Pledging is a process where a potential member associates with our fraternity for several months before becoming a brother. This gives both you and us a chance to get to know each other before we mutually agree that our fraternity is a good fit for you.'),
@@ -456,53 +567,10 @@ new Faq('How much of a time commitment is pledging?', 'Expect to spend a minimum
 new Faq('What will I do as a pledge?', 'As a pledge you will have a \'big,\' an active member to act as mentor and help you through the pledging process. You\'ll have to learn a little about the fraternities history and alchemy (yes, you will be quizzed). Mostly though, you will be having fun and learning what brotherhood is all about. Pledge events include bowling, a potluck, trivia night, AΧΣ Jeopardy, and many more!'),
 new Faq('Can I be a member of another fraternity or sorority if I join AΧΣ?', 'Since we are the only chemistry fraternity on campus, the answer is yes. In fact, several of our brothers are also in social fraternities and sororities.'),
 new Faq('Is AΧΣ only at K-State?', 'No! There are about 50 chapters of AΧΣ all across the United States. Here\'s a <a href=\'http://www.alphachisigma.org\'>link</a> to the national web-site, and here\'s a <a href=\'http://www.alphachisigma.org/page.aspx?pid=262\'>link</a> to a list of our chapters.'),
-new Faq('I\'m a grad student. Why would I want to associate with undergrads?', 'Well, first of all, we are not only undergrads. Many of our active members are graduate students. In fact, many professors are also AΧΣ brothers. Since we are a professional fraternity, we also have an active presence in industry and a number of professional chapters. AΧΣ is not just for undergrads, it\'s for life.'));
+new Faq('I\'m a grad student. Why would I want to associate with undergrads?', 'Well, first of all, we are not only undergrads. Many of our active members are graduate students. In fact, many professors are also AΧΣ brothers. Since we are a professional fraternity, we also have an active presence in industry and a number of professional chapters. AΧΣ is not just for undergrads, it\'s for life.')
 /* End Initialize Faq */
-    }
-    function initializeAlbums(){
-        var num = function(count){
-            var ret = [];
-            for (var i = 1; i <= count; ++i){
-                ret.push(i + ".jpg");
-            }
-            return ret;
-        };
-        var splitAlbums = function(albums){
-            var ret = [];
-            for (var i = 0; i < albums.length; ++i){
-                ret.push(addAlbum("images/albums", albums[i].n, albums[i].a, albums[i].p));
-            }
-            return ret;
-        };
-        var unshift = function(){
-            var ret = [];
-            for (var i = 0; i < arguments.length; ++i){
-                if ($.isArray(arguments[i])){
-                    ret.unshift.apply(ret, arguments[i]);
-                } else {
-                    ret.unshift(arguments[i]);
-                }
-            }
-            return ret;
-        };
-        var addAlbum = function(src, name, albums, pictures){
-            var subAlbums = [];
-            var albumPictures = [];
-            var albumSrc = src + "/" + name;
-            for (var i = 0; albums && i < albums.length; ++i){
-                subAlbums.push(addAlbum(albumSrc, albums[i].n, albums[i].a, albums[i].p));
-            }
-            for (var i = 0; pictures && i < pictures.length; ++i){
-                var p = pictures[i];
-                if (p instanceof AlbumVideo){
-                    albumPictures.push(p);
-                } else {
-                    albumPictures.push(new AlbumPicture(albumSrc + "/" + pictures[i]));
-                }
-            }            
-            return new Album(name, albumPictures, subAlbums);
-        };
-        var albumList = [
+            ],
+            albums: [
 /* Initialize Albums */
 {
     n: '2016',
@@ -799,20 +867,9 @@ new Faq('I\'m a grad student. Why would I want to associate with undergrads?', '
     p: unshift(num(3))
 }
 /* End Initialize Albums */
-		];
-        viewModel.albumList.push.apply(viewModel.albumList, splitAlbums(albumList));
-        var setAlbumPaths = function setAlbumPaths(album, path){
-            album.path = path + (album.name ? "/" + album.name : "");
-            for (var i = 0; i < album.albumList.length; ++i){
-                setAlbumPaths(album.albumList[i], album.path);
-                album.albumList[i].x.parent = album;
-            }
-        }
-        setAlbumPaths(viewModel, "#");
-    }
-    function initializeMembers() {
+            ],
+            members: [
 /* Initialize Members */
-viewModel.memberList.push(
 new Member('0', 'Cleon Arrington', '5/16/1964', 'Inactive', '', '', '&Kappa;'),
 new Member('1', 'Clifton Meloan', '5/16/1964', 'Inactive', '', '', '&Kappa;'),
 new Member('2', 'David Bak', '5/16/1964', 'Inactive', '', '', '&Kappa;'),
@@ -1574,71 +1631,9 @@ new Member('757', 'Riley Emley', '11/16/2013', 'Active', 'Copper', '710', ''),
 new Member('758', 'Sarah Munday', '11/16/2013', 'Active', 'Lead', '702', ''),
 new Member('759', 'Sean Smith', '11/16/2013', 'Active', 'Mercury', '733', ''),
 new Member('760', 'Tristan Grieves', '11/16/2013', 'Active', 'Iron', '711', ''),
-new Member('761', 'Vinh Hoang', '11/16/2013', 'Active', 'Iron', '729', ''));
+new Member('761', 'Vinh Hoang', '11/16/2013', 'Active', 'Iron', '729', '')
 /* End Initialize Members */
-        // Organize by pledge class
-        var basePledgeSrc = "images/pledgeClasses/";
-        var baseFamilySrc = "images/families/";
-        var classes = [
-            {date: "4/13/2002", src: "2002f.jpg"},
-            {date: "4/11/2003", src: "2003s.jpg"},
-            {date: "4/29/2005", src: "2004s.jpg"},
-            {date: "4/29/2005", src: "2005s.jpg"},
-            {date: "3/31/2006", src: "2006s.jpg"},
-            {date: "11/17/2006", src: "2006f.jpg"},
-            {date: "11/21/2008", src: "2008f.jpg"},
-            {date: "12/3/2010", src: "2010f.jpg"},
-            {date: "4/30/2011", src: "2011s.jpg"},
-            {date: "12/3/2011", src: "2011f.jpg"},
-            {date: "4/28/2012", src: "2012s.jpg"},
-            {date: "11/10/2012", src: "2012f.jpg"},
-            {date: "4/27/2013", src: "2013s.jpg"},
-            {date: "11/16/2013", src: "2013f.jpg"},
-            {date: "4/27/2014", src: "2014s.jpg"},
-            {date: "12/10/2014", src: "2014f.jpg"},
-            {date: "4/25/2015", src: "2015s.jpg"},
-            {date: "11/15/2015", src: "2015f.jpg"},
-            {date: "4/25/2016", src: "2016s.jpg"},
-            {date: "11/15/2016", src: "2016f.jpg"}]
-        for (var i = 0; i < classes.length; ++i){
-            var pictureUrl = basePledgeSrc + classes[i].src;
-            var pledgeClass = new PledgeClass(classes[i].date, pictureUrl);
-            viewModel.pledgeClassList[pledgeClass.semester] = pledgeClass;
-            viewModel.pledgeClassList.push(pledgeClass);
-            
-            viewModel.pledgeClassAlbum.pictureList.unshift(new AlbumPicture(pictureUrl));
-        }
-        for (var i = 0; i < viewModel.memberList.length; ++i){
-            var member = viewModel.memberList[i];
-            if (!viewModel.pledgeClassList[member.date]){
-                var pledgeClass = new PledgeClass(member.date);
-                viewModel.pledgeClassList[member.date] = pledgeClass;
-                viewModel.pledgeClassList.push(pledgeClass);
-            }
-            viewModel.pledgeClassList[member.date].memberList.push(member);
-        }
-        // Families        
-        for (var i = 0; i < families.length; ++i){
-            var family = new Family(families[i]);
-            viewModel.familyList.push(family);
-            viewModel.familyList[family.name] = family;
-            
-            viewModel.familyAlbum.pictureList.push(new AlbumPicture(baseFamilySrc + families[i] + ".jpg"));
-        }
-        var index = {};
-        for (var i = 0; i < viewModel.memberList.length; ++i){
-            var member = viewModel.memberList[i];
-            index[member.id] = member;
-        }
-        for (var i = 0; i < viewModel.memberList.length; ++i){
-            var member = viewModel.memberList[i];
-            if (member.family){
-                if (member.big){
-                    index[member.big].x.littles.push(member);
-                } else {
-                    viewModel.familyList[member.family].memberList.push(member);
-                }
-            }
-        }
+            ]
+        };
     }
 })(jQuery, ko);
