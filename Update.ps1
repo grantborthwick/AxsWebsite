@@ -122,8 +122,9 @@ if ($updateAlbums){
 } else {
     Write-Host "Skipping albums. $albumPath does not exist."
 }
-$today = Get-Date
-$today = "new Date('$today');"
+$today = "new Date('$(Get-Date)');"
+
+# Inject Generated JavaScript
 try {
     $indexJs = ".\site\index.js"
     $content = ReadFile $indexJs
