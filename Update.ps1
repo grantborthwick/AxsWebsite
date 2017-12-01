@@ -122,7 +122,7 @@ if ($updateAlbums){
 } else {
     Write-Host "Skipping albums. $albumPath does not exist."
 }
-$today = "new Date('$(Get-Date)');"
+$today = "new Date('$((Get-Date).ToUniversalTime())Z');"
 
 # Inject Generated JavaScript
 try {
