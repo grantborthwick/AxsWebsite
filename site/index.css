@@ -224,7 +224,7 @@ a {
 #homePicture1.picture {
     display: block;
     background-image: url("images/home/2013F.jpg");
-	background-size: cover;
+    background-size: cover;
 
 }
 #homePicture2 {

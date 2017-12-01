@@ -163,8 +163,10 @@ try{
         $content = InjectSection "Albums" $albums $content
     }
     $content = InjectSection "Today" $today $content
-    #Write-Host $content
-    $content | Out-File $indexJs
+    
+    # Out-File doesn't allow us to write the file as Utf8
+    $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+    [System.IO.File]::WriteAllText($indexJs, $content, $Utf8NoBomEncoding)
 }
 catch {
     Write-Host "Failed to inject :("
