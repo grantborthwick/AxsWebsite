@@ -99,23 +99,8 @@ $officersText = ""
 $membersText = ""
 $faqText = ""
 $officers | ForEach-Object {
-    $position = $_.position
-    $name = $_.name
-    $email = $_.email
-    $picture = $_.picture
-    $classification = $_.classification
-    $major = $_.major
-    $parameters = "'$position','$name','$email'"
-    if ($picture -or $classification -or $major){
-        $parameters += ",'$picture'"
-    }
-    if ($classification -or $major){
-        $parameters += ",'$classification'"
-    }
-    if ($major){
-        $parameters += ",'$major'"
-    }
-    $officersText += "a($parameters),"
+    if ($officersText.Length -gt 0) { $officersText += ",`r`n" }
+    $officersText += "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
 }
 $members | ForEach-Object {
     $id = $_.id
@@ -143,7 +128,7 @@ $faq | ForEach-Object {
     $parameters = "'$question','$answer'"
     $faqText += "a($parameters),"
 }
-$officersText = "var a=function(position,name,email,picture,classification,major){return new Officer(position,name,email,picture,classification,major);};viewModel.officerList.push(" + $officersText.Substring(0, $officersText.Length - 1) + ");"
+$officersText = "viewModel.officerList.push(`r`n$officersText);"
 $membersText = "var a=function(id,name,date,status,family,big,chapter){return new Member(id,name,date,status,family,big,chapter);};viewModel.memberList.push(" + $membersText.Substring(0, $membersText.Length - 1) + ");"
 $faqText = "var a=function(question,answer){return new Faq(question,answer);};viewModel.faqList.push(" + $faqText.Substring(0, $faqText.Length - 1) + ");"
 if ($updateAlbums){
