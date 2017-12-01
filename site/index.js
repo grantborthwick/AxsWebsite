@@ -2,8 +2,8 @@ var isKSU = (window.location.origin || window.location.host || window.location.h
 var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, ViewModel;
 (function($, ko){
     "use strict";
-    // Knockout extensions
-    (function(){
+    var families = ["Gold", "Silver", "Copper", "Iron", "Mercury", "Lead", "Tin"];
+    (function knockoutExtensions(){
         ko.extenders.sort = function(target, options) {
             target.sort = ko.computed({read: function(){
                 var values = ko.toJS(target);
@@ -20,8 +20,7 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             return target;
         };
     })();
-    var families = ["Gold", "Silver", "Copper", "Iron", "Mercury", "Lead", "Tin"];
-    (function createViewModels(){
+    (function defineTypes() {
         var littleSorting = {sort:{get:function(obj){return obj.date;}}};
         var familiesIndex = {};
         for (var i = 0; i < families.length; ++i){
@@ -144,11 +143,7 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         ViewModel = function(){
             Album.call(this, "pictures");
             var self = this;
-            self.lastUpdated =
-/* Don't manually update here! Run Update.ps1. */
-/* Initialize Today */
-new Date('12/01/2017 08:33:50Z');
-/* End Initialize Today */
+            self.lastUpdated = getLastUpdateInfo().lastUpdated;
             self.officerList = [];
             self.memberList = [];
             self.pledgeClassAlbum = new Album();
@@ -216,12 +211,14 @@ new Date('12/01/2017 08:33:50Z');
         ViewModel.prototype = new Album();
         ViewModel.prototype.constructor = ViewModel;
     })();
-    var viewModel = new ViewModel();
-    window.viewModel = viewModel;
-    initializeOfficers();
-    initializeFaq();
-    initializeAlbums();
-    initializeMembers();
+    (function initializeViewModel(){
+        var viewModel = new ViewModel();
+        window.viewModel = viewModel;
+        initializeOfficers();
+        initializeFaq();
+        initializeAlbums();
+        initializeMembers();
+    })();
     window.app = $.sammy(function applicationRouting() {
         this.get("#/", function() { viewModel.page(''); });
         this.get(/\#\/(.*)\/$/, function() {
@@ -414,7 +411,17 @@ new Date('12/01/2017 08:33:50Z');
         });
     })();
 
-/* Functions that source from generated content */    
+    /* Functions that source from generated content */
+    function getLastUpdateInfo() {
+        return {
+            lastUpdated: new Date(
+/* Don't manually update here! Run Update.ps1. */
+/* Initialize Today */
+'12/01/2017 09:09:57Z'
+/* End Initialize Today */
+            )
+        };
+    }
     function initializeOfficers() {
 /* Don't manually update here! Update officers.csv and run Update.ps1. */
 /* Initialize Officers */
