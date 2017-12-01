@@ -2,6 +2,7 @@ var isKSU = (window.location.origin || window.location.host || window.location.h
 var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, ViewModel;
 (function($, ko){
     "use strict";
+    var generatedData;
     var families = ["Gold", "Silver", "Copper", "Iron", "Mercury", "Lead", "Tin"];
     (function knockoutExtensions(){
         ko.extenders.sort = function(target, options) {
@@ -143,7 +144,7 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         ViewModel = function(){
             Album.call(this, "pictures");
             var self = this;
-            self.lastUpdated = getLastUpdateInfo().lastUpdated;
+            self.lastUpdated = generatedData.lastUpdated;
             self.officerList = [];
             self.memberList = [];
             self.pledgeClassAlbum = new Album();
@@ -211,6 +212,9 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         ViewModel.prototype = new Album();
         ViewModel.prototype.constructor = ViewModel;
     })();
+    
+    generatedData = getGeneratedData();
+    
     (function initializeViewModel(){
         var viewModel = new ViewModel();
         window.viewModel = viewModel;
@@ -413,7 +417,7 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
 
     /* Functions that source from generated content */
     /* Don't manually update this data! Update the source files and run Update.ps1. */
-    function getLastUpdateInfo() {
+    function getGeneratedData() {
         return {
             lastUpdated: new Date(
 /* Initialize Today */
