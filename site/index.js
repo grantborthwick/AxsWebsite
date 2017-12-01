@@ -412,10 +412,10 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
     })();
 
     /* Functions that source from generated content */
+    /* Don't manually update this data! Update the source files and run Update.ps1. */
     function getLastUpdateInfo() {
         return {
             lastUpdated: new Date(
-/* Don't manually update here! Run Update.ps1. */
 /* Initialize Today */
 '12/01/2017 09:09:57Z'
 /* End Initialize Today */
@@ -423,7 +423,6 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         };
     }
     function initializeOfficers() {
-/* Don't manually update here! Update officers.csv and run Update.ps1. */
 /* Initialize Officers */
 viewModel.officerList.push(
 new Officer('Master Alchemist', 'Patrick Gillespie', 'patrickj115@ksu.edu', 'images/officers/Patrick_Gillespie.jpg', 'Junior', 'Chemistry', ''),
@@ -442,7 +441,6 @@ new Officer('Chapter Advisor', 'Emery Brown', 'emerybrown@ksu.edu', 'images/offi
 /* End Initialize Officers */
     }
     function initializeFaq(){
-/* Don't manually update here! Update faq.csv and run Update.ps1. */
 /* Initialize Faq */
 viewModel.faqList.push(
 new Faq('Aren\'t fraternities just for men?', 'Although most fraternities for women call themselves sororities, fraternity is the more general term for a greek letter organization. We are a fraternity in the true sense of the word. All members are referred to as brothers, including our female members.'),
@@ -798,7 +796,6 @@ new Faq('I\'m a grad student. Why would I want to associate with undergrads?', '
         setAlbumPaths(viewModel, "#");
     }
     function initializeMembers() {
-/* Don't manually update here! Update members.csv and run Update.ps1. */
 /* Initialize Members */
 viewModel.memberList.push(
 new Member('0', 'Cleon Arrington', '5/16/1964', 'Inactive', '', '', '&Kappa;'),
