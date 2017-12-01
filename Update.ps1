@@ -96,8 +96,7 @@ $faqText = ""
 Import-Csv .\faq.csv | ForEach-Object {
     $question = ($_.question -replace "'", "\'") -replace '"', '\"'
     $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
-    $parameters = "'$question','$answer'"
-    $faqText += "`r`na($parameters),"
+    $faqText += "`r`na('$question','$answer'),"
 }
 $officersText = "viewModel.officerList.push(`r`n$(
     [string]::Join(
