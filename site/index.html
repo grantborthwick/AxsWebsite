@@ -109,11 +109,9 @@
                         <div id="interestedContact">
                             <br />
                             <span>
-                                You can fill out this form to receive information about our next informational meeting.
-                                You can also contact our 
+                                You can contact our Master Alchemist or Vice Master Alchemist to receive information about our next informational meeting.
                                 <i>Master Alchemist</i>,
                                 <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Master Alchemist'} --><!-- /ko -->
-                                or our 
                                 <i>Vice Master Alchemist</i>,
                                 <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Vice Master Alchemist'} --><!-- /ko -->
                                 !
@@ -304,7 +302,7 @@
                     </div>
                 </div>
                 <div id="calendar" data-bind="visible: page() === 'calendar'">
-                    <iframe id="googleCalendar" src="https://www.google.com/calendar/embed?src=axe.betarho.ksu%40gmail.com&amp;ctz=America/Chicago" style="border: 0" frameborder="0" scrolling="no"></iframe>
+    				<iframe src="https://calendar.google.com/calendar/embed?src=galu72qnpjdcbum6dvgnisiils%40group.calendar.google.com&ctz=America/Chicago" style="border: 0" width="1100" height="600" frameborder="0" scrolling="no"></iframe>
                 </div>
             </div>
             <div id="objects" class='mainBody'>
@@ -386,6 +384,7 @@
                 <!-- /ko --><!-- ko if: minor -->
                 <div class="officerMinor" data-bind="text: minor"></div>
                 <!-- /ko -->
+				<div class="officerEmail" data-bind="text: email"></div>
             </div>
         </div>
     </script>
