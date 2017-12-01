@@ -95,13 +95,8 @@ $updateAlbums = Test-Path $albumPath
 $officers = Import-Csv .\officers.csv
 $members = Import-Csv .\members.csv
 $faq = Import-Csv .\faq.csv
-$officersText = ""
 $membersText = ""
 $faqText = ""
-$officers | ForEach-Object {
-    if ($officersText.Length -gt 0) { $officersText += ",`r`n" }
-    $officersText += "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
-}
 $members | ForEach-Object {
     $id = $_.id
     $name = $_.name
@@ -128,7 +123,13 @@ $faq | ForEach-Object {
     $parameters = "'$question','$answer'"
     $faqText += "a($parameters),"
 }
-$officersText = "viewModel.officerList.push(`r`n$officersText);"
+$officersText = "viewModel.officerList.push(`r`n$(
+    [string]::Join(
+        ",`r`n",
+        ($officers | ForEach-Object {
+            "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
+        }
+    ))));"
 $membersText = "var a=function(id,name,date,status,family,big,chapter){return new Member(id,name,date,status,family,big,chapter);};viewModel.memberList.push(" + $membersText.Substring(0, $membersText.Length - 1) + ");"
 $faqText = "var a=function(question,answer){return new Faq(question,answer);};viewModel.faqList.push(" + $faqText.Substring(0, $faqText.Length - 1) + ");"
 if ($updateAlbums){
@@ -138,7 +139,7 @@ if ($updateAlbums){
 }
 $today = Get-Date
 $today = "new Date('$today');"
-try{
+try {
     $indexJs = ".\site\index.js"
     $content = ReadFile $indexJs
     $content = InjectSection "Officers" $officersText $content
