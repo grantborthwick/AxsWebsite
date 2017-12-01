@@ -98,24 +98,7 @@ $faq = Import-Csv .\faq.csv
 $membersText = ""
 $faqText = ""
 $members | ForEach-Object {
-    $id = $_.id
-    $name = $_.name
-    $initiationDate = $_.initiationDate
-    $status = $_.status
-    $family = $_.family
-    $big = $_.big
-    $chapter = $_.chapter
-    $parameters = "'$id', '$name', '$initiationDate', '$status'"
-    if ($family -or $big -or $chapter){
-        $parameters += ", '$family'"
-    }
-    if ($big -or $chapter){
-        $parameters += ", '$big'"
-    }
-    if ($chapter){
-        $parameters += ", '$chapter'"
-    }
-    $membersText += "`r`nnew Member($parameters),"
+    $membersText += "`r`nnew Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)'),"
 }
 $faq | ForEach-Object {
     $question = ($_.question -replace "'", "\'") -replace '"', '\"'
