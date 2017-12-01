@@ -147,7 +147,7 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             self.lastUpdated =
 /* Don't manually update here! Run Update.ps1. */
 /* Initialize Today */
-new Date('12/01/2017 00:17:30');
+new Date('12/01/2017 00:20:49');
 /* End Initialize Today */
             self.officerList = [];
             self.memberList = [];

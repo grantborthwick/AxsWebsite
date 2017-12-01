@@ -95,11 +95,7 @@ $updateAlbums = Test-Path $albumPath
 $officers = Import-Csv .\officers.csv
 $members = Import-Csv .\members.csv
 $faq = Import-Csv .\faq.csv
-$membersText = ""
 $faqText = ""
-$members | ForEach-Object {
-    $membersText += "`r`nnew Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)'),"
-}
 $faq | ForEach-Object {
     $question = ($_.question -replace "'", "\'") -replace '"', '\"'
     $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
@@ -113,7 +109,13 @@ $officersText = "viewModel.officerList.push(`r`n$(
             "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
         }
     ))));"
-$membersText = "viewModel.memberList.push(" + $membersText.Substring(0, $membersText.Length - 1) + ");"
+$membersText = "viewModel.memberList.push(`r`n$(
+    [string]::Join(
+        ",`r`n",
+        ($members | ForEach-Object {
+            "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
+        }
+    ))));"
 $faqText = "var a=function(question,answer){return new Faq(question,answer);};viewModel.faqList.push(" + $faqText.Substring(0, $faqText.Length - 1) + ");"
 if ($updateAlbums){
     $albums = albums $albumPath
