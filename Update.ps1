@@ -110,6 +110,9 @@ $membersText = [string]::Join(
     (Import-Csv .\members.csv | ForEach-Object {
         "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
     }))
+
+$gitOrigin = git config --get remote.origin.url
+
 if ($updateAlbums){
     $albums = albums $albumPath
 } else {
@@ -127,6 +130,7 @@ try {
         $content = InjectSection "Albums" $albums $content
     }
     $content = InjectSection "Today" $today $content
+    $content = InjectSection "Git Origin" "'$gitOrigin'" $content
     
     # Out-File doesn't allow us to write the file as Utf8
     $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False

@@ -155,6 +155,7 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             self.familyList = [];
             self.albumList = [];
             self.faqList = [];
+            self.gitOrigin = generatedData.gitOrigin;
             
             self.debug = ko.observable(false);
 
@@ -536,10 +537,13 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         return {
             lastUpdated: new Date(
 /* Initialize Today */
-'12/01/2017 09:59:26Z'
+'01/08/2018 20:38:42Z'
 /* End Initialize Today */
-            ),
-            officers: [
+            ), gitOrigin:
+/* Initialize Git Origin */
+'https://github.com/grantborthwick/AxsWebsite'
+/* End Initialize Git Origin */
+            , officers: [
 /* Initialize Officers */
 new Officer('Master Alchemist', 'Patrick Gillespie', 'patrickj115@ksu.edu', 'images/officers/Patrick_Gillespie.jpg', 'Junior', 'Chemistry', ''),
 new Officer('Vice Master Alchemist', 'Karter Krokstrom', 'kkrokstrom@ksu.edu', 'images/officers/noimage', 'Junior', 'Chemical Engineering', ''),
