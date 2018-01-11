@@ -170,17 +170,7 @@
                                 <span class="gradientRight"></span>
                                 <div class="pledgeClassPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\')' }"></div>
                             </a
-                            ><!-- /ko --><div class="memberList" data-bind="foreach: memberList.sort()">
-                                <span class="member">
-                                    <span class="memberName" data-bind="text: name, css: { active: status === 'Active' }"></span>
-                                    <!-- ko if: family -->
-                                    <span class="memberFamily white" data-bind="css: family.toLowerCase(), attr: { title: family + ' Family'}"></span>
-                                    <!-- /ko -->
-                                    <!-- ko if: chapter -->
-                                    <span class="memberChapter" data-bind="html: chapter"></span>
-                                    <!-- /ko -->
-                                </span>
-                            </div>
+                            ><!-- /ko -->
                         </div>
                     </div>
                     <div class="familyList" data-bind="foreach: familyList, visible: page().indexOf('families') !== -1">
@@ -195,9 +185,6 @@
                                 <span class="gradientRight"></span>
                                 <div class="familyPicture picture" data-bind="style: { backgroundImage: 'url(\'images/families/' + name + '.jpg\'), url(\'images/no photo.jpg\')' }"></div>
                             </a>
-                            <!-- Uncomment to list the members in each family
-                            <div class="memberList" data-bind="template: { name: 'familyMember-template', foreach: memberList.sort }"></div>
-                            -->
                         </div>
                     </div>
                 </div>
@@ -396,16 +383,6 @@
                 <!-- /ko -->
                 <div class="officerEmail" data-bind="text: email"></div>
             </div>
-        </div>
-    </script>
-    <script type="text/html" id="familyMember-template">
-        <div class="member">
-            <span class="memberName" data-bind="text: name, css: { active: status === 'Active' }"></span>
-            <span class="memberStatus" data-bind="text: $root.toSemester(date)"></span>
-            <!-- ko if: chapter -->
-            <span class="memberChapter" data-bind="text: chapter"></span>
-            <!-- /ko -->
-            <div class="memberList" data-bind="template: { name: 'familyMember-template', foreach: x.littles.sort }"></div>
         </div>
     </script>
     <section data-bind="if: debug">
