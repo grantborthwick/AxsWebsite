@@ -144,8 +144,6 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         ViewModel = function(){
             Album.call(this, "pictures");
             var self = this;
-            self.lastUpdated = generatedData.lastUpdated;
-            self.officerList = generatedData.officers;
             self.memberList = generatedData.members;
             self.pledgeClassAlbum = new Album();
             self.pledgeClassAlbum.path = "#/members/classes";
@@ -156,7 +154,6 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             self.albumList = [];
             self.faqList = [];
             
-            // Copy generated data onto this object
             for (var propertyName in generatedData) {
                 self[propertyName] = generatedData[propertyName];
             }
@@ -584,7 +581,7 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             officers: [
 /* Initialize Officers */
 new Officer('Master Alchemist', 'Patrick Gillespie', 'patrickj115@ksu.edu', 'images/officers/Patrick_Gillespie.jpg', 'Junior', 'Chemistry', ''),
-new Officer('Vice Master Alchemist', 'Karter Krokstrom', 'kkrokstrom@ksu.edu', 'images/officers/no photo', 'Junior', 'Chemical Engineering', ''),
+            officerList: [
 new Officer('Master of Ceremonies', 'Emily Wedeman', 'ewedeman@k-state.edu', 'images/officers/Emily_Wedeman.jpg', 'Junior', 'Chemical Engineering', ''),
 new Officer('Outreach Coordinator', 'Lacey Beck', 'laceybeck2013@ksu.edu', 'images/officers/Lacey_Beck.jpg', 'Senior', 'Chemistry', ''),
 new Officer('Assistant Outreach Coordinator', 'Muriel Eaton', 'meaton02@ksu.edu', 'images/officers/Muriel_Eaton.jpg', 'Senior', 'Biochemistry', ''),
@@ -599,7 +596,7 @@ new Officer('Chapter Advisor', 'Emery Brown', 'emerybrown@ksu.edu', 'images/offi
 /* End Initialize Officers */
             ],
 
-            faq: [
+            faqList: [
 /* Initialize Faq */
 new Faq('Aren\'t fraternities just for men?', 'Although most fraternities for women call themselves sororities, fraternity is the more general term for a greek letter organization. We are a fraternity in the true sense of the word. All members are referred to as brothers, including our female members.'),
 new Faq('What is a professional faternity?', 'A professional fraternity selects its members based on common professional goals and interests. The more common social fraternities choose their members based on similar social interests. However, professional fraternities can have just as much fun as social ones, just ask any one of our members.'),
