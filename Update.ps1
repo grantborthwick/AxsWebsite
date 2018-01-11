@@ -95,7 +95,7 @@ $updateAlbums = Test-Path $albumPath
 $officersText = [string]::Join(
     ",`r`n",
     (Import-Csv .\officers.csv | ForEach-Object {
-        "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/no photo" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
+        "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/no photo" })', '$($_.pronoun)', '$($_.objectivePronoun)', '$($_.classification)', '$($_.major)', '$($_.minor)')"
     }))
 $faqText = [string]::Join(
     ",`r`n",
