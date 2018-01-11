@@ -134,7 +134,7 @@ try {
     $content = InjectSection "Git Master Commit" "'$(git rev-parse master)'" $content
     $content = InjectSection "Git Master Commit Date" "'$(git show -s --format=%ci master)'" $content
     
-    $diff = git diff origin/master;
+    $diff = git diff --stat;
     if ($diff.Length -ne 0) {
         Write-Warning "Uncomitted changes! You need to commit your changes to master and push to the remote repo!"
         git diff --stat
