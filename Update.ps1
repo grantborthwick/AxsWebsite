@@ -100,11 +100,10 @@ function albums([string] $path) {
 
 $updateAlbums = Test-Path $albumPath
 
-$today = "'$((Get-Date).ToUniversalTime())Z'"
 $officersText = [string]::Join(
     ",`r`n",
     (Import-Csv .\officers.csv | ForEach-Object {
-        "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
+        "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/no photo" })', '$($_.pronoun)', '$($_.objectivePronoun)', '$($_.classification)', '$($_.major)', '$($_.minor)')"
     }))
 $faqText = [string]::Join(
     ",`r`n",
@@ -113,11 +112,7 @@ $faqText = [string]::Join(
         $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
         "new Faq('$question', '$answer')"
     }))
-$membersText = [string]::Join(
-    ",`r`n",
-    (Import-Csv .\members.csv | ForEach-Object {
-        "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
-    }))
+
 if ($updateAlbums){
     $albums = albums $albumPath | ConvertTo-Json
 } else {
@@ -129,12 +124,23 @@ try {
     $indexJs = ".\site\index.js"
     $content = ReadFile $indexJs
     $content = InjectSection "Officers" $officersText $content
-    $content = InjectSection "Members" $membersText $content
     $content = InjectSection "Faq" $faqText $content
     if ($updateAlbums){
         $content = InjectSection "Albums" $albums $content
     }
-    $content = InjectSection "Today" $today $content
+    $content = InjectSection "Today" "'$((Get-Date).ToUniversalTime())Z'" $content
+    $content = InjectSection "Git Origin" "'$(git config --get remote.origin.url)'" $content
+    $content = InjectSection "Git Branch" "'$(git rev-parse --abbrev-ref HEAD)'" $content
+    $content = InjectSection "Git Commit" "'$(git rev-parse HEAD)'" $content
+    $content = InjectSection "Git Commit Date" "'$(git show -s --format=%ci HEAD)'" $content
+    $content = InjectSection "Git Master Commit" "'$(git rev-parse master)'" $content
+    $content = InjectSection "Git Master Commit Date" "'$(git show -s --format=%ci master)'" $content
+    
+    $diff = git diff origin/master --stat;
+    if ($diff.Length -ne 0) {
+        Write-Warning "Uncomitted changes! You need to commit your changes to master and push to the remote repo!"
+        git diff --stat
+    }
     
     # Out-File doesn't allow us to write the file as Utf8
     $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False

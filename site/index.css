@@ -630,23 +630,6 @@ div.officer>div.officerPicture {
     text-shadow: 2px 2px #000;
 }
 
-.pledgeClass .memberList {
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.pledgeClass .member {
-    background-repeat: no-repeat;
-    background-position: 0px center;
-    min-width: 160px;
-    display: inline-block;
-}
-
-.member .memberName.active {
-    color: rgb(235, 235, 0);
-}
-
 .familyName {
     text-align: center;
     background-image: url(images/bg3.jpg);
@@ -659,22 +642,6 @@ div.officer>div.officerPicture {
     font-size: 30px;
     background-color: rgba(24,10,87,.4);
     text-shadow: 2px 2px #000;
-}
-
-.family .member {
-    font-size: 18px;
-}
-
-.family .member .member {
-    padding-left: 40px;
-}
-
-.member .memberFamily {
-    width: 19px;
-    height: 19px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: inline-block;
 }
 
 .familyPicture {

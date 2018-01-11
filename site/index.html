@@ -132,11 +132,14 @@
                         <span id="aboutWebmaster">
                             This website is updated magically by
                             <!-- ko template: {name: 'officerNameFromPosition-template', data: 'Webmaster'} --><!-- /ko -->      
-                            <br />Feel free to send him comments, suggestions, or pictures for the website.
+                            <br />Feel free to send <span data-bind="text: $root.x.getOfficer('Webmaster').objectivePronoun"></span> comments, suggestions, or pictures for the website.
                             <br />
                             <!-- ko template: {name: 'officerFromPosition-template', data: 'Webmaster'} --><!-- /ko -->
-                        </span
-                        ><span id="websiteResources">
+                        </span>
+                        <span id="websiteResources">
+                            <span id="githubLink">The website's code repository is on <a href="" data-bind="attr: {href: gitOrigin }">GitHub</a>.</span>
+                            <br />
+                            <br />
                             The website uses the following libraries:
                             <br />
                             <a href = "http://jquery.com/">jQuery</a>
@@ -167,17 +170,7 @@
                                 <span class="gradientRight"></span>
                                 <div class="pledgeClassPicture" data-bind="style: { backgroundImage: 'url(\'' + picture + '\')' }"></div>
                             </a
-                            ><!-- /ko --><div class="memberList" data-bind="foreach: memberList.sort()">
-                                <span class="member">
-                                    <span class="memberName" data-bind="text: name, css: { active: status === 'Active' }"></span>
-                                    <!-- ko if: family -->
-                                    <span class="memberFamily white" data-bind="css: family.toLowerCase(), attr: { title: family + ' Family'}"></span>
-                                    <!-- /ko -->
-                                    <!-- ko if: chapter -->
-                                    <span class="memberChapter" data-bind="html: chapter"></span>
-                                    <!-- /ko -->
-                                </span>
-                            </div>
+                            ><!-- /ko -->
                         </div>
                     </div>
                     <div class="familyList" data-bind="foreach: familyList, visible: page().indexOf('families') !== -1">
@@ -192,9 +185,6 @@
                                 <span class="gradientRight"></span>
                                 <div class="familyPicture picture" data-bind="style: { backgroundImage: 'url(\'images/families/' + name + '.jpg\'), url(\'images/no photo.jpg\')' }"></div>
                             </a>
-                            <!-- Uncomment to list the members in each family
-                            <div class="memberList" data-bind="template: { name: 'familyMember-template', foreach: memberList.sort }"></div>
-                            -->
                         </div>
                     </div>
                 </div>
@@ -326,7 +316,12 @@
             <div id="footerContent">
                 <span id="updated">
                     <span id="lastUpdatedText">Last updated</span>
-                    <span id="lastUpdatedDate" data-bind="text: x.dateString(lastUpdated)">                </span>
+                    <a id="lastUpdatedDate" target="_blank" data-bind="text: x.dateString(gitCommitDate), attr: {href: gitOrigin + '/commit/' + gitCommit }"></a>
+                    <span id="lastUpdatedWarning" data-bind="visible: gitBranch !== 'master'">
+                        <!-- We should be using master when pushing the latest version! This will only show up for other branches. -->
+                        On branch
+                        <a id="branchLink" target="_blank" data-bind="text: gitBranch, attr: {href: gitOrigin + '/tree/' + gitBranch }"></a>
+                    </span>
                 </span>
                 <span id="social">
                     <a href="http://www.alphachisigma.org/" id="nationalLink" title='Visit the A&Chi;&Sigma; National Website' target='_blank'>AΧΣ National Website</a>
@@ -386,18 +381,8 @@
                 <!-- /ko --><!-- ko if: minor -->
                 <div class="officerMinor" data-bind="text: minor"></div>
                 <!-- /ko -->
-                <div class="officerEmail" data-bind="text: email"></div>
+                <a class="officerEmail" data-bind="text: email, attr: { href: 'mailto:' + email }"></a>
             </div>
-        </div>
-    </script>
-    <script type="text/html" id="familyMember-template">
-        <div class="member">
-            <span class="memberName" data-bind="text: name, css: { active: status === 'Active' }"></span>
-            <span class="memberStatus" data-bind="text: $root.toSemester(date)"></span>
-            <!-- ko if: chapter -->
-            <span class="memberChapter" data-bind="text: chapter"></span>
-            <!-- /ko -->
-            <div class="memberList" data-bind="template: { name: 'familyMember-template', foreach: x.littles.sort }"></div>
         </div>
     </script>
     <section data-bind="if: debug">
@@ -406,9 +391,9 @@
         <pre data-bind="text: ko.toJSON($data, null, 2)"></pre>
     </section>
     <link href="index.css" rel="stylesheet"></link>
-    <script src="lib/jquery-2.1.3.min.js"></script>
-    <script src="lib/knockout-3.2.0.js"></script>
-    <script src="lib/sammy/lib/sammy.js"></script>
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="lib/knockout-3.4.2.js"></script>
+    <script src="lib/sammy-latest.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
