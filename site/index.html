@@ -381,7 +381,7 @@
                 <!-- /ko --><!-- ko if: minor -->
                 <div class="officerMinor" data-bind="text: minor"></div>
                 <!-- /ko -->
-                <div class="officerEmail" data-bind="text: email"></div>
+                <a class="officerEmail" data-bind="text: email, attr: { href: 'mailto:' + email }"></a>
             </div>
         </div>
     </script>
