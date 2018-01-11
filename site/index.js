@@ -499,7 +499,7 @@ var Officer, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, ViewMode
         return {
             lastUpdated: new Date(
 /* Initialize Today */
-'01/11/2018 06:03:41Z'
+'01/11/2018 06:11:42Z'
 /* End Initialize Today */
             ),
 
@@ -517,25 +517,25 @@ var Officer, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, ViewMode
 
             gitCommit:
 /* Initialize Git Commit */
-'7ed8e55744ae1f242c4fe79a5a79c6bb8569bd55'
+'021ddab2074d54cd816a3277dd89902b6b13d2e3'
 /* End Initialize Git Commit */
             ,
 
             gitCommitDate: new Date(
 /* Initialize Git Commit Date */
-'2018-01-10 23:01:39 -0700'
+'2018-01-10 23:10:24 -0700'
 /* End Initialize Git Commit Date */
             ),
 
             gitMasterCommit: new Date(
 /* Initialize Git Master Commit */
-'7ed8e55744ae1f242c4fe79a5a79c6bb8569bd55'
+'021ddab2074d54cd816a3277dd89902b6b13d2e3'
 /* End Initialize Git Master Commit */
             ),
 
             gitMasterCommitDate: new Date(
 /* Initialize Git Master Commit Date */
-'2018-01-10 23:01:39 -0700'
+'2018-01-10 23:10:24 -0700'
 /* End Initialize Git Master Commit Date */
             ),
             
