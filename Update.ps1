@@ -104,11 +104,6 @@ $faqText = [string]::Join(
         $answer = ($_.answer -replace "'", "\'") -replace '"', '\"'
         "new Faq('$question', '$answer')"
     }))
-$membersText = [string]::Join(
-    ",`r`n",
-    (Import-Csv .\members.csv | ForEach-Object {
-        "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
-    }))
 
 if ($updateAlbums){
     $albums = albums $albumPath
@@ -121,7 +116,6 @@ try {
     $indexJs = ".\site\index.js"
     $content = ReadFile $indexJs
     $content = InjectSection "Officers" $officersText $content
-    $content = InjectSection "Members" $membersText $content
     $content = InjectSection "Faq" $faqText $content
     if ($updateAlbums){
         $content = InjectSection "Albums" $albums $content
