@@ -329,7 +329,12 @@
             <div id="footerContent">
                 <span id="updated">
                     <span id="lastUpdatedText">Last updated</span>
-                    <span id="lastUpdatedDate" data-bind="text: x.dateString(lastUpdated)">                </span>
+                    <a id="lastUpdatedDate" target="_blank" data-bind="text: x.dateString(gitCommitDate), attr: {href: gitOrigin + '/commit/' + gitCommit }"></a>
+                    <span id="lastUpdatedWarning" data-bind="visible: gitBranch !== 'master'">
+                        <!-- We should be using master when pushing the latest version! This will only show up for other branches. -->
+                        On branch
+                        <a id="branchLink" target="_blank" data-bind="text: gitBranch, attr: {href: gitOrigin + '/tree/' + gitBranch }"></a>
+                    </span>
                 </span>
                 <span id="social">
                     <a href="http://www.alphachisigma.org/" id="nationalLink" title='Visit the A&Chi;&Sigma; National Website' target='_blank'>AΧΣ National Website</a>

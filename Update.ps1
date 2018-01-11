@@ -112,6 +112,9 @@ $membersText = [string]::Join(
     }))
 
 $gitOrigin = git config --get remote.origin.url
+$gitBranch = git rev-parse --abbrev-ref HEAD
+$gitCommit = git rev-parse HEAD
+$gitCommitDate = git show -s --format=%ci HEAD
 
 if ($updateAlbums){
     $albums = albums $albumPath
@@ -131,6 +134,9 @@ try {
     }
     $content = InjectSection "Today" $today $content
     $content = InjectSection "Git Origin" "'$gitOrigin'" $content
+    $content = InjectSection "Git Branch" "'$gitBranch'" $content
+    $content = InjectSection "Git Commit" "'$gitCommit'" $content
+    $content = InjectSection "Git Commit Date" "'$gitCommitDate'" $content
     
     # Out-File doesn't allow us to write the file as Utf8
     $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False

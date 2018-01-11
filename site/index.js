@@ -156,6 +156,9 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             self.albumList = [];
             self.faqList = [];
             self.gitOrigin = generatedData.gitOrigin;
+            self.gitBranch = generatedData.gitBranch;
+            self.gitCommit = generatedData.gitCommit;
+            self.gitCommitDate = generatedData.gitCommitDate;
             
             self.debug = ko.observable(false);
 
@@ -537,13 +540,35 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         return {
             lastUpdated: new Date(
 /* Initialize Today */
-'01/08/2018 20:38:42Z'
+'01/11/2018 02:56:03Z'
 /* End Initialize Today */
-            ), gitOrigin:
+            ),
+
+            gitOrigin:
 /* Initialize Git Origin */
 'https://github.com/grantborthwick/AxsWebsite'
 /* End Initialize Git Origin */
-            , officers: [
+            ,
+
+            gitBranch:
+/* Initialize Git Branch */
+'grant/github'
+/* End Initialize Git Branch */
+            ,
+
+            gitCommit:
+/* Initialize Git Commit */
+'69eaeda129dc99dd44a4fedcdf6a5e32fe1a727d'
+/* End Initialize Git Commit */
+            ,
+
+            gitCommitDate: new Date()
+/* Initialize Git Commit Date */
+'2018-01-08 13:45:53 -0700'
+/* End Initialize Git Commit Date */
+            ),
+
+            officers: [
 /* Initialize Officers */
 new Officer('Master Alchemist', 'Patrick Gillespie', 'patrickj115@ksu.edu', 'images/officers/Patrick_Gillespie.jpg', 'Junior', 'Chemistry', ''),
 new Officer('Vice Master Alchemist', 'Karter Krokstrom', 'kkrokstrom@ksu.edu', 'images/officers/noimage', 'Junior', 'Chemical Engineering', ''),
@@ -560,6 +585,7 @@ new Officer('Alumni Secretary', 'Dustin Nelsen', 'dnelsen@ksu.edu', 'images/offi
 new Officer('Chapter Advisor', 'Emery Brown', 'emerybrown@ksu.edu', 'images/officers/Emery_Brown.jpg', 'Graduate Student', 'Analytical Chemistry', '')
 /* End Initialize Officers */
             ],
+
             faq: [
 /* Initialize Faq */
 new Faq('Aren\'t fraternities just for men?', 'Although most fraternities for women call themselves sororities, fraternity is the more general term for a greek letter organization. We are a fraternity in the true sense of the word. All members are referred to as brothers, including our female members.'),
@@ -574,6 +600,7 @@ new Faq('Is AΧΣ only at K-State?', 'No! There are about 50 chapters of AΧΣ a
 new Faq('I\'m a grad student. Why would I want to associate with undergrads?', 'Well, first of all, we are not only undergrads. Many of our active members are graduate students. In fact, many professors are also AΧΣ brothers. Since we are a professional fraternity, we also have an active presence in industry and a number of professional chapters. AΧΣ is not just for undergrads, it\'s for life.')
 /* End Initialize Faq */
             ],
+
             albums: [
 /* Initialize Albums */
 {
@@ -872,6 +899,7 @@ new Faq('I\'m a grad student. Why would I want to associate with undergrads?', '
 }
 /* End Initialize Albums */
             ],
+
             members: [
 /* Initialize Members */
 new Member('0', 'Cleon Arrington', '5/16/1964', 'Inactive', '', '', '&Kappa;'),
