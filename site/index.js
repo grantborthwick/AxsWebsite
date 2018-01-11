@@ -541,7 +541,7 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         return {
             lastUpdated: new Date(
 /* Initialize Today */
-'01/11/2018 02:56:03Z'
+'01/11/2018 03:35:43Z'
 /* End Initialize Today */
             ),
 
@@ -559,16 +559,28 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
 
             gitCommit:
 /* Initialize Git Commit */
-'69eaeda129dc99dd44a4fedcdf6a5e32fe1a727d'
+'0fa02dc21cf025d68015c8ee682138068b2c71cf'
 /* End Initialize Git Commit */
             ,
 
-            gitCommitDate: new Date()
+            gitCommitDate: new Date(
 /* Initialize Git Commit Date */
-'2018-01-08 13:45:53 -0700'
+'2018-01-10 19:26:12 -0800'
 /* End Initialize Git Commit Date */
             ),
 
+            gitMasterCommit: new Date(
+/* Initialize Git Master Commit */
+'5fd727c7d31a7f0bf6e9f2ea2938c791e4a68a5d'
+/* End Initialize Git Master Commit */
+            ),
+
+            gitMasterCommitDate: new Date(
+/* Initialize Git Master Commit Date */
+'2017-12-01 02:56:30 -0800'
+/* End Initialize Git Master Commit Date */
+            ),
+            
             officers: [
 /* Initialize Officers */
 new Officer('Master Alchemist', 'Patrick Gillespie', 'patrickj115@ksu.edu', 'images/officers/Patrick_Gillespie.jpg', 'Junior', 'Chemistry', ''),
