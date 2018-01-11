@@ -95,7 +95,7 @@ $updateAlbums = Test-Path $albumPath
 $officersText = [string]::Join(
     ",`r`n",
     (Import-Csv .\officers.csv | ForEach-Object {
-        "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/noimage" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
+        "new Officer('$($_.position)', '$($_.name)', '$($_.email)', '$(if ($_.picture) { $_.picture } else { "images/officers/no photo" })', '$($_.classification)', '$($_.major)', '$($_.minor)')"
     }))
 $faqText = [string]::Join(
     ",`r`n",
@@ -134,7 +134,7 @@ try {
     $content = InjectSection "Git Master Commit" "'$(git rev-parse master)'" $content
     $content = InjectSection "Git Master Commit Date" "'$(git show -s --format=%ci master)'" $content
     
-    $diff = git diff --stat;
+    $diff = git diff origin/master --stat;
     if ($diff.Length -ne 0) {
         Write-Warning "Uncomitted changes! You need to commit your changes to master and push to the remote repo!"
         git diff --stat
