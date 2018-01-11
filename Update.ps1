@@ -134,6 +134,12 @@ try {
     $content = InjectSection "Git Master Commit" "'$(git rev-parse master)'" $content
     $content = InjectSection "Git Master Commit Date" "'$(git show -s --format=%ci master)'" $content
     
+    $diff = git diff origin/master;
+    if ($diff.Length -ne 0) {
+        Write-Warning "Uncomitted changes! You need to commit your changes to master and push to the remote repo!"
+        git diff --stat
+    }
+    
     # Out-File doesn't allow us to write the file as Utf8
     $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
     [System.IO.File]::WriteAllText($indexJs, $content, $Utf8NoBomEncoding)

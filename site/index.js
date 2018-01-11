@@ -541,7 +541,7 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         return {
             lastUpdated: new Date(
 /* Initialize Today */
-'01/11/2018 03:35:43Z'
+'01/11/2018 04:33:30Z'
 /* End Initialize Today */
             ),
 
@@ -559,13 +559,13 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
 
             gitCommit:
 /* Initialize Git Commit */
-'0fa02dc21cf025d68015c8ee682138068b2c71cf'
+'3c563b7acb39c492d0103600d151f14b5c6f81b6'
 /* End Initialize Git Commit */
             ,
 
             gitCommitDate: new Date(
 /* Initialize Git Commit Date */
-'2018-01-10 19:26:12 -0800'
+'2018-01-10 19:37:09 -0800'
 /* End Initialize Git Commit Date */
             ),
 
