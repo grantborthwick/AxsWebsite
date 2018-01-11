@@ -155,10 +155,11 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             self.familyList = [];
             self.albumList = [];
             self.faqList = [];
-            self.gitOrigin = generatedData.gitOrigin;
-            self.gitBranch = generatedData.gitBranch;
-            self.gitCommit = generatedData.gitCommit;
-            self.gitCommitDate = generatedData.gitCommitDate;
+            
+            // Copy generated data onto this object
+            for (var propertyName in generatedData) {
+                self[propertyName] = generatedData[propertyName];
+            }
             
             self.debug = ko.observable(false);
 
