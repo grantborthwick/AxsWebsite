@@ -92,7 +92,6 @@ function albums([string] $path){
 
 $updateAlbums = Test-Path $albumPath
 
-$today = "'$((Get-Date).ToUniversalTime())Z'"
 $officersText = [string]::Join(
     ",`r`n",
     (Import-Csv .\officers.csv | ForEach-Object {
@@ -110,6 +109,7 @@ $membersText = [string]::Join(
     (Import-Csv .\members.csv | ForEach-Object {
         "new Member('$($_.id)', '$($_.name)', '$($_.initiationDate)', '$($_.status)', '$($_.family)', '$($_.big)', '$($_.chapter)')"
     }))
+
 if ($updateAlbums){
     $albums = albums $albumPath
 } else {
@@ -126,7 +126,19 @@ try {
     if ($updateAlbums){
         $content = InjectSection "Albums" $albums $content
     }
-    $content = InjectSection "Today" $today $content
+    $content = InjectSection "Today" "'$((Get-Date).ToUniversalTime())Z'" $content
+    $content = InjectSection "Git Origin" "'$(git config --get remote.origin.url)'" $content
+    $content = InjectSection "Git Branch" "'$(git rev-parse --abbrev-ref HEAD)'" $content
+    $content = InjectSection "Git Commit" "'$(git rev-parse HEAD)'" $content
+    $content = InjectSection "Git Commit Date" "'$(git show -s --format=%ci HEAD)'" $content
+    $content = InjectSection "Git Master Commit" "'$(git rev-parse master)'" $content
+    $content = InjectSection "Git Master Commit Date" "'$(git show -s --format=%ci master)'" $content
+    
+    $diff = git diff origin/master;
+    if ($diff.Length -ne 0) {
+        Write-Warning "Uncomitted changes! You need to commit your changes to master and push to the remote repo!"
+        git diff --stat
+    }
     
     # Out-File doesn't allow us to write the file as Utf8
     $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False

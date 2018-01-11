@@ -156,6 +156,11 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
             self.albumList = [];
             self.faqList = [];
             
+            // Copy generated data onto this object
+            for (var propertyName in generatedData) {
+                self[propertyName] = generatedData[propertyName];
+            }
+            
             self.debug = ko.observable(false);
 
             // todo: figure out the bug that removing this triggers...
@@ -536,9 +541,46 @@ var Officer, Member, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, 
         return {
             lastUpdated: new Date(
 /* Initialize Today */
-'12/01/2017 09:59:26Z'
+'01/11/2018 04:33:30Z'
 /* End Initialize Today */
             ),
+
+            gitOrigin:
+/* Initialize Git Origin */
+'https://github.com/grantborthwick/AxsWebsite'
+/* End Initialize Git Origin */
+            ,
+
+            gitBranch:
+/* Initialize Git Branch */
+'grant/github'
+/* End Initialize Git Branch */
+            ,
+
+            gitCommit:
+/* Initialize Git Commit */
+'3c563b7acb39c492d0103600d151f14b5c6f81b6'
+/* End Initialize Git Commit */
+            ,
+
+            gitCommitDate: new Date(
+/* Initialize Git Commit Date */
+'2018-01-10 19:37:09 -0800'
+/* End Initialize Git Commit Date */
+            ),
+
+            gitMasterCommit: new Date(
+/* Initialize Git Master Commit */
+'5fd727c7d31a7f0bf6e9f2ea2938c791e4a68a5d'
+/* End Initialize Git Master Commit */
+            ),
+
+            gitMasterCommitDate: new Date(
+/* Initialize Git Master Commit Date */
+'2017-12-01 02:56:30 -0800'
+/* End Initialize Git Master Commit Date */
+            ),
+            
             officers: [
 /* Initialize Officers */
 new Officer('Master Alchemist', 'Patrick Gillespie', 'patrickj115@ksu.edu', 'images/officers/Patrick_Gillespie.jpg', 'Junior', 'Chemistry', ''),
@@ -556,6 +598,7 @@ new Officer('Alumni Secretary', 'Dustin Nelsen', 'dnelsen@ksu.edu', 'images/offi
 new Officer('Chapter Advisor', 'Emery Brown', 'emerybrown@ksu.edu', 'images/officers/Emery_Brown.jpg', 'Graduate Student', 'Analytical Chemistry', '')
 /* End Initialize Officers */
             ],
+
             faq: [
 /* Initialize Faq */
 new Faq('Aren\'t fraternities just for men?', 'Although most fraternities for women call themselves sororities, fraternity is the more general term for a greek letter organization. We are a fraternity in the true sense of the word. All members are referred to as brothers, including our female members.'),
@@ -570,6 +613,7 @@ new Faq('Is AΧΣ only at K-State?', 'No! There are about 50 chapters of AΧΣ a
 new Faq('I\'m a grad student. Why would I want to associate with undergrads?', 'Well, first of all, we are not only undergrads. Many of our active members are graduate students. In fact, many professors are also AΧΣ brothers. Since we are a professional fraternity, we also have an active presence in industry and a number of professional chapters. AΧΣ is not just for undergrads, it\'s for life.')
 /* End Initialize Faq */
             ],
+
             albums: [
 /* Initialize Albums */
 {
@@ -868,6 +912,7 @@ new Faq('I\'m a grad student. Why would I want to associate with undergrads?', '
 }
 /* End Initialize Albums */
             ],
+
             members: [
 /* Initialize Members */
 new Member('0', 'Cleon Arrington', '5/16/1964', 'Inactive', '', '', '&Kappa;'),
