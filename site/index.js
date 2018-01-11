@@ -27,15 +27,17 @@ var Officer, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, ViewMode
         for (var i = 0; i < families.length; ++i){
             familiesIndex[families[i]] = i;
         }
-        Officer = function(position, name, email, picture, year, major, minor){
+        Officer = function(position, name, email, picture, pronoun, objectivePronoun, year, major, minor){
             var self = this;
             self.position = position;
             self.name = name;
             self.email = email;
+            self.picture = picture;
+            self.pronoun = pronoun;
+            self.objectivePronoun = objectivePronoun;
             self.year = year;
             self.major = major;
             self.minor = minor;
-            self.picture = picture;
         };
         PledgeClass = function(semester, picture){
             var self = this;
@@ -497,7 +499,7 @@ var Officer, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, ViewMode
         return {
             lastUpdated: new Date(
 /* Initialize Today */
-'01/11/2018 04:43:50Z'
+'01/11/2018 05:52:59Z'
 /* End Initialize Today */
             ),
 
@@ -509,49 +511,49 @@ var Officer, PledgeClass, Family, Album, AlbumPicture, AlbumVideo, Faq, ViewMode
 
             gitBranch:
 /* Initialize Git Branch */
-'grant/noImage'
+'grant/pronoun'
 /* End Initialize Git Branch */
             ,
 
             gitCommit:
 /* Initialize Git Commit */
-'7e72a5951c2f5e9af955b1152c236d62299f3be4'
+'e25e4fd579d11408b4cb4a96f8ace84c3b85ccd3'
 /* End Initialize Git Commit */
             ,
 
             gitCommitDate: new Date(
 /* Initialize Git Commit Date */
-'2018-01-10 21:42:13 -0700'
+'2018-01-10 22:35:26 -0700'
 /* End Initialize Git Commit Date */
             ),
 
             gitMasterCommit: new Date(
 /* Initialize Git Master Commit */
-'7e72a5951c2f5e9af955b1152c236d62299f3be4'
+'e25e4fd579d11408b4cb4a96f8ace84c3b85ccd3'
 /* End Initialize Git Master Commit */
             ),
 
             gitMasterCommitDate: new Date(
 /* Initialize Git Master Commit Date */
-'2018-01-10 21:42:13 -0700'
+'2018-01-10 22:35:26 -0700'
 /* End Initialize Git Master Commit Date */
             ),
             
             officerList: [
 /* Initialize Officers */
-new Officer('Master Alchemist', 'Patrick Gillespie', 'patrickj115@ksu.edu', 'images/officers/Patrick_Gillespie.jpg', 'Junior', 'Chemistry', ''),
-new Officer('Vice Master Alchemist', 'Karter Krokstrom', 'kkrokstrom@ksu.edu', 'images/officers/no photo', 'Junior', 'Chemical Engineering', ''),
-new Officer('Master of Ceremonies', 'Emily Wedeman', 'ewedeman@k-state.edu', 'images/officers/Emily_Wedeman.jpg', 'Junior', 'Chemical Engineering', ''),
-new Officer('Outreach Coordinator', 'Lacey Beck', 'laceybeck2013@ksu.edu', 'images/officers/Lacey_Beck.jpg', 'Senior', 'Chemistry', ''),
-new Officer('Assistant Outreach Coordinator', 'Muriel Eaton', 'meaton02@ksu.edu', 'images/officers/Muriel_Eaton.jpg', 'Senior', 'Biochemistry', ''),
-new Officer('Social Chair', 'Marquix Adamson', 'marquix@ksu.edu', 'images/officers/Marquix_Adamson.jpg', 'Junior', 'Chemistry', ''),
-new Officer('Recorder', 'Stephanie Lee', 'stephlee24@ksu.edu', 'images/officers/Sarah_Price.jpg', 'Senior', 'Chemical Science and Animal Bioscience', ''),
-new Officer('Treasurer', 'Courtney Hess', 'chess25@ksu.edu', 'images/officers/no photo', 'Senior', 'Chemical Science and Animal Bioscience', ''),
-new Officer('Historian', 'Sydney Masters', 'smasters@ksu.edu', 'images/officers/Sydney_Masters.jpg', 'Sophomore', 'Life Sciences, Pre-Optometry Major', ''),
-new Officer('Reporter', 'Gabrielle Ciccarelli', 'grciccar@ksu.edu', 'images/officers/Gabrielle_Ciccarelli.jpg', 'Sophomore', 'Nutritional Science', ''),
-new Officer('Webmaster', 'Vladislav Dubrovenski', 'vladi@ksu.edu', 'images/officers/Vladislav_Dubrovenski.jpg', 'Junior', 'Computer Science', ''),
-new Officer('Alumni Secretary', 'Dustin Nelsen', 'dnelsen@ksu.edu', 'images/officers/no photo', 'Junior', '', ''),
-new Officer('Chapter Advisor', 'Emery Brown', 'emerybrown@ksu.edu', 'images/officers/Emery_Brown.jpg', 'Graduate Student', 'Analytical Chemistry', '')
+new Officer('Master Alchemist', 'Patrick Gillespie', 'patrickj115@ksu.edu', 'images/officers/Patrick_Gillespie.jpg', 'he', 'him', 'Junior', 'Chemistry', ''),
+new Officer('Vice Master Alchemist', 'Karter Krokstrom', 'kkrokstrom@ksu.edu', 'images/officers/no photo', 'he', 'himJunior', 'Chemical Engineering', '', ''),
+new Officer('Master of Ceremonies', 'Emily Wedeman', 'ewedeman@k-state.edu', 'images/officers/Emily_Wedeman.jpg', 'she', 'her', 'Junior', 'Chemical Engineering', ''),
+new Officer('Outreach Coordinator', 'Lacey Beck', 'laceybeck2013@ksu.edu', 'images/officers/Lacey_Beck.jpg', 'she', 'her', 'Senior', 'Chemistry', ''),
+new Officer('Assistant Outreach Coordinator', 'Muriel Eaton', 'meaton02@ksu.edu', 'images/officers/Muriel_Eaton.jpg', 'she', 'her', 'Senior', 'Biochemistry', ''),
+new Officer('Social Chair', 'Marquix Adamson', 'marquix@ksu.edu', 'images/officers/Marquix_Adamson.jpg', 'he', 'him', 'Junior', 'Chemistry', ''),
+new Officer('Recorder', 'Stephanie Lee', 'stephlee24@ksu.edu', 'images/officers/Sarah_Price.jpg', 'Senior', 'she', 'her', 'Chemical Science and Animal Bioscience', ''),
+new Officer('Treasurer', 'Courtney Hess', 'chess25@ksu.edu', 'images/officers/no photo', 'Senior', 'she', 'her', 'Chemical Science and Animal Bioscience', ''),
+new Officer('Historian', 'Sydney Masters', 'smasters@ksu.edu', 'images/officers/Sydney_Masters.jpg', 'she', 'her', 'Sophomore', 'Life Sciences, Pre-Optometry Major', ''),
+new Officer('Reporter', 'Gabrielle Ciccarelli', 'grciccar@ksu.edu', 'images/officers/Gabrielle_Ciccarelli.jpg', 'she', 'her', 'Sophomore', 'Nutritional Science', ''),
+new Officer('Webmaster', 'Vladislav Dubrovenski', 'vladi@ksu.edu', 'images/officers/Vladislav_Dubrovenski.jpg', 'he', 'him', 'Junior', 'Computer Science', ''),
+new Officer('Alumni Secretary', 'Dustin Nelsen', 'dnelsen@ksu.edu', 'images/officers/no photo', 'he', 'him', 'Junior', '', ''),
+new Officer('Chapter Advisor', 'Emery Brown', 'emerybrown@ksu.edu', 'images/officers/Emery_Brown.jpg', 'he', 'him', 'Graduate Student', 'Analytical Chemistry', '')
 /* End Initialize Officers */
             ],
 
